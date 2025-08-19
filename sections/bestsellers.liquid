@@ -1,0 +1,164 @@
+{% comment %}
+  Bestsellers section for NüHome theme
+  Features: Product grid from bestsellers collection
+{% endcomment %}
+
+{%- liquid
+  assign collection = collections[section.settings.collection]
+  assign products_to_show = section.settings.products_to_show
+  assign columns_desktop = section.settings.columns_desktop
+-%}
+
+<section class="bestsellers" data-section-id="{{ section.id }}" data-section-type="bestsellers">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="bestsellers__header text-center">
+        <h2 class="bestsellers__title">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
+    {% if collection != blank and collection.products.size > 0 %}
+      <div class="bestsellers__grid grid grid-{{ columns_desktop }}">
+        {% for product in collection.products limit: products_to_show %}
+          <div class="bestsellers__item">
+            {% render 'product-card', 
+              product: product,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.settings.show_view_all and collection.all_products_count > products_to_show %}
+        <div class="bestsellers__footer text-center">
+          <a href="{{ collection.url }}" class="btn btn-secondary">
+            View All Bestsellers
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="bestsellers__empty text-center">
+        <p>No bestsellers found. Create a "bestsellers" collection to display products here.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "default": "bestsellers"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show secondary image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show product rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'View all' button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.bestsellers {
+  padding: var(--spacing-3xl) 0;
+  background: var(--color-white);
+}
+
+.bestsellers__header {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.bestsellers__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.bestsellers__grid {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.bestsellers__item {
+  display: flex;
+}
+
+.bestsellers__footer {
+  margin-top: var(--spacing-2xl);
+}
+
+.bestsellers__empty {
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .bestsellers {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .bestsellers__title {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .bestsellers__title {
+    font-size: var(--font-size-2xl);
+  }
+}
+</style>

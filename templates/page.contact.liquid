@@ -1,0 +1,242 @@
+{% comment %}
+  Contact page template for NüHome theme
+  Features: Contact form with POST to /contact
+{% endcomment %}
+
+<div class="contact-page">
+  <div class="container">
+    <div class="contact-page__header text-center">
+      <h1 class="contact-page__title">{{ page.title }}</h1>
+      {% if page.content != blank %}
+        <div class="contact-page__content">
+          {{ page.content }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="contact-page__form-wrapper">
+      <form class="contact-page__form" data-contact-form action="/contact" method="post">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        
+        <div class="contact-page__form-row">
+          <div class="contact-page__form-group">
+            <label for="ContactFormName" class="contact-page__label">Name *</label>
+            <input 
+              type="text" 
+              id="ContactFormName" 
+              name="contact[name]" 
+              class="contact-page__input"
+              required
+              aria-label="Name">
+          </div>
+          
+          <div class="contact-page__form-group">
+            <label for="ContactFormEmail" class="contact-page__label">Email *</label>
+            <input 
+              type="email" 
+              id="ContactFormEmail" 
+              name="contact[email]" 
+              class="contact-page__input"
+              required
+              aria-label="Email">
+          </div>
+        </div>
+
+        <div class="contact-page__form-group">
+          <label for="ContactFormPhone" class="contact-page__label">Phone</label>
+          <input 
+            type="tel" 
+            id="ContactFormPhone" 
+            name="contact[phone]" 
+            class="contact-page__input"
+            aria-label="Phone">
+        </div>
+
+        <div class="contact-page__form-group">
+          <label for="ContactFormSubject" class="contact-page__label">Subject *</label>
+          <input 
+            type="text" 
+            id="ContactFormSubject" 
+            name="contact[subject]" 
+            class="contact-page__input"
+            required
+            aria-label="Subject">
+        </div>
+
+        <div class="contact-page__form-group">
+          <label for="ContactFormMessage" class="contact-page__label">Message *</label>
+          <textarea 
+            id="ContactFormMessage" 
+            name="contact[body]" 
+            class="contact-page__textarea"
+            rows="6"
+            required
+            aria-label="Message"></textarea>
+        </div>
+
+        <div class="contact-page__form-group">
+          <button type="submit" class="btn btn-primary btn-large contact-page__submit">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-page__info">
+      <div class="contact-page__info-grid">
+        <div class="contact-page__info-item">
+          <h3>Email</h3>
+          <p>hello@nuhome.com</p>
+        </div>
+        
+        <div class="contact-page__info-item">
+          <h3>Phone</h3>
+          <p>(555) 123-4567</p>
+        </div>
+        
+        <div class="contact-page__info-item">
+          <h3>Hours</h3>
+          <p>Mon-Fri 9AM-6PM EST</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.contact-page {
+  padding: var(--spacing-3xl) 0;
+  background: var(--color-background);
+}
+
+.contact-page__header {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.contact-page__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-page__content {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.contact-page__form-wrapper {
+  max-width: 600px;
+  margin: 0 auto var(--spacing-3xl);
+  background: var(--color-white);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-page__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-page__form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-page__label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.contact-page__input,
+.contact-page__textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background: var(--color-white);
+  transition: border-color var(--transition-fast);
+}
+
+.contact-page__input:focus,
+.contact-page__textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.contact-page__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-page__submit {
+  width: 100%;
+}
+
+.contact-page__info {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-page__info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  text-align: center;
+}
+
+.contact-page__info-item h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.contact-page__info-item p {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .contact-page__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .contact-page__form-wrapper {
+    padding: var(--spacing-xl);
+    margin: 0 var(--spacing-md) var(--spacing-2xl);
+  }
+  
+  .contact-page__form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .contact-page__info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .contact-page__form-wrapper {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-sm) var(--spacing-xl);
+  }
+}
+</style>

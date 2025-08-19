@@ -1,0 +1,106 @@
+{% comment %}
+  Product card snippet for NüHome theme
+  Features: Product image, title, price, tagline from metafields, add to cart
+{% endcomment %}
+
+<div class="product-card">
+  <div class="product-card__image-wrapper">
+    <a href="{{ product.url }}" class="product-card__image-link">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | escape }}" class="product-card__image" loading="lazy">
+      {% endif %}
+    </a>
+    
+    <button class="product-card__quick-add" data-add-to-cart data-product-id="{{ product.selected_or_first_available_variant.id }}" {% unless product.available %}disabled{% endunless %}>
+      {% if product.available %}Add to Cart{% else %}Sold Out{% endif %}
+    </button>
+  </div>
+
+  <div class="product-card__content">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {% if product.metafields.custom.tagline %}
+      <p class="product-card__tagline">{{ product.metafields.custom.tagline }}</p>
+    {% endif %}
+
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="product-card__price--current">{{ product.price | money }}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.product-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__quick-add {
+  position: absolute;
+  bottom: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.product-card:hover .product-card__quick-add {
+  opacity: 1;
+}
+
+.product-card__content {
+  padding: var(--spacing-lg);
+}
+
+.product-card__title a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.product-card__tagline {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: var(--spacing-sm) 0;
+}
+
+.product-card__price--current {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.product-card__price--compare {
+  color: var(--color-text-light);
+  text-decoration: line-through;
+  margin-right: var(--spacing-sm);
+}
+</style>

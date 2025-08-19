@@ -1,0 +1,58 @@
+{% comment %}
+  Trust badges snippet for NüHome theme
+  Features: Payment security, shipping, returns badges
+{% endcomment %}
+
+<div class="trust-badges">
+  <div class="trust-badges__item">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M10 0L12.245 6.91L20 8L12.245 9.09L10 16L7.755 9.09L0 8L7.755 6.91L10 0Z"/>
+    </svg>
+    <span>Secure Payment</span>
+  </div>
+  
+  <div class="trust-badges__item">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M10 0L12.245 6.91L20 8L12.245 9.09L10 16L7.755 9.09L0 8L7.755 6.91L10 0Z"/>
+    </svg>
+    <span>Free Shipping</span>
+  </div>
+  
+  <div class="trust-badges__item">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M10 0L12.245 6.91L20 8L12.245 9.09L10 16L7.755 9.09L0 8L7.755 6.91L10 0Z"/>
+    </svg>
+    <span>30-Day Returns</span>
+  </div>
+</div>
+
+<style>
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.trust-badges__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.trust-badges__item svg {
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .trust-badges {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+  }
+}
+</style>

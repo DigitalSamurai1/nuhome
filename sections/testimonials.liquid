@@ -1,0 +1,295 @@
+{% comment %}
+  Testimonials section for NüHome theme
+  Features: Customer testimonials slider with ratings
+{% endcomment %}
+
+<section class="testimonials" data-section-id="{{ section.id }}" data-section-type="testimonials">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="testimonials__header text-center">
+        <h2 class="testimonials__title">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="testimonials__slider" data-testimonials-slider>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'testimonial' %}
+              <div class="testimonial" data-testimonial {{ block.shopify_attributes }}>
+                <div class="testimonial__content">
+                  {% if block.settings.rating > 0 %}
+                    <div class="testimonial__rating">
+                      {% for i in (1..5) %}
+                        {% if i <= block.settings.rating %}
+                          <span class="star star--filled">★</span>
+                        {% else %}
+                          <span class="star star--empty">☆</span>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.text != blank %}
+                    <blockquote class="testimonial__text">
+                      "{{ block.settings.text }}"
+                    </blockquote>
+                  {% endif %}
+
+                  {% if block.settings.author != blank %}
+                    <cite class="testimonial__author">
+                      — {{ block.settings.author }}
+                    </cite>
+                  {% endif %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+
+        {% if section.blocks.size > 1 %}
+          <div class="testimonials__controls">
+            <button class="testimonials__control testimonials__control--prev" data-slider-prev aria-label="Previous testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="testimonials__control testimonials__control--next" data-slider-next aria-label="Next testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="testimonials__empty text-center">
+        <p>No testimonials yet. Add some customer reviews to build trust.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "background-3",
+          "label": "Background 3"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Testimonial text",
+          "default": "NüHome appliances have transformed my kitchen experience. The quality is exceptional!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Sarah M."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.testimonials {
+  padding: var(--spacing-3xl) 0;
+  background: var(--color-background-tertiary);
+}
+
+.testimonials__header {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.testimonials__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.testimonials__slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  margin: 0 var(--spacing-lg);
+}
+
+.testimonial__rating {
+  margin-bottom: var(--spacing-lg);
+}
+
+.star {
+  font-size: var(--font-size-lg);
+  margin: 0 2px;
+}
+
+.star--filled {
+  color: #ffd700;
+}
+
+.star--empty {
+  color: var(--color-border);
+}
+
+.testimonial__text {
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  quotes: """ """;
+}
+
+.testimonial__text::before {
+  content: open-quote;
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  color: var(--color-accent);
+}
+
+.testimonial__text::after {
+  content: close-quote;
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-left: 0.25em;
+  vertical-align: -0.4em;
+  color: var(--color-accent);
+}
+
+.testimonial__author {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-accent);
+  font-style: normal;
+}
+
+.testimonials__controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.testimonials__control {
+  width: 48px;
+  height: 48px;
+  background: var(--color-white);
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--color-accent);
+}
+
+.testimonials__control:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.testimonials__empty {
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .testimonials__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .testimonial {
+    padding: var(--spacing-xl);
+    margin: 0 var(--spacing-md);
+  }
+  
+  .testimonial__text {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .testimonial {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-sm);
+  }
+}
+</style>

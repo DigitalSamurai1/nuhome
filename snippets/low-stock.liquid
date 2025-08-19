@@ -1,0 +1,59 @@
+{% comment %}
+  Low stock urgency banner for NüHome theme
+  Features: Creates urgency for low inventory items
+{% endcomment %}
+
+{% assign inventory_quantity = product.selected_or_first_available_variant.inventory_quantity %}
+{% assign inventory_policy = product.selected_or_first_available_variant.inventory_policy %}
+
+{% if inventory_quantity <= 5 and inventory_quantity > 0 and inventory_policy == 'deny' %}
+  <div class="low-stock-banner">
+    <div class="low-stock-banner__content">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0L9.796 5.528L16 6.4L9.796 7.272L8 12.8L6.204 7.272L0 6.4L6.204 5.528L8 0Z"/>
+      </svg>
+      <span class="low-stock-banner__text">
+        {% if inventory_quantity == 1 %}
+          Only 1 left in stock!
+        {% else %}
+          Only {{ inventory_quantity }} left in stock!
+        {% endif %}
+      </span>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+.low-stock-banner {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  animation: pulse 2s infinite;
+}
+
+.low-stock-banner__content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.low-stock-banner__text {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style>

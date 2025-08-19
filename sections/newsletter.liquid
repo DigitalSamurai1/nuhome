@@ -1,0 +1,213 @@
+{% comment %}
+  Newsletter section for NüHome theme
+  Features: Email capture with 10% off incentive
+{% endcomment %}
+
+<section class="newsletter" data-section-id="{{ section.id }}" data-section-type="newsletter">
+  <div class="container">
+    <div class="newsletter__content">
+      <div class="newsletter__text">
+        {% if section.settings.heading != blank %}
+          <h2 class="newsletter__title">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="newsletter__subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+
+      <div class="newsletter__form-wrapper">
+        <form class="newsletter__form" data-newsletter-form action="/contact" method="post">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          
+          <div class="newsletter__input-group">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="Enter your email address"
+              class="newsletter__input"
+              required
+              aria-label="Email address">
+            
+            <button type="submit" class="newsletter__submit">
+              {{ section.settings.button_label | default: 'Subscribe' }}
+            </button>
+          </div>
+        </form>
+
+        <p class="newsletter__disclaimer">
+          By subscribing, you agree to receive marketing emails from NüHome. Unsubscribe at any time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay Connected"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Get 10% off your first order when you sign up for our newsletter"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "background-3",
+          "label": "Background 3"
+        }
+      ],
+      "default": "background-2",
+      "label": "Color scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.newsletter {
+  padding: var(--spacing-3xl) 0;
+  background: var(--color-background-secondary);
+}
+
+.newsletter__content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter__text {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.newsletter__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.newsletter__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.newsletter__form-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletter__form {
+  margin-bottom: var(--spacing-lg);
+}
+
+.newsletter__input-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.newsletter__input {
+  flex: 1;
+  padding: var(--spacing-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  background: var(--color-white);
+  transition: border-color var(--transition-fast);
+}
+
+.newsletter__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.newsletter__submit {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.newsletter__submit:hover {
+  background: var(--color-accent-hover);
+}
+
+.newsletter__disclaimer {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .newsletter {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .newsletter__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .newsletter__subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .newsletter__input-group {
+    flex-direction: column;
+  }
+  
+  .newsletter__submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .newsletter__input,
+  .newsletter__submit {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+</style>
