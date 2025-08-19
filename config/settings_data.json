@@ -127,12 +127,14 @@
       }
     },
     "content_for_index": [
+      "header",
       "hero",
       "why_nuhome",
       "featured_products",
       "bestsellers",
       "testimonials",
-      "newsletter"
+      "newsletter",
+      "footer"
     ]
   }
 }
