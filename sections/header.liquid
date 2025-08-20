@@ -43,7 +43,7 @@
           </a>
         {% else %}
           <a href="/" class="header__logo-text">
-            NüHome
+            NüH❄️me
           </a>
         {% endif %}
       </div>
@@ -220,9 +220,9 @@
 <style>
 /* Announcement Bar */
 .announcement-bar {
-  background: #eef6f9;
+  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
   padding: 8px 0;
-  border-bottom: 1px solid rgba(110, 193, 182, 0.1);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.1);
 }
 
 .announcement-bar__content {
@@ -268,10 +268,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #f4f8f9;
+  background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
   padding: 12px 16px;
   border-radius: 12px;
-  border: 1px solid rgba(110, 193, 182, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
 }
 
 .support-box__icon {
@@ -304,11 +305,23 @@
 
 .header__logo-text {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: #6ec1b6;
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #F0F8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-decoration: none;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+  position: relative;
+  animation: snowflake-glow 4s ease-in-out infinite;
+}
+
+/* Snowflake animation for the logo */
+@keyframes snowflake-glow {
+  0%, 100% { text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2); }
+  50% { text-shadow: 0 4px 12px rgba(74, 144, 226, 0.4), 0 0 20px rgba(135, 206, 235, 0.3); }
 }
 
 /* Header Actions */
@@ -335,8 +348,10 @@
 }
 
 .header__action-btn:hover {
-  background: #f4f8f9;
-  color: #6ec1b6;
+  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+  color: #4A90E2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
 }
 
 .header__action-icon {
@@ -347,7 +362,7 @@
   position: absolute;
   top: -6px;
   right: -6px;
-  background: #6ec1b6;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
   color: white;
   font-size: 12px;
   font-weight: 700;
@@ -357,6 +372,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
 }
 
 /* Navigation */
@@ -385,7 +401,7 @@
 }
 
 .header__nav-link:hover {
-  color: #6ec1b6;
+  color: #4A90E2;
 }
 
 .header__nav-link::after {
@@ -395,7 +411,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #6ec1b6;
+  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
   transition: width 0.2s ease;
 }
 
@@ -432,21 +448,25 @@
 
 .header__search-input:focus {
   outline: none;
-  border-color: #6ec1b6;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
 .header__search-btn {
   padding: 12px 16px;
-  background: #6ec1b6;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
   color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
 }
 
 .header__search-btn:hover {
-  background: #5db3a8;
+  background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
 }
 
 /* Mobile Menu Toggle */
