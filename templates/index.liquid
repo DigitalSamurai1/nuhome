@@ -28,12 +28,31 @@
   endfor
 -%}
 
+{% comment %}
+  Enhanced Homepage template - renders sections directly for development
+  This ensures sections always show up properly
+{% endcomment %}
+
+{% section 'hero' %}
+{% section 'bestsellers' %}
+{% section 'why-nuhome' %}
+{% section 'testimonials' %}
+{% section 'newsletter' %}
+
+{% comment %}
+  Backup: Also render content_for_index if available (for theme customizer)
+{% endcomment %}
 {{ content_for_index }}
 
-{%- comment -%}
-  Fallback: If no sections are configured via theme customizer, show default content
-{%- endcomment -%}
-{% if content_for_index == blank %}
+{% comment %}
+  Fallback content only if both sections and content_for_index are empty
+{% endcomment %}
+{% assign has_content = false %}
+{% if content_for_index != blank %}
+  {% assign has_content = true %}
+{% endif %}
+
+{% unless has_content %}
   {%- comment -%}
     Default homepage content when no sections are configured
     This provides a complete experience out of the box
@@ -334,3 +353,4 @@
   }
 }
 </style>
+{% endunless %}
