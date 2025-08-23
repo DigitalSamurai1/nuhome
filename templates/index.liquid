@@ -28,16 +28,12 @@
   endfor
 -%}
 
-{% if content_for_index != blank %}
-  {{ content_for_index }}
-{% elsif has_sections %}
-  {%- comment -%}
-    Render all configured sections
-  {%- endcomment -%}
-  {% for section in section.sections %}
-    {% render section %}
-  {% endfor %}
-{% else %}
+{{ content_for_index }}
+
+{%- comment -%}
+  Fallback: If no sections are configured via theme customizer, show default content
+{%- endcomment -%}
+{% if content_for_index == blank %}
   {%- comment -%}
     Default homepage content when no sections are configured
     This provides a complete experience out of the box

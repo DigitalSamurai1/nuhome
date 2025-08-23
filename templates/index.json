@@ -1,0 +1,120 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Experience the ❄️ Difference",
+        "subheading": "Premium ice-cold kitchen appliances designed for wellness, efficiency, and the modern lifestyle.",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all",
+        "show_video": false,
+        "background_overlay": 50
+      }
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "heading": "🔥 Trending Now",
+        "subheading": "Discover our most-loved products flying off the shelves",
+        "collection": "bestsellers",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "show_view_all": true
+      }
+    },
+    "why-nuhome": {
+      "type": "why-nuhome",
+      "settings": {
+        "heading": "Why Choose NüHome?",
+        "subheading": "Experience the perfect blend of innovation, quality, and customer satisfaction",
+        "feature_1_icon": "🧊",
+        "feature_1_badge": "Premium Quality",
+        "feature_1_title": "Ice-Cold Innovation",
+        "feature_1_text": "Advanced cooling technology that delivers perfect ice every time, designed for the modern kitchen.",
+        "feature_1_benefits": "Energy efficient, Quick ice production, Premium materials, Whisper quiet operation",
+        "feature_2_icon": "🛡️",
+        "feature_2_badge": "Most Popular",
+        "feature_2_title": "Trusted & Reliable",
+        "feature_2_text": "Backed by industry-leading warranties and thousands of satisfied customers worldwide.",
+        "feature_2_benefits": "1-year warranty, 24/7 support, Free shipping, 30-day returns",
+        "feature_3_icon": "🏠",
+        "feature_3_badge": "Customer Favorite",
+        "feature_3_title": "Perfect for Every Home",
+        "feature_3_text": "Compact designs that fit any space, from studio apartments to luxury kitchens.",
+        "feature_3_benefits": "Space-saving design, Easy installation, Multiple sizes, Elegant aesthetics",
+        "show_cta": true,
+        "cta_text": "Discover NüHome",
+        "cta_link": "/pages/about"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "❄️ What Our Customers Say",
+        "subheading": "Join thousands of satisfied customers who've transformed their kitchens with NüHome"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "This ice maker has completely changed our kitchen experience! The nugget ice is perfect for our smoothies and cocktails. Installation was a breeze.",
+            "author": "Sarah M.",
+            "author_location": "California, USA",
+            "product_name": "COWSAR Nugget Ice Maker",
+            "purchase_date": "2 months ago",
+            "show_helpful_votes": true,
+            "helpful_count": 23
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Perfect for our RV adventures! Keeps everything cold and runs quietly. The 12V connection makes it so convenient for road trips.",
+            "author": "Mike & Linda K.",
+            "author_location": "Texas, USA",
+            "product_name": "EUHOMY 12V Refrigerator",
+            "purchase_date": "1 month ago",
+            "show_helpful_votes": true,
+            "helpful_count": 18
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "The coffee tastes amazing! Easy to use and the compact design fits perfectly in our small kitchen. Highly recommend!",
+            "author": "Jennifer L.",
+            "author_location": "New York, USA",
+            "product_name": "COWSAR Espresso Machine",
+            "purchase_date": "3 weeks ago",
+            "show_helpful_votes": true,
+            "helpful_count": 15
+          }
+        }
+      ]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "❄️ Join the NüHome Family ❄️",
+        "subheading": "Stay cool with exclusive deals, kitchen tips, and be the first to know about new arrivals",
+        "discount_text": "Get 10% OFF",
+        "discount_subtext": "Your First Order",
+        "button_label": "Get My 10% Off",
+        "subscriber_count": "15,000+",
+        "show_urgency": true,
+        "urgency_count": "2,847"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "bestsellers", 
+    "why-nuhome",
+    "testimonials",
+    "newsletter"
+  ]
+}
