@@ -107,25 +107,194 @@
           {% endfor %}
         </ul>
       {% else %}
-        <!-- Default Navigation -->
+        <!-- Default Navigation Based on Product Inventory -->
         <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a href="/" class="header__nav-link">Home</a>
+          <!-- Ice Makers Category -->
+          <li class="header__nav-item header__nav-item--has-dropdown">
+            <a href="/collections/ice-makers" class="header__nav-link">
+              <span class="header__nav-icon">🧊</span>
+              Ice Makers
+              <span class="header__nav-arrow">▼</span>
+            </a>
+            <div class="header__nav-mega-dropdown">
+              <div class="header__nav-mega-content">
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Nugget Ice Makers</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-nugget-ice-maker-countertop">COWSAR Nugget Ice Maker</a></li>
+                    <li><a href="/products/cowsar-nugget-ice-maker-dispenser">COWSAR Nugget Dispenser</a></li>
+                    <li><a href="/products/euhomy-nugget-ice-makers">Euhomy Nugget Ice Makers</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Portable Ice Makers</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-portable-ice-makers">COWSAR Portable Ice</a></li>
+                    <li><a href="/products/cowsar-bullet-ice-maker">COWSAR Bullet Ice Maker</a></li>
+                    <li><a href="/products/euhomy-ice-maker-machine">EUHOMY Ice Maker</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Commercial Ice Makers</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-commercial-ice-maker">COWSAR Commercial</a></li>
+                    <li><a href="/products/euhomy-commercial-ice-maker">EUHOMY Commercial</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-featured">
+                  <div class="header__nav-mega-promo">
+                    <span class="header__nav-mega-promo-badge">🔥 Best Seller</span>
+                    <h5>COWSAR Nugget Ice Maker</h5>
+                    <p>Soft, chewable ice in minutes</p>
+                    <a href="/products/cowsar-nugget-ice-maker-countertop" class="btn btn-sm">Shop Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
-          <li class="header__nav-item">
-            <a href="/collections/bestsellers" class="header__nav-link">Best Sellers</a>
+
+          <!-- Refrigeration Category -->
+          <li class="header__nav-item header__nav-item--has-dropdown">
+            <a href="/collections/refrigeration" class="header__nav-link">
+              <span class="header__nav-icon">❄️</span>
+              Refrigeration
+              <span class="header__nav-arrow">▼</span>
+            </a>
+            <div class="header__nav-mega-dropdown">
+              <div class="header__nav-mega-content">
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Portable Refrigerators</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-portable-cooler-12v">COWSAR 12V Cooler</a></li>
+                    <li><a href="/products/euhomy-12v-refrigerator">EUHOMY 12V Refrigerator</a></li>
+                    <li><a href="/products/euhomy-car-refrigerator">EUHOMY Car Fridge</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Mini Fridges</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-mini-fridge">Cowsar Mini Fridge</a></li>
+                    <li><a href="/products/euhomy-mini-fridge">EUHOMY Mini Fridge</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Chest Freezers</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-chest-freezer">COWSAR Chest Freezer</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-featured">
+                  <div class="header__nav-mega-promo">
+                    <span class="header__nav-mega-promo-badge">⚡ New</span>
+                    <h5>12V Car Refrigerator</h5>
+                    <p>Perfect for road trips & camping</p>
+                    <a href="/collections/portable-refrigerators" class="btn btn-sm">Explore</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
-          <li class="header__nav-item">
-            <a href="/collections/ice-makers" class="header__nav-link">Ice Makers</a>
+
+          <!-- Coffee & Kitchen Category -->
+          <li class="header__nav-item header__nav-item--has-dropdown">
+            <a href="/collections/coffee-kitchen" class="header__nav-link">
+              <span class="header__nav-icon">☕</span>
+              Coffee & Kitchen
+              <span class="header__nav-arrow">▼</span>
+            </a>
+            <div class="header__nav-mega-dropdown">
+              <div class="header__nav-mega-content">
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Coffee Makers</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-drip-coffee-maker">COWSAR Drip Coffee</a></li>
+                    <li><a href="/products/cowsar-10-cup-coffee-maker">COWSAR 10-Cup Coffee</a></li>
+                    <li><a href="/products/cowsar-5-cup-coffee">Cowsar 5-Cup</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Espresso Machines</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-espresso-machine">COWSAR Espresso</a></li>
+                    <li><a href="/products/cowsar-espresso-cappuccino">COWSAR Cappuccino</a></li>
+                    <li><a href="/products/cowsar-espresso-20bar">COWSAR 20 Bar</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Kitchen Appliances</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/euhomy-clothes-dryer">Portable Dryer</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-featured">
+                  <div class="header__nav-mega-promo">
+                    <span class="header__nav-mega-promo-badge">💎 Premium</span>
+                    <h5>Espresso Collection</h5>
+                    <p>Barista-quality coffee at home</p>
+                    <a href="/collections/espresso-machines" class="btn btn-sm">Shop Coffee</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
-          <li class="header__nav-item">
-            <a href="/collections/coffee-machines" class="header__nav-link">Coffee Machines</a>
+
+          <!-- Cooling & Air Category -->
+          <li class="header__nav-item header__nav-item--has-dropdown">
+            <a href="/collections/cooling-air" class="header__nav-link">
+              <span class="header__nav-icon">🌀</span>
+              Cooling & Air
+              <span class="header__nav-arrow">▼</span>
+            </a>
+            <div class="header__nav-mega-dropdown">
+              <div class="header__nav-mega-content">
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Tower Fans</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-36-tower-fan">COWSAR 36" Tower Fan</a></li>
+                    <li><a href="/products/cowsar-tower-fan-bedroom">COWSAR Bedroom Fan</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">Air Conditioners</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/products/cowsar-portable-air-conditioner">COWSAR 8,000 BTU</a></li>
+                    <li><a href="/products/cowsar-10000-btu-air-conditioner">COWSAR 10,000 BTU</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-column">
+                  <h4 class="header__nav-mega-title">All Cooling</h4>
+                  <ul class="header__nav-mega-list">
+                    <li><a href="/collections/tower-fans">Tower Fans</a></li>
+                    <li><a href="/collections/air-conditioners">Air Conditioners</a></li>
+                    <li><a href="/collections/portable-cooling">Portable Cooling</a></li>
+                  </ul>
+                </div>
+                <div class="header__nav-mega-featured">
+                  <div class="header__nav-mega-promo">
+                    <span class="header__nav-mega-promo-badge">🏠 Popular</span>
+                    <h5>Stay Cool This Summer</h5>
+                    <p>Efficient cooling solutions</p>
+                    <a href="/collections/cooling-air" class="btn btn-sm">Cool Down</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </li>
+
+          <!-- Simple Links -->
           <li class="header__nav-item">
-            <a href="/collections/wellness-tech" class="header__nav-link">Wellness Tech</a>
+            <a href="/collections/new-arrivals" class="header__nav-link">
+              <span class="header__nav-icon">✨</span>
+              New Arrivals
+            </a>
           </li>
+
           <li class="header__nav-item">
-            <a href="/pages/contact" class="header__nav-link">Contact</a>
+            <a href="/collections/sale" class="header__nav-link header__nav-link--sale">
+              <span class="header__nav-icon">🔥</span>
+              Sale
+              <span class="header__nav-sale-badge">Up to 30% Off</span>
+            </a>
           </li>
         </ul>
       {% endif %}
@@ -404,6 +573,204 @@
   color: #4A90E2;
 }
 
+/* Navigation Icons and Arrows */
+.header__nav-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.header__nav-arrow {
+  margin-left: 8px;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.header__nav-item--has-dropdown:hover .header__nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* Sale Badge */
+.header__nav-sale-badge {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulse-sale 2s ease-in-out infinite;
+}
+
+@keyframes pulse-sale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Mega Dropdown */
+.header__nav-mega-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(74, 144, 226, 0.15);
+  padding: 40px;
+  width: 900px;
+  max-width: 90vw;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.header__nav-item--has-dropdown:hover .header__nav-mega-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.header__nav-mega-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 280px;
+  gap: 40px;
+}
+
+.header__nav-mega-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__nav-mega-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(74, 144, 226, 0.1);
+  position: relative;
+}
+
+.header__nav-mega-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
+}
+
+.header__nav-mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.header__nav-mega-list a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.header__nav-mega-list a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
+  transition: width 0.3s ease;
+}
+
+.header__nav-mega-list a:hover {
+  color: #4A90E2;
+  transform: translateX(5px);
+}
+
+.header__nav-mega-list a:hover::before {
+  width: 100%;
+}
+
+/* Featured Promo in Mega Menu */
+.header__nav-mega-featured {
+  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.header__nav-mega-featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer-mega 3s infinite;
+}
+
+@keyframes shimmer-mega {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.header__nav-mega-promo {
+  position: relative;
+  z-index: 1;
+}
+
+.header__nav-mega-promo-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.header__nav-mega-promo h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+  margin: 0 0 8px 0;
+}
+
+.header__nav-mega-promo p {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.header__nav-mega-promo .btn {
+  font-size: 12px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
 .header__nav-link::after {
   content: '';
   position: absolute;
@@ -531,6 +898,17 @@
   .header__nav-list {
     gap: 24px;
   }
+  
+  /* Mega Menu Responsive */
+  .header__nav-mega-dropdown {
+    width: 800px;
+    padding: 32px;
+  }
+  
+  .header__nav-mega-content {
+    grid-template-columns: 1fr 1fr 1fr 240px;
+    gap: 32px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -566,6 +944,11 @@
   }
   
   .header__nav {
+    display: none;
+  }
+  
+  /* Hide mega menu on mobile */
+  .header__nav-mega-dropdown {
     display: none;
   }
   
