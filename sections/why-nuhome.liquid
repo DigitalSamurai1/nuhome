@@ -1,53 +1,138 @@
 {% comment %}
-  Why NüHome section for NüHome theme
-  Features: Three value propositions with icons and descriptions
+  Enhanced Why NüHome section for NüHome theme
+  Features: Compelling value propositions with winter theme, benefits, and social proof
 {% endcomment %}
 
 <section class="why-nuhome" data-section-id="{{ section.id }}" data-section-type="why-nuhome">
-  <div class="container">
-    {% if section.settings.heading != blank %}
-      <div class="why-nuhome__header text-center">
-        <h2 class="why-nuhome__title">{{ section.settings.heading }}</h2>
-      </div>
-    {% endif %}
+  <!-- Background Elements -->
+  <div class="why-nuhome__background">
+    <div class="why-nuhome__pattern"></div>
+  </div>
 
+  <div class="container">
+    <!-- Header Section -->
+    <div class="why-nuhome__header text-center">
+      {% if section.settings.heading != blank %}
+        <h2 class="why-nuhome__title">
+          <span class="why-nuhome__title-text">{{ section.settings.heading }}</span>
+          <span class="why-nuhome__title-accent">❄️</span>
+        </h2>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <p class="why-nuhome__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Features Grid -->
     <div class="why-nuhome__features">
-      <div class="why-nuhome__feature">
-        <div class="why-nuhome__feature-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M24 4L29.09 16.26L42 17.27L32 26.14L35.18 38.02L24 31.77L12.82 38.02L16 26.14L6 17.27L18.91 16.26L24 4Z" fill="currentColor"/>
-          </svg>
+      <div class="why-nuhome__feature" data-aos="fade-up" data-aos-delay="0">
+        <div class="why-nuhome__feature-header">
+          <div class="why-nuhome__feature-icon">
+            <span class="why-nuhome__feature-emoji">{{ section.settings.feature_1_icon | default: '❄️' }}</span>
+          </div>
+          <div class="why-nuhome__feature-badge">{{ section.settings.feature_1_badge | default: 'Premium' }}</div>
         </div>
         <div class="why-nuhome__feature-content">
           <h3 class="why-nuhome__feature-title">{{ section.settings.feature_1_title }}</h3>
           <p class="why-nuhome__feature-text">{{ section.settings.feature_1_text }}</p>
+          
+          {% if section.settings.feature_1_benefits %}
+            <ul class="why-nuhome__feature-benefits">
+              {% assign benefits = section.settings.feature_1_benefits | split: ',' %}
+              {% for benefit in benefits limit: 3 %}
+                <li class="why-nuhome__feature-benefit">
+                  <span class="why-nuhome__benefit-icon">✨</span>
+                  {{ benefit | strip }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
 
-      <div class="why-nuhome__feature">
-        <div class="why-nuhome__feature-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM20 34L10 24L12.83 21.17L20 28.34L35.17 13.17L38 16L20 34Z" fill="currentColor"/>
-          </svg>
+      <div class="why-nuhome__feature why-nuhome__feature--featured" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-nuhome__feature-highlight">Most Popular</div>
+        <div class="why-nuhome__feature-header">
+          <div class="why-nuhome__feature-icon">
+            <span class="why-nuhome__feature-emoji">{{ section.settings.feature_2_icon | default: '🧊' }}</span>
+          </div>
+          <div class="why-nuhome__feature-badge">{{ section.settings.feature_2_badge | default: 'Innovative' }}</div>
         </div>
         <div class="why-nuhome__feature-content">
           <h3 class="why-nuhome__feature-title">{{ section.settings.feature_2_title }}</h3>
           <p class="why-nuhome__feature-text">{{ section.settings.feature_2_text }}</p>
+          
+          {% if section.settings.feature_2_benefits %}
+            <ul class="why-nuhome__feature-benefits">
+              {% assign benefits = section.settings.feature_2_benefits | split: ',' %}
+              {% for benefit in benefits limit: 3 %}
+                <li class="why-nuhome__feature-benefit">
+                  <span class="why-nuhome__benefit-icon">✨</span>
+                  {{ benefit | strip }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
 
-      <div class="why-nuhome__feature">
-        <div class="why-nuhome__feature-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M24 4L26.34 10.34L33 12.68L26.34 15.02L24 21.36L21.66 15.02L15 12.68L21.66 10.34L24 4ZM24 26.64L26.34 33L33 35.34L26.34 37.68L24 44.02L21.66 37.68L15 35.34L21.66 33L24 26.64Z" fill="currentColor"/>
-          </svg>
+      <div class="why-nuhome__feature" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-nuhome__feature-header">
+          <div class="why-nuhome__feature-icon">
+            <span class="why-nuhome__feature-emoji">{{ section.settings.feature_3_icon | default: '🚚' }}</span>
+          </div>
+          <div class="why-nuhome__feature-badge">{{ section.settings.feature_3_badge | default: 'Reliable' }}</div>
         </div>
         <div class="why-nuhome__feature-content">
           <h3 class="why-nuhome__feature-title">{{ section.settings.feature_3_title }}</h3>
           <p class="why-nuhome__feature-text">{{ section.settings.feature_3_text }}</p>
+          
+          {% if section.settings.feature_3_benefits %}
+            <ul class="why-nuhome__feature-benefits">
+              {% assign benefits = section.settings.feature_3_benefits | split: ',' %}
+              {% for benefit in benefits limit: 3 %}
+                <li class="why-nuhome__feature-benefit">
+                  <span class="why-nuhome__benefit-icon">✨</span>
+                  {{ benefit | strip }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
       </div>
     </div>
+
+    <!-- Bottom Stats/Social Proof -->
+    <div class="why-nuhome__stats">
+      <div class="why-nuhome__stat">
+        <div class="why-nuhome__stat-number">99.8%</div>
+        <div class="why-nuhome__stat-label">Satisfaction Rate</div>
+      </div>
+      <div class="why-nuhome__stat">
+        <div class="why-nuhome__stat-number">50K+</div>
+        <div class="why-nuhome__stat-label">Happy Homes</div>
+      </div>
+      <div class="why-nuhome__stat">
+        <div class="why-nuhome__stat-number">2-Day</div>
+        <div class="why-nuhome__stat-label">Free Shipping</div>
+      </div>
+      <div class="why-nuhome__stat">
+        <div class="why-nuhome__stat-number">1-Year</div>
+        <div class="why-nuhome__stat-label">Warranty</div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    {% if section.settings.show_cta %}
+      <div class="why-nuhome__cta text-center">
+        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="why-nuhome__cta-button">
+          <span class="why-nuhome__cta-text">{{ section.settings.cta_text | default: 'Start Your Journey' }}</span>
+          <span class="why-nuhome__cta-icon">❄️</span>
+        </a>
+        <p class="why-nuhome__cta-subtext">Join thousands of satisfied customers</p>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -56,46 +141,144 @@
   "name": "Why NüHome",
   "settings": [
     {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Why Choose NüHome?"
     },
     {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Experience the difference that premium ice-cold technology makes in your daily life"
+    },
+    {
+      "type": "header",
+      "content": "Feature 1 - Ice Technology"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_icon",
+      "label": "Feature 1 Icon (Emoji)",
+      "default": "❄️"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_badge",
+      "label": "Feature 1 Badge",
+      "default": "Premium"
+    },
+    {
       "type": "text",
       "id": "feature_1_title",
       "label": "Feature 1 Title",
-      "default": "Smart Design"
+      "default": "Crystal Clear Ice Technology"
     },
     {
       "type": "textarea",
       "id": "feature_1_text",
       "label": "Feature 1 Text",
-      "default": "Thoughtfully crafted for modern kitchens"
+      "default": "Advanced ice-making technology that produces restaurant-quality crystal-clear ice cubes in just 12 minutes"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_1_benefits",
+      "label": "Feature 1 Benefits (comma-separated)",
+      "default": "12-minute ice production, Crystal clear quality, Restaurant-grade purity"
+    },
+    {
+      "type": "header",
+      "content": "Feature 2 - Smart Design"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_icon",
+      "label": "Feature 2 Icon (Emoji)",
+      "default": "🧊"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_badge",
+      "label": "Feature 2 Badge",
+      "default": "Smart"
     },
     {
       "type": "text",
       "id": "feature_2_title",
       "label": "Feature 2 Title",
-      "default": "Wellness First"
+      "default": "Smart & Compact Design"
     },
     {
       "type": "textarea",
       "id": "feature_2_text",
       "label": "Feature 2 Text",
-      "default": "Health-focused appliances for better living"
+      "default": "Thoughtfully designed for modern kitchens with space-saving technology and intuitive controls"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_2_benefits",
+      "label": "Feature 2 Benefits (comma-separated)",
+      "default": "Compact countertop design, Easy touch controls, Modern aesthetic"
+    },
+    {
+      "type": "header",
+      "content": "Feature 3 - Customer Care"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_icon",
+      "label": "Feature 3 Icon (Emoji)",
+      "default": "🚚"
+    },
+    {
+      "type": "text",
+      "id": "feature_3_badge",
+      "label": "Feature 3 Badge",
+      "default": "Reliable"
     },
     {
       "type": "text",
       "id": "feature_3_title",
       "label": "Feature 3 Title",
-      "default": "Reliable Shipping"
+      "default": "Fast & Reliable Service"
     },
     {
       "type": "textarea",
       "id": "feature_3_text",
       "label": "Feature 3 Text",
-      "default": "Fast, secure delivery to your door"
+      "default": "Free 2-day shipping, 1-year warranty, and dedicated customer support for peace of mind"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_3_benefits",
+      "label": "Feature 3 Benefits (comma-separated)",
+      "default": "Free 2-day shipping, 1-year warranty, 24/7 customer support"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show call to action button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Start Your Journey ❄️"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link",
+      "default": "/collections/all"
     }
   ],
   "presets": [
@@ -108,102 +291,472 @@
 
 <style>
 .why-nuhome {
-  padding: var(--spacing-3xl) 0;
-  background: var(--color-white);
+  position: relative;
+  padding: 100px 0;
+  background: white;
+  overflow: hidden;
 }
 
+/* Background Pattern */
+.why-nuhome__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.why-nuhome__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(74, 144, 226, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(135, 206, 235, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 90%, rgba(176, 230, 255, 0.05) 0%, transparent 50%);
+}
+
+/* Header */
 .why-nuhome__header {
-  margin-bottom: var(--spacing-3xl);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
+  text-align: center;
 }
 
 .why-nuhome__title {
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-lg);
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
 }
 
+.why-nuhome__title-text {
+  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 30%, #87CEEB 70%, #B8E6FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+.why-nuhome__title-accent {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 2.5rem;
+  animation: bounce-sparkles 2s ease-in-out infinite;
+}
+
+.why-nuhome__subtitle {
+  font-size: 1.25rem;
+  color: #4A90E2;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.1);
+}
+
+/* Features Grid */
 .why-nuhome__features {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-2xl);
-  max-width: 1000px;
-  margin: 0 auto;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 80px;
 }
 
 .why-nuhome__feature {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 40px 32px;
   text-align: center;
-  padding: var(--spacing-xl);
-  background: var(--color-background);
-  border-radius: var(--radius-xl);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  border: 2px solid rgba(135, 206, 235, 0.2);
+  box-shadow: 0 8px 32px rgba(74, 144, 226, 0.15);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.why-nuhome__feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
 }
 
 .why-nuhome__feature:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 60px rgba(74, 144, 226, 0.25);
+  border-color: rgba(135, 206, 235, 0.4);
+}
+
+.why-nuhome__feature:hover::before {
+  left: 100%;
+}
+
+/* Featured Card (middle one) */
+.why-nuhome__feature--featured {
+  transform: scale(1.05);
+  border-color: rgba(74, 144, 226, 0.3);
+  box-shadow: 0 12px 40px rgba(74, 144, 226, 0.2);
+}
+
+.why-nuhome__feature--featured:hover {
+  transform: scale(1.05) translateY(-12px);
+}
+
+.why-nuhome__feature-highlight {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%);
+  color: white;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  z-index: 3;
+}
+
+/* Feature Header */
+.why-nuhome__feature-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
 }
 
 .why-nuhome__feature-icon {
   width: 80px;
   height: 80px;
-  margin: 0 auto var(--spacing-lg);
-  background: var(--color-accent);
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-white);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+}
+
+.why-nuhome__feature:hover .why-nuhome__feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
+}
+
+.why-nuhome__feature-emoji {
+  font-size: 36px;
+  display: block;
+  animation: float-icon 3s ease-in-out infinite;
+}
+
+.why-nuhome__feature-badge {
+  display: inline-block;
+  background: rgba(74, 144, 226, 0.1);
+  color: #4A90E2;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+}
+
+/* Feature Content */
+.why-nuhome__feature-content {
+  position: relative;
+  z-index: 2;
 }
 
 .why-nuhome__feature-title {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 16px;
+  line-height: 1.3;
 }
 
 .why-nuhome__feature-text {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  font-size: 16px;
+  color: #666;
   line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Feature Benefits */
+.why-nuhome__feature-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.why-nuhome__feature-benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.why-nuhome__benefit-icon {
+  font-size: 12px;
+  color: #4A90E2;
+  flex-shrink: 0;
+}
+
+/* Bottom Stats */
+.why-nuhome__stats {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.why-nuhome__stat {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.1);
+  transition: transform 0.3s ease;
+  min-width: 140px;
+}
+
+.why-nuhome__stat:hover {
+  transform: translateY(-5px);
+}
+
+.why-nuhome__stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.why-nuhome__stat-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Call to Action */
+.why-nuhome__cta {
+  position: relative;
+  z-index: 2;
+}
+
+.why-nuhome__cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 100%);
+  color: white;
+  padding: 18px 36px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-nuhome__cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.why-nuhome__cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
+  background: linear-gradient(135deg, #2171B5 0%, #4A90E2 100%);
+}
+
+.why-nuhome__cta-button:hover::before {
+  left: 100%;
+}
+
+.why-nuhome__cta-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.why-nuhome__cta-button:hover .why-nuhome__cta-icon {
+  transform: scale(1.2) rotate(20deg);
+}
+
+.why-nuhome__cta-subtext {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #4A90E2;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes text-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes bounce-sparkles {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .why-nuhome__features {
+    gap: 30px;
+  }
+  
+  .why-nuhome__stats {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 768px) {
   .why-nuhome {
-    padding: var(--spacing-2xl) 0;
+    padding: 60px 0;
+  }
+  
+  .why-nuhome__header {
+    margin-bottom: 50px;
+  }
+  
+  .why-nuhome__title {
+    font-size: 2.5rem;
+  }
+  
+  .why-nuhome__title-accent {
+    font-size: 2rem;
+  }
+  
+  .why-nuhome__subtitle {
+    font-size: 1.125rem;
   }
   
   .why-nuhome__features {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: 30px;
+    margin-bottom: 50px;
   }
   
-  .why-nuhome__title {
-    font-size: var(--font-size-3xl);
+  .why-nuhome__feature--featured {
+    transform: scale(1);
+  }
+  
+  .why-nuhome__feature--featured:hover {
+    transform: translateY(-12px);
   }
   
   .why-nuhome__feature {
-    padding: var(--spacing-lg);
+    padding: 32px 24px;
   }
   
   .why-nuhome__feature-icon {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
   }
   
-  .why-nuhome__feature-title {
-    font-size: var(--font-size-lg);
+  .why-nuhome__feature-emoji {
+    font-size: 28px;
+  }
+  
+  .why-nuhome__stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .why-nuhome__stat {
+    width: 100%;
+    max-width: 200px;
   }
 }
 
 @media (max-width: 480px) {
+  .why-nuhome {
+    padding: 40px 0;
+  }
+  
   .why-nuhome__title {
-    font-size: var(--font-size-2xl);
+    font-size: 2rem;
+  }
+  
+  .why-nuhome__title-accent {
+    font-size: 1.5rem;
+  }
+  
+  .why-nuhome__subtitle {
+    font-size: 1rem;
   }
   
   .why-nuhome__feature {
-    padding: var(--spacing-md);
+    padding: 24px 20px;
+  }
+  
+  .why-nuhome__feature-title {
+    font-size: 1.25rem;
+  }
+  
+  .why-nuhome__feature-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .why-nuhome__feature-emoji {
+    font-size: 24px;
+  }
+  
+  .why-nuhome__stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .why-nuhome__cta-button {
+    padding: 16px 28px;
+    font-size: 1rem;
   }
 }
 </style>

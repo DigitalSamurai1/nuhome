@@ -1,21 +1,60 @@
 {% comment %}
-  Newsletter section for NüHome theme
-  Features: Email capture with 10% off incentive
+  Enhanced Newsletter section for NüHome theme
+  Features: Winter-themed email capture with compelling incentives and social proof
 {% endcomment %}
 
 <section class="newsletter" data-section-id="{{ section.id }}" data-section-type="newsletter">
+  <!-- Background Elements -->
+  <div class="newsletter__background">
+    <div class="newsletter__pattern"></div>
+    <div class="newsletter__snowflakes">
+      <div class="newsletter__snowflake">❄️</div>
+      <div class="newsletter__snowflake">✨</div>
+      <div class="newsletter__snowflake">❄️</div>
+      <div class="newsletter__snowflake">✨</div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="newsletter__content">
-      <div class="newsletter__text">
+      <!-- Header Section -->
+      <div class="newsletter__header">
         {% if section.settings.heading != blank %}
-          <h2 class="newsletter__title">{{ section.settings.heading }}</h2>
+          <h2 class="newsletter__title">
+            <span class="newsletter__title-text">{{ section.settings.heading }}</span>
+            <span class="newsletter__title-decoration">❄️</span>
+          </h2>
         {% endif %}
 
         {% if section.settings.subheading != blank %}
           <p class="newsletter__subtitle">{{ section.settings.subheading }}</p>
         {% endif %}
+
+        <!-- Discount Badge -->
+        <div class="newsletter__discount-badge">
+          <span class="newsletter__discount-icon">🎁</span>
+          <span class="newsletter__discount-text">{{ section.settings.discount_text | default: 'Get 10% OFF' }}</span>
+          <span class="newsletter__discount-subtext">{{ section.settings.discount_subtext | default: 'Your First Order' }}</span>
+        </div>
       </div>
 
+      <!-- Benefits List -->
+      <div class="newsletter__benefits">
+        <div class="newsletter__benefit">
+          <span class="newsletter__benefit-icon">🔥</span>
+          <span class="newsletter__benefit-text">Exclusive deals & early access</span>
+        </div>
+        <div class="newsletter__benefit">
+          <span class="newsletter__benefit-icon">📦</span>
+          <span class="newsletter__benefit-text">Free shipping updates</span>
+        </div>
+        <div class="newsletter__benefit">
+          <span class="newsletter__benefit-icon">💡</span>
+          <span class="newsletter__benefit-text">Kitchen tips & recipes</span>
+        </div>
+      </div>
+
+      <!-- Form Section -->
       <div class="newsletter__form-wrapper">
         <form class="newsletter__form" data-newsletter-form action="/contact" method="post">
           <input type="hidden" name="form_type" value="customer">
@@ -23,24 +62,78 @@
           <input type="hidden" name="contact[tags]" value="newsletter">
           
           <div class="newsletter__input-group">
-            <input 
-              type="email" 
-              name="contact[email]" 
-              placeholder="Enter your email address"
-              class="newsletter__input"
-              required
-              aria-label="Email address">
+            <div class="newsletter__input-wrapper">
+              <span class="newsletter__input-icon">📧</span>
+              <input 
+                type="email" 
+                name="contact[email]" 
+                placeholder="Enter your email address"
+                class="newsletter__input"
+                required
+                aria-label="Email address">
+            </div>
             
             <button type="submit" class="newsletter__submit">
-              {{ section.settings.button_label | default: 'Subscribe' }}
+              <span class="newsletter__submit-text">{{ section.settings.button_label | default: 'Get My 10% Off' }}</span>
+              <span class="newsletter__submit-icon">→</span>
             </button>
+          </div>
+
+          <!-- Success Message -->
+          <div class="newsletter__success" data-success-message style="display: none;">
+            <span class="newsletter__success-icon">✅</span>
+            <span class="newsletter__success-text">Welcome! Check your email for your 10% discount code.</span>
           </div>
         </form>
 
+        <!-- Social Proof -->
+        <div class="newsletter__social-proof">
+          <div class="newsletter__social-stat">
+            <span class="newsletter__social-number">{{ section.settings.subscriber_count | default: '15,000+' }}</span>
+            <span class="newsletter__social-label">happy subscribers</span>
+          </div>
+          <div class="newsletter__social-reviews">
+            <div class="newsletter__social-stars">
+              <span class="newsletter__star">⭐</span>
+              <span class="newsletter__star">⭐</span>
+              <span class="newsletter__star">⭐</span>
+              <span class="newsletter__star">⭐</span>
+              <span class="newsletter__star">⭐</span>
+            </div>
+            <span class="newsletter__social-rating">4.9/5 rating</span>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="newsletter__trust-badges">
+          <div class="newsletter__trust-badge">
+            <span class="newsletter__trust-icon">🔒</span>
+            <span class="newsletter__trust-text">Spam-free</span>
+          </div>
+          <div class="newsletter__trust-badge">
+            <span class="newsletter__trust-icon">📱</span>
+            <span class="newsletter__trust-text">Mobile-friendly</span>
+          </div>
+          <div class="newsletter__trust-badge">
+            <span class="newsletter__trust-icon">🚫</span>
+            <span class="newsletter__trust-text">Unsubscribe anytime</span>
+          </div>
+        </div>
+
         <p class="newsletter__disclaimer">
-          By subscribing, you agree to receive marketing emails from NüHome. Unsubscribe at any time.
+          By subscribing, you agree to receive marketing emails from NüHome. 
+          <a href="/pages/privacy" class="newsletter__disclaimer-link">Privacy Policy</a> • 
+          Unsubscribe at any time.
         </p>
       </div>
+
+      <!-- Bottom CTA for Urgency -->
+      {% if section.settings.show_urgency %}
+        <div class="newsletter__urgency">
+          <span class="newsletter__urgency-icon">⏰</span>
+          <span class="newsletter__urgency-text">Limited time: Join {{ section.settings.urgency_count | default: '2,847' }} others who saved this week!</span>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -50,42 +143,72 @@
   "name": "Newsletter",
   "settings": [
     {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Stay Connected"
+      "default": "❄️ Join the NüHome Family ❄️"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Get 10% off your first order when you sign up for our newsletter"
+      "default": "Stay cool with exclusive deals, kitchen tips, and be the first to know about new arrivals"
+    },
+    {
+      "type": "header",
+      "content": "Discount Offer"
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount Text",
+      "default": "Get 10% OFF"
+    },
+    {
+      "type": "text",
+      "id": "discount_subtext",
+      "label": "Discount Subtext",
+      "default": "Your First Order"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Subscribe"
+      "default": "Get My 10% Off"
     },
     {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "background-1",
-          "label": "Background 1"
-        },
-        {
-          "value": "background-2",
-          "label": "Background 2"
-        },
-        {
-          "value": "background-3",
-          "label": "Background 3"
-        }
-      ],
-      "default": "background-2",
-      "label": "Color scheme"
+      "type": "header",
+      "content": "Social Proof"
+    },
+    {
+      "type": "text",
+      "id": "subscriber_count",
+      "label": "Subscriber Count",
+      "default": "15,000+"
+    },
+    {
+      "type": "header",
+      "content": "Urgency Elements"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_urgency",
+      "label": "Show urgency message",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "urgency_count",
+      "label": "Urgency Count",
+      "default": "2,847"
     }
   ],
   "presets": [
@@ -98,116 +221,613 @@
 
 <style>
 .newsletter {
-  padding: var(--spacing-3xl) 0;
-  background: var(--color-background-secondary);
+  position: relative;
+  padding: 100px 0;
+  background: white;
+  overflow: hidden;
 }
 
+/* Background Elements */
+.newsletter__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.newsletter__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(74, 144, 226, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(135, 206, 235, 0.03) 0%, transparent 50%);
+}
+
+.newsletter__snowflakes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.newsletter__snowflake {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0.15;
+  animation: newsletter-snowfall 25s linear infinite;
+}
+
+.newsletter__snowflake:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.newsletter__snowflake:nth-child(2) {
+  left: 30%;
+  animation-delay: 8s;
+}
+
+.newsletter__snowflake:nth-child(3) {
+  left: 70%;
+  animation-delay: 16s;
+}
+
+.newsletter__snowflake:nth-child(4) {
+  left: 90%;
+  animation-delay: 24s;
+}
+
+/* Main Content */
 .newsletter__content {
-  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
   margin: 0 auto;
   text-align: center;
 }
 
-.newsletter__text {
-  margin-bottom: var(--spacing-2xl);
+/* Header */
+.newsletter__header {
+  margin-bottom: 50px;
 }
 
 .newsletter__title {
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-lg);
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.newsletter__title-text {
+  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 30%, #87CEEB 70%, #B8E6FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+.newsletter__title-decoration {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 2rem;
+  animation: bounce-sparkles 2s ease-in-out infinite;
 }
 
 .newsletter__subtitle {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  color: #4A90E2;
   line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.1);
 }
 
+/* Discount Badge */
+.newsletter__discount-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%);
+  color: white;
+  padding: 20px 32px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter__discount-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.newsletter__discount-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.newsletter__discount-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.newsletter__discount-subtext {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Benefits */
+.newsletter__benefits {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.newsletter__benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.1);
+  transition: transform 0.3s ease;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.newsletter__benefit:hover {
+  transform: translateY(-3px);
+}
+
+.newsletter__benefit-icon {
+  font-size: 18px;
+}
+
+.newsletter__benefit-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Form Wrapper */
 .newsletter__form-wrapper {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
+/* Form */
 .newsletter__form {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 30px;
 }
 
 .newsletter__input-group {
   display: flex;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.newsletter__input-wrapper {
+  flex: 1;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 2px solid rgba(74, 144, 226, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.newsletter__input-wrapper:focus-within {
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  transform: translateY(-2px);
+}
+
+.newsletter__input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #4A90E2;
+  z-index: 1;
 }
 
 .newsletter__input {
-  flex: 1;
-  padding: var(--spacing-md);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  background: var(--color-white);
-  transition: border-color var(--transition-fast);
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #222;
+  font-weight: 500;
+}
+
+.newsletter__input::placeholder {
+  color: #999;
 }
 
 .newsletter__input:focus {
   outline: none;
-  border-color: var(--color-accent);
 }
 
 .newsletter__submit {
-  padding: var(--spacing-md) var(--spacing-lg);
-  background: var(--color-accent);
-  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 100%);
+  color: white;
   border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  font-weight: 600;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color var(--transition-fast);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter__submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
 .newsletter__submit:hover {
-  background: var(--color-accent-hover);
+  background: linear-gradient(135deg, #2171B5 0%, #4A90E2 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
 }
 
+.newsletter__submit:hover::before {
+  left: 100%;
+}
+
+.newsletter__submit-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.newsletter__submit:hover .newsletter__submit-icon {
+  transform: translateX(3px);
+}
+
+/* Success Message */
+.newsletter__success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+  animation: slideDown 0.5s ease;
+}
+
+.newsletter__success-icon {
+  font-size: 20px;
+}
+
+.newsletter__success-text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Social Proof */
+.newsletter__social-proof {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.newsletter__social-stat {
+  text-align: center;
+}
+
+.newsletter__social-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.newsletter__social-label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.newsletter__social-reviews {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.newsletter__social-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.newsletter__star {
+  font-size: 16px;
+  color: #FFD93D;
+  text-shadow: 0 1px 3px rgba(255, 217, 61, 0.3);
+}
+
+.newsletter__social-rating {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Trust Badges */
+.newsletter__trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.newsletter__trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(74, 144, 226, 0.05);
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.newsletter__trust-icon {
+  font-size: 14px;
+  color: #4A90E2;
+}
+
+.newsletter__trust-text {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Disclaimer */
 .newsletter__disclaimer {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-light);
+  font-size: 12px;
+  color: #999;
   line-height: 1.4;
+  margin-bottom: 30px;
 }
 
+.newsletter__disclaimer-link {
+  color: #4A90E2;
+  text-decoration: underline;
+}
+
+.newsletter__disclaimer-link:hover {
+  color: #2171B5;
+}
+
+/* Urgency */
+.newsletter__urgency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  animation: pulse-urgency 2s ease-in-out infinite;
+}
+
+.newsletter__urgency-icon {
+  font-size: 18px;
+  animation: urgency-pulse 1s ease-in-out infinite;
+}
+
+.newsletter__urgency-text {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes newsletter-snowfall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0.15;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes text-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes bounce-sparkles {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3); }
+  50% { box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes slideDown {
+  0% { 
+    opacity: 0;
+    transform: translateY(-20px); 
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse-urgency {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes urgency-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .newsletter {
-    padding: var(--spacing-2xl) 0;
+    padding: 60px 0;
   }
   
   .newsletter__title {
-    font-size: var(--font-size-3xl);
+    font-size: 2.5rem;
+  }
+  
+  .newsletter__title-decoration {
+    font-size: 1.5rem;
   }
   
   .newsletter__subtitle {
-    font-size: var(--font-size-base);
+    font-size: 1.125rem;
+  }
+  
+  .newsletter__benefits {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .newsletter__benefit {
+    width: 100%;
+    max-width: 250px;
   }
   
   .newsletter__input-group {
     flex-direction: column;
+    gap: 16px;
   }
   
   .newsletter__submit {
     width: 100%;
+    justify-content: center;
+  }
+  
+  .newsletter__social-proof {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .newsletter__trust-badges {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .newsletter__trust-badge {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
+  .newsletter {
+    padding: 40px 0;
+  }
+  
   .newsletter__title {
-    font-size: var(--font-size-2xl);
+    font-size: 2rem;
+  }
+  
+  .newsletter__title-decoration {
+    font-size: 1.25rem;
+  }
+  
+  .newsletter__subtitle {
+    font-size: 1rem;
+  }
+  
+  .newsletter__discount-badge {
+    padding: 16px 24px;
+  }
+  
+  .newsletter__discount-text {
+    font-size: 1.25rem;
   }
   
   .newsletter__input,
   .newsletter__submit {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 14px 16px;
+  }
+  
+  .newsletter__input {
+    padding-left: 44px;
+  }
+  
+  .newsletter__snowflakes {
+    display: none; /* Hide snowflakes on very small screens for performance */
   }
 }
 </style>
