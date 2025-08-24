@@ -43,6 +43,10 @@
             </a>
           </div>
         {% endif %}
+
+        {% if section.settings.show_tagline_overlay %}
+          <p class="hero__brand-tagline">{{ section.settings.tagline_overlay_text }}</p>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -57,6 +61,22 @@
       "id": "heading",
       "label": "Heading",
       "default": "Welcome to NüH❄️me — Elevate your everyday"
+    },
+    {
+      "type": "header",
+      "content": "Brand Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tagline_overlay",
+      "label": "Show brand tagline overlay",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "tagline_overlay_text",
+      "label": "Tagline overlay text",
+      "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
     },
     {
       "type": "textarea",
@@ -74,7 +94,7 @@
       "type": "url",
       "id": "button_link",
       "label": "Button link",
-      "default": "/collections/all"
+      "default": "/collections/ice-makers"
     },
     {
       "type": "image_picker",
@@ -274,6 +294,15 @@
 
 .hero__cta .btn:hover::before {
   left: 100%;
+}
+
+.hero__brand-tagline {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #4A5568;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Animations */

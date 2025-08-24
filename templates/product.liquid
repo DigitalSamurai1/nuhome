@@ -1,6 +1,62 @@
 {% comment %}
   Product template for NüHome theme
-  Uses Sections Everywhere for full customization
+  Adds value stacking bullets, urgency, and aspirational copy hooks
 {% endcomment %}
 
-{{ content_for_index }}
+<section class="product" id="ProductSection">
+  <div class="container">
+    <div class="product__grid">
+      <div class="product__media">
+        {{ product.featured_image | image_url: width: 900 | image_tag: class: 'product__image', loading: 'eager', alt: product.title }}
+      </div>
+      <div class="product__details">
+        <h1 class="product__title">{{ product.title }}</h1>
+
+        <ul class="product__bullets">
+          <li>Save Time</li>
+          <li>Enjoy Luxury at Home</li>
+          <li>Compact Design</li>
+        </ul>
+
+        <div class="product__price">{{ product.price | money }}</div>
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" class="product__form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="btn btn-primary product__add">
+            Add to cart
+          </button>
+          <div class="product__urgency">
+            <span class="product__low-stock">Low stock—selling fast!</span>
+            <span class="product__shipping">Free shipping on orders over $100</span>
+          </div>
+        </form>
+
+        <div class="product__description">
+          {% assign desc = product.description | strip_html %}
+          {% if desc == blank %}
+            <p>Wake up to café-style coffee without leaving your home, or enjoy crystal-clear ice for cocktails that sparkle. Designed to elevate your daily rituals.</p>
+          {% else %}
+            {{ product.description }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.product__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; padding: 40px 0; }
+.product__image { width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+.product__title { font-size: 32px; font-weight: 800; margin: 0 0 12px; }
+.product__bullets { list-style: none; padding: 0; margin: 0 0 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+.product__bullets li { background: #f0f7ff; border: 1px solid rgba(74,144,226,.18); padding: 8px 12px; border-radius: 999px; font-weight: 600; font-size: 13px; }
+.product__price { font-size: 22px; font-weight: 800; margin: 8px 0 16px; }
+.product__add { padding: 14px 28px; }
+.product__urgency { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: #2d3748; }
+.product__low-stock { color: #e53e3e; font-weight: 700; }
+.product__description { margin-top: 24px; line-height: 1.7; }
+
+@media (max-width: 900px) {
+  .product__grid { grid-template-columns: 1fr; }
+}
+</style>

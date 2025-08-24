@@ -191,6 +191,18 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    <style>
+      /* Email capture popup */
+      .nh-popup{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:10000}
+      .nh-popup__card{background:#fff;border-radius:16px;border:1px solid rgba(74,144,226,.18);box-shadow:0 20px 60px rgba(0,0,0,.25);max-width:520px;width:92%;padding:28px}
+      .nh-popup__title{font-size:22px;font-weight:800;margin:0 0 8px}
+      .nh-popup__subtitle{color:#4a5568;margin:0 0 16px}
+      .nh-popup__form{display:flex;gap:8px}
+      .nh-popup__input{flex:1;padding:12px 14px;border:2px solid #e6f0fb;border-radius:12px}
+      .nh-popup__btn{padding:12px 16px;border:none;border-radius:12px;background:linear-gradient(135deg,#4A90E2 0%,#2171B5 100%);color:#fff;font-weight:700}
+      .nh-popup__close{position:absolute;top:10px;right:14px;background:transparent;border:none;font-size:22px;cursor:pointer}
+      @media(max-width:600px){.nh-popup__form{flex-direction:column}.nh-popup__btn{width:100%}}
+    </style>
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -220,12 +232,36 @@
     {%- endif -%}
 
     {% sections 'header-group' %}
+    <div class="nh-popup" id="nhEmailPopup" aria-hidden="true">
+      <div class="nh-popup__card" role="dialog" aria-label="Newsletter signup">
+        <button class="nh-popup__close" aria-label="Close">×</button>
+        <h3 class="nh-popup__title">Get 10% off your first order</h3>
+        <p class="nh-popup__subtitle">Join the NüHome family for exclusive deals, tips and new arrivals.</p>
+        <form method="post" action="/contact" class="nh-popup__form">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" class="nh-popup__input" placeholder="Enter your email" required>
+          <button type="submit" class="nh-popup__btn">Get 10% Off</button>
+        </form>
+      </div>
+    </div>
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
     {% sections 'footer-group' %}
+    <script>
+      (function(){
+        var shown=localStorage.getItem('nh_popup_shown');
+        var popup=document.getElementById('nhEmailPopup');
+        if(!shown && popup){
+          setTimeout(function(){ popup.style.display='flex'; }, 2500);
+          popup.addEventListener('click',function(e){ if(e.target===popup){ popup.style.display='none'; localStorage.setItem('nh_popup_shown','1'); } });
+          popup.querySelector('.nh-popup__close').addEventListener('click',function(){ popup.style.display='none'; localStorage.setItem('nh_popup_shown','1'); });
+        }
+      })();
+    </script>
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

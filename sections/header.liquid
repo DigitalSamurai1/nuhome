@@ -460,6 +460,12 @@
       {% endif %}
     </nav>
 
+    {% if section.settings.show_tagline %}
+      <div class="header__tagline" role="note">
+        {{ section.settings.tagline_text | default: "We create stylish, affordable home makers that simplify your life and elevate your daily rituals." }}
+      </div>
+    {% endif %}
+
     <!-- Search Form -->
     <div class="header__search" data-search-form>
       <form action="/search" method="get" class="header__search-form">
@@ -529,6 +535,22 @@
       "id": "menu",
       "label": "Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Brand Tagline"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tagline",
+      "label": "Show tagline under navigation",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "tagline_text",
+      "label": "Tagline text",
+      "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
     },
     {
       "type": "text",
@@ -708,6 +730,15 @@
 .header__nav {
   border-top: 1px solid #f4f4f4;
   padding: 16px 0;
+}
+
+.header__tagline {
+  text-align: center;
+  color: #4A5568;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 8px 0 0 0;
+  padding-bottom: 8px;
 }
 
 .header__nav-list {
@@ -1111,6 +1142,11 @@
     grid-template-columns: auto 1fr auto;
     gap: 16px;
     padding: 16px 0;
+  }
+
+  .header__tagline {
+    font-size: 12px;
+    padding: 0 12px;
   }
   
   .header__support {

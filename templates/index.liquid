@@ -34,6 +34,22 @@
 {% endcomment %}
 
 {% section 'hero' %}
+<section class="home-categories">
+  <div class="container home-categories__grid">
+    <a class="home-categories__card" href="/collections/ice-makers">
+      <div class="home-categories__image home-categories__image--ice"></div>
+      <div class="home-categories__title">Ice Makers</div>
+    </a>
+    <a class="home-categories__card" href="/collections/coffee-machines">
+      <div class="home-categories__image home-categories__image--coffee"></div>
+      <div class="home-categories__title">Coffee Machines</div>
+    </a>
+    <a class="home-categories__card" href="/collections/freezers">
+      <div class="home-categories__image home-categories__image--freezer"></div>
+      <div class="home-categories__title">Freezers</div>
+    </a>
+  </div>
+</section>
 {% section 'featured-products' %}
 {% section 'bestsellers' %}
 {% section 'why-nuhome' %}
@@ -311,6 +327,21 @@
   font-size: 12px;
   color: #666;
   line-height: 1.4;
+}
+
+/* Shop by Category */
+.home-categories { padding: 60px 0; background: #fff; }
+.home-categories__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.home-categories__card { display: flex; flex-direction: column; align-items: center; text-decoration: none; background: #f8fbff; border: 1px solid rgba(74,144,226,.12); border-radius: 16px; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.home-categories__card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(74,144,226,.18); }
+.home-categories__image { width: 100%; height: 180px; background-size: cover; background-position: center; }
+.home-categories__image--ice { background-image: url('https://cdn.shopify.com/s/files/1/0680/4150/7110/files/ice-maker-lifestyle.jpg?v=1'); }
+.home-categories__image--coffee { background-image: url('https://cdn.shopify.com/s/files/1/0680/4150/7110/files/coffee-lifestyle.jpg?v=1'); }
+.home-categories__image--freezer { background-image: url('https://cdn.shopify.com/s/files/1/0680/4150/7110/files/freezer-lifestyle.jpg?v=1'); }
+.home-categories__title { padding: 16px 20px; font-weight: 700; color: #1a202c; }
+
+@media (max-width: 768px) {
+  .home-categories__grid { grid-template-columns: 1fr; }
 }
 
 /* Animations */
