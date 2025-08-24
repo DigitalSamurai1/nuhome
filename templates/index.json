@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Experience the ❄️ Difference",
+        "subheading": "Premium kitchen makers that elevate your daily rituals.",
+        "button_label": "Shop Now",
+        "button_link": "/collections/ice-makers",
+        "image_overlay_opacity": 0
+      }
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Featured Products",
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true
+      }
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "heading": "Winter Bestsellers",
+        "subheading": "Discover our most‑loved essentials",
+        "collection": "bestsellers",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true
+      }
+    },
+    "why": { "type": "why-nuhome", "settings": {} },
+    "testimonials": { "type": "testimonials", "settings": {} },
+    "newsletter": { "type": "newsletter", "settings": {} }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "bestsellers",
+    "why",
+    "testimonials",
+    "newsletter"
+  ]
+}
+
+
