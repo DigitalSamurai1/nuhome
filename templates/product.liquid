@@ -20,14 +20,33 @@
 
         <div class="product__price">{{ product.price | money }}</div>
 
-        <form action="/cart/add" method="post" enctype="multipart/form-data" class="product__form">
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <form
+          action="/cart/add"
+          method="post"
+          enctype="multipart/form-data"
+          class="product__form">
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}">
           <button type="submit" class="btn btn-primary product__add">
+            <i
+              data-lucide="shopping-bag"
+              aria-hidden="true"
+              style="width:18px;height:18px;margin-right:6px"></i>
             Add to cart
           </button>
           <div class="product__urgency">
-            <span class="product__low-stock">Low stock—selling fast!</span>
-            <span class="product__shipping">Free shipping on orders over $100</span>
+            <span class="product__low-stock">
+              <i
+                data-lucide="alert-triangle"
+                aria-hidden="true"
+                style="width:16px;height:16px;margin-right:4px"></i>Low stock—selling fast!</span>
+            <span class="product__shipping">
+              <i
+                data-lucide="truck"
+                aria-hidden="true"
+                style="width:16px;height:16px;margin-right:4px"></i>Free shipping on orders over $100</span>
           </div>
         </form>
 
@@ -45,18 +64,65 @@
 </section>
 
 <style>
-.product__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; padding: 40px 0; }
-.product__image { width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
-.product__title { font-size: 32px; font-weight: 800; margin: 0 0 12px; }
-.product__bullets { list-style: none; padding: 0; margin: 0 0 16px; display: flex; gap: 12px; flex-wrap: wrap; }
-.product__bullets li { background: #f0f7ff; border: 1px solid rgba(74,144,226,.18); padding: 8px 12px; border-radius: 999px; font-weight: 600; font-size: 13px; }
-.product__price { font-size: 22px; font-weight: 800; margin: 8px 0 16px; }
-.product__add { padding: 14px 28px; }
-.product__urgency { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: #2d3748; }
-.product__low-stock { color: #e53e3e; font-weight: 700; }
-.product__description { margin-top: 24px; line-height: 1.7; }
+  .product__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    padding: 40px 0;
+  }
+  .product__image {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  .product__title {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 12px;
+  }
+  .product__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .product__bullets li {
+    background: #f0f7ff;
+    border: 1px solid rgba(74, 144, 226, 0.18);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .product__price {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 8px 0 16px;
+  }
+  .product__add {
+    padding: 14px 28px;
+  }
+  .product__urgency {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #2d3748;
+  }
+  .product__low-stock {
+    color: #e53e3e;
+    font-weight: 700;
+  }
+  .product__description {
+    margin-top: 24px;
+    line-height: 1.7;
+  }
 
-@media (max-width: 900px) {
-  .product__grid { grid-template-columns: 1fr; }
-}
+  @media (max-width: 900px) {
+    .product__grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

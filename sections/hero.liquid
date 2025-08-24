@@ -3,19 +3,19 @@
   Features: Headline, subheading, CTA button, background image
 {% endcomment %}
 
-<section class="hero" data-section-id="{{ section.id }}" data-section-type="hero">
+<section
+  class="hero"
+  data-section-id="{{ section.id }}"
+  data-section-type="hero">
   <div class="hero__background">
     {% if section.settings.image != blank %}
-      <img 
+      <img
         src="{{ section.settings.image | image_url: width: 1920 }}"
         alt="{{ section.settings.image.alt | escape }}"
         class="hero__background-image"
         loading="eager">
       {% if section.settings.image_overlay_opacity > 0 %}
-        <div 
-          class="hero__overlay"
-          style="opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};">
-        </div>
+        <div class="hero__overlay" style="opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};"></div>
       {% endif %}
     {% endif %}
   </div>
@@ -26,7 +26,11 @@
         {% if section.settings.heading != blank %}
           <h1 class="hero__heading">
             <span class="hero__heading-text">{{ section.settings.heading }}</span>
-            <span class="hero__snowflakes">❄️✨❄️</span>
+            <span class="hero__snowflakes" aria-hidden="true">
+              <i data-lucide="snowflake" style="width:18px;height:18px"></i>
+              <i data-lucide="sparkles" style="width:18px;height:18px;margin:0 6px"></i>
+              <i data-lucide="snowflake" style="width:18px;height:18px"></i>
+            </span>
           </h1>
         {% endif %}
 
@@ -53,332 +57,349 @@
 </section>
 
 {% schema %}
-{
-  "name": "Hero",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Welcome to NüH❄️me — Elevate your everyday"
-    },
-    {
-      "type": "header",
-      "content": "Brand Overlay"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_tagline_overlay",
-      "label": "Show brand tagline overlay",
-      "default": true
-    },
-    {
-      "type": "textarea",
-      "id": "tagline_overlay_text",
-      "label": "Tagline overlay text",
-      "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Premium ice-cold kitchen appliances designed for wellness and efficiency ❄️"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link",
-      "default": "/collections/ice-makers"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background image"
-    },
-    {
-      "type": "range",
-      "id": "image_overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "default": 0,
-      "unit": "%",
-      "label": "Image overlay opacity"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "background-1",
-          "label": "Background 1"
-        },
-        {
-          "value": "background-2",
-          "label": "Background 2"
-        },
-        {
-          "value": "background-3",
-          "label": "Background 3"
-        }
-      ],
-      "default": "background-1",
-      "label": "Color scheme"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Hero"
-    }
-  ]
-}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Welcome to NüH❄️me — Elevate your everyday"
+      },
+      {
+        "type": "header",
+        "content": "Brand Overlay"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_tagline_overlay",
+        "label": "Show brand tagline overlay",
+        "default": true
+      },
+      {
+        "type": "textarea",
+        "id": "tagline_overlay_text",
+        "label": "Tagline overlay text",
+        "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
+      }, {
+        "type": "textarea",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Premium ice-cold kitchen appliances designed for wellness and efficiency ❄️"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Shop Now"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link",
+        "default": "/collections/ice-makers"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background image"
+      }, {
+        "type": "range",
+        "id": "image_overlay_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 0,
+        "unit": "%",
+        "label": "Image overlay opacity"
+      }, {
+        "type": "select",
+        "id": "color_scheme",
+        "options": [
+          {
+            "value": "background-1",
+            "label": "Background 1"
+          }, {
+            "value": "background-2",
+            "label": "Background 2"
+          }, {
+            "value": "background-3",
+            "label": "Background 3"
+          }
+        ],
+        "default": "background-1",
+        "label": "Color scheme"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero"
+      }
+    ]
+  }
 {% endschema %}
 
 <style>
-.hero {
-  position: relative;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 30%, #B8E6FF 70%, #87CEEB 100%);
-  background-size: 400% 400%;
-  animation: frozen-gradient 8s ease-in-out infinite;
-}
-
-.hero__background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero__background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--color-text-primary);
-}
-
-.hero__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: var(--spacing-3xl) 0;
-}
-
-.hero__text {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(15px);
-  padding: 48px;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(74, 144, 226, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5);
-  border: 2px solid rgba(135, 206, 235, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero__text::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shimmer 3s infinite;
-}
-
-.hero__text::after {
-  content: '❄️ ✨ ❄️ ✨ ❄️';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 16px;
-  animation: float-sparkles 4s ease-in-out infinite;
-}
-
-.hero__heading {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 24px;
-  line-height: 1.1;
-  position: relative;
-}
-
-.hero__heading-text {
-  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 30%, #87CEEB 70%, #B8E6FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  animation: text-shimmer 3s ease-in-out infinite;
-}
-
-.hero__snowflakes {
-  display: block;
-  font-size: 1.5rem;
-  margin-top: 8px;
-  animation: bounce-sparkles 2s ease-in-out infinite;
-}
-
-.hero__subheading {
-  font-size: 1.25rem;
-  color: #4A90E2;
-  margin-bottom: 32px;
-  line-height: 1.6;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 500;
-  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.1);
-}
-
-.hero__cta {
-  margin-top: 32px;
-}
-
-.hero__cta .btn {
-  font-size: 1.125rem;
-  padding: 16px 40px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #4A90E2 0%, #2171B5 100%);
-  border: none;
-  color: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero__cta .btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.hero__cta .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
-  background: linear-gradient(135deg, #2171B5 0%, #4A90E2 100%);
-}
-
-.hero__cta .btn:hover::before {
-  left: 100%;
-}
-
-.hero__brand-tagline {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #4A5568;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Animations */
-@keyframes frozen-gradient {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-@keyframes float-sparkles {
-  0%, 100% { transform: translateX(-50%) translateY(0px); }
-  50% { transform: translateX(-50%) translateY(-10px); }
-}
-
-@keyframes text-shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.2); }
-}
-
-@keyframes bounce-sparkles {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-@media (max-width: 768px) {
   .hero {
-    min-height: 70vh;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 30%, #B8E6FF 70%, #87CEEB 100%);
+    background-size: 400% 400%;
+    animation: frozen-gradient 8s ease-in-out infinite;
   }
-  
+
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero__background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-text-primary);
+  }
+
   .hero__content {
-    padding: var(--spacing-xl) 0;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-3xl) 0;
   }
-  
-  .hero__text {
-    padding: 32px;
-    margin: 0 16px;
-  }
-  
-  .hero__heading {
-    font-size: 2.5rem;
-  }
-  
-  .hero__subheading {
-    font-size: 1.125rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .hero {
-    min-height: 60vh;
-  }
-  
   .hero__text {
-    padding: 24px;
-    margin: 0 8px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(74, 144, 226, 0.2)
+    , 0 0 0 1px rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(135, 206, 235, 0.3);
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .hero__text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  .hero__text::after {
+    content: '❄️ ✨ ❄️ ✨ ❄️';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    animation: float-sparkles 4s ease-in-out infinite;
+  }
+
   .hero__heading {
-    font-size: 2rem;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    position: relative;
   }
-  
+
+  .hero__heading-text {
+    background: linear-gradient(135deg, #4A90E2 0%, #2171B5 30%, #87CEEB 70%, #B8E6FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: text-shimmer 3s ease-in-out infinite;
+  }
+
   .hero__snowflakes {
-    font-size: 1.25rem;
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 8px;
+    animation: bounce-sparkles 2s ease-in-out infinite;
   }
-  
+
   .hero__subheading {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    color: #4A90E2;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(74, 144, 226, 0.1);
   }
-  
+
+  .hero__cta {
+    margin-top: 32px;
+  }
+
   .hero__cta .btn {
-    font-size: 1rem;
-    padding: 14px 32px;
+    font-size: 1.125rem;
+    padding: 16px 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #4A90E2 0%, #2171B5 100%);
+    border: none;
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
-}
+
+  .hero__cta .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .hero__cta .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
+    background: linear-gradient(135deg, #2171B5 0%, #4A90E2 100%);
+  }
+
+  .hero__cta .btn:hover::before {
+    left: 100%;
+  }
+
+  .hero__brand-tagline {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #4A5568;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Animations */
+  @keyframes frozen-gradient {
+    0,
+    100% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes float-sparkles {
+    0,
+    100% {
+      transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  @keyframes text-shimmer {
+    0,
+    100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.2);
+    }
+  }
+
+  @keyframes bounce-sparkles {
+    0,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 70vh;
+    }
+
+    .hero__content {
+      padding: var(--spacing-xl) 0;
+    }
+
+    .hero__text {
+      padding: 32px;
+      margin: 0 16px;
+    }
+
+    .hero__heading {
+      font-size: 2.5rem;
+    }
+
+    .hero__subheading {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      min-height: 60vh;
+    }
+
+    .hero__text {
+      padding: 24px;
+      margin: 0 8px;
+    }
+
+    .hero__heading {
+      font-size: 2rem;
+    }
+
+    .hero__snowflakes {
+      font-size: 1.25rem;
+    }
+
+    .hero__subheading {
+      font-size: 1rem;
+    }
+
+    .hero__cta .btn {
+      font-size: 1rem;
+      padding: 14px 32px;
+    }
+  }
 </style>

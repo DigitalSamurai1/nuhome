@@ -8,21 +8,33 @@
 <div class="announcement-bar">
   <div class="container">
     <div class="announcement-bar__content">
-      <span class="announcement-bar__icon">📦</span>
+      <i
+        data-lucide="package"
+        class="announcement-bar__icon"
+        aria-hidden="true"></i>
       <span class="announcement-bar__text">Shipping from US Inventory — Delivery in 2–5 Days</span>
-      <span class="announcement-bar__icon">🚚</span>
+      <i
+        data-lucide="truck"
+        class="announcement-bar__icon"
+        aria-hidden="true"></i>
     </div>
   </div>
 </div>
 
 <!-- Main Header -->
-<header class="header" data-section-id="{{ section.id }}" data-section-type="header">
+<header
+  class="header"
+  data-section-id="{{ section.id }}"
+  data-section-type="header">
   <div class="container">
     <div class="header__content">
       <!-- Left: Support Box -->
       <div class="header__support">
         <div class="support-box">
-          <div class="support-box__icon">🎧</div>
+          <i
+            data-lucide="headphones"
+            class="support-box__icon"
+            aria-hidden="true"></i>
           <div class="support-box__content">
             <div class="support-box__label">Customer Support</div>
             <div class="support-box__phone">+1-888-555-1212</div>
@@ -34,7 +46,7 @@
       <div class="header__logo">
         {% if section.settings.logo != blank %}
           <a href="/" class="header__logo-link">
-            <img 
+            <img
               src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
               alt="{{ shop.name }}"
               width="{{ section.settings.logo_width }}"
@@ -51,29 +63,44 @@
       <!-- Right: Header Actions -->
       <div class="header__actions">
         <!-- Search -->
-        <button 
-          class="header__action-btn" 
+        <button
+          class="header__action-btn"
           data-search-toggle
           aria-label="Toggle search"
           aria-expanded="false">
-          <span class="header__action-icon">🔍</span>
+          <i
+            data-lucide="search"
+            class="header__action-icon"
+            aria-hidden="true"></i>
         </button>
 
         <!-- Account -->
-        <a href="/account" class="header__action-btn" aria-label="Account">
-          <span class="header__action-icon">👤</span>
+        <a
+          href="/account"
+          class="header__action-btn"
+          aria-label="Account">
+          <i
+            data-lucide="user"
+            class="header__action-icon"
+            aria-hidden="true"></i>
         </a>
 
         <!-- Cart -->
-        <a href="/cart" class="header__action-btn header__cart-btn" aria-label="Cart">
-          <span class="header__action-icon">🛒</span>
+        <a
+          href="/cart"
+          class="header__action-btn header__cart-btn"
+          aria-label="Cart">
+          <i
+            data-lucide="shopping-cart"
+            class="header__action-icon"
+            aria-hidden="true"></i>
           <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
         </a>
       </div>
 
       <!-- Mobile Menu Toggle -->
-      <button 
-        class="header__mobile-toggle" 
+      <button
+        class="header__mobile-toggle"
         data-mobile-menu-toggle
         aria-label="Toggle mobile menu"
         aria-expanded="false">
@@ -121,24 +148,40 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Nugget Ice Makers</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-nugget-ice-maker-countertop">COWSAR Nugget Ice Maker</a></li>
-                    <li><a href="/products/cowsar-nugget-ice-maker-dispenser">COWSAR Nugget Dispenser</a></li>
-                    <li><a href="/products/euhomy-nugget-ice-makers">Euhomy Nugget Ice Makers</a></li>
+                    <li>
+                      <a href="/products/cowsar-nugget-ice-maker-countertop">COWSAR Nugget Ice Maker</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-nugget-ice-maker-dispenser">COWSAR Nugget Dispenser</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-nugget-ice-makers">Euhomy Nugget Ice Makers</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Portable Ice Makers</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-portable-ice-makers">COWSAR Portable Ice</a></li>
-                    <li><a href="/products/cowsar-bullet-ice-maker">COWSAR Bullet Ice Maker</a></li>
-                    <li><a href="/products/euhomy-ice-maker-machine">EUHOMY Ice Maker</a></li>
+                    <li>
+                      <a href="/products/cowsar-portable-ice-makers">COWSAR Portable Ice</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-bullet-ice-maker">COWSAR Bullet Ice Maker</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-ice-maker-machine">EUHOMY Ice Maker</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Commercial Ice Makers</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-commercial-ice-maker">COWSAR Commercial</a></li>
-                    <li><a href="/products/euhomy-commercial-ice-maker">EUHOMY Commercial</a></li>
+                    <li>
+                      <a href="/products/cowsar-commercial-ice-maker">COWSAR Commercial</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-commercial-ice-maker">EUHOMY Commercial</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -165,22 +208,34 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Portable Refrigerators</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-portable-cooler-12v">COWSAR 12V Cooler</a></li>
-                    <li><a href="/products/euhomy-12v-refrigerator">EUHOMY 12V Refrigerator</a></li>
-                    <li><a href="/products/euhomy-car-refrigerator">EUHOMY Car Fridge</a></li>
+                    <li>
+                      <a href="/products/cowsar-portable-cooler-12v">COWSAR 12V Cooler</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-12v-refrigerator">EUHOMY 12V Refrigerator</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-car-refrigerator">EUHOMY Car Fridge</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Mini Fridges</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-mini-fridge">Cowsar Mini Fridge</a></li>
-                    <li><a href="/products/euhomy-mini-fridge">EUHOMY Mini Fridge</a></li>
+                    <li>
+                      <a href="/products/cowsar-mini-fridge">Cowsar Mini Fridge</a>
+                    </li>
+                    <li>
+                      <a href="/products/euhomy-mini-fridge">EUHOMY Mini Fridge</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Chest Freezers</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-chest-freezer">COWSAR Chest Freezer</a></li>
+                    <li>
+                      <a href="/products/cowsar-chest-freezer">COWSAR Chest Freezer</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -207,23 +262,37 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Coffee Makers</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-drip-coffee-maker">COWSAR Drip Coffee</a></li>
-                    <li><a href="/products/cowsar-10-cup-coffee-maker">COWSAR 10-Cup Coffee</a></li>
-                    <li><a href="/products/cowsar-5-cup-coffee">Cowsar 5-Cup</a></li>
+                    <li>
+                      <a href="/products/cowsar-drip-coffee-maker">COWSAR Drip Coffee</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-10-cup-coffee-maker">COWSAR 10-Cup Coffee</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-5-cup-coffee">Cowsar 5-Cup</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Espresso Machines</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-espresso-machine">COWSAR Espresso</a></li>
-                    <li><a href="/products/cowsar-espresso-cappuccino">COWSAR Cappuccino</a></li>
-                    <li><a href="/products/cowsar-espresso-20bar">COWSAR 20 Bar</a></li>
+                    <li>
+                      <a href="/products/cowsar-espresso-machine">COWSAR Espresso</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-espresso-cappuccino">COWSAR Cappuccino</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-espresso-20bar">COWSAR 20 Bar</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Kitchen Appliances</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/euhomy-clothes-dryer">Portable Dryer</a></li>
+                    <li>
+                      <a href="/products/euhomy-clothes-dryer">Portable Dryer</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -250,23 +319,37 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Tower Fans</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-36-tower-fan">COWSAR 36" Tower Fan</a></li>
-                    <li><a href="/products/cowsar-tower-fan-bedroom">COWSAR Bedroom Fan</a></li>
+                    <li>
+                      <a href="/products/cowsar-36-tower-fan">COWSAR 36" Tower Fan</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-tower-fan-bedroom">COWSAR Bedroom Fan</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Air Conditioners</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/cowsar-portable-air-conditioner">COWSAR 8,000 BTU</a></li>
-                    <li><a href="/products/cowsar-10000-btu-air-conditioner">COWSAR 10,000 BTU</a></li>
+                    <li>
+                      <a href="/products/cowsar-portable-air-conditioner">COWSAR 8,000 BTU</a>
+                    </li>
+                    <li>
+                      <a href="/products/cowsar-10000-btu-air-conditioner">COWSAR 10,000 BTU</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">All Cooling</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/tower-fans">Tower Fans</a></li>
-                    <li><a href="/collections/air-conditioners">Air Conditioners</a></li>
-                    <li><a href="/collections/portable-cooling">Portable Cooling</a></li>
+                    <li>
+                      <a href="/collections/tower-fans">Tower Fans</a>
+                    </li>
+                    <li>
+                      <a href="/collections/air-conditioners">Air Conditioners</a>
+                    </li>
+                    <li>
+                      <a href="/collections/portable-cooling">Portable Cooling</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -293,27 +376,49 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Kitchen Essentials</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/coffee-makers">Coffee Makers</a></li>
-                    <li><a href="/collections/espresso-machines">Espresso Machines</a></li>
-                    <li><a href="/collections/blenders">Blenders & Mixers</a></li>
-                    <li><a href="/collections/food-processors">Food Processors</a></li>
+                    <li>
+                      <a href="/collections/coffee-makers">Coffee Makers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/espresso-machines">Espresso Machines</a>
+                    </li>
+                    <li>
+                      <a href="/collections/blenders">Blenders & Mixers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/food-processors">Food Processors</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Specialty Items</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/ice-makers">Ice Makers</a></li>
-                    <li><a href="/collections/wine-coolers">Wine Coolers</a></li>
-                    <li><a href="/collections/beverage-centers">Beverage Centers</a></li>
-                    <li><a href="/collections/water-dispensers">Water Dispensers</a></li>
+                    <li>
+                      <a href="/collections/ice-makers">Ice Makers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/wine-coolers">Wine Coolers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/beverage-centers">Beverage Centers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/water-dispensers">Water Dispensers</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Laundry & Care</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/products/euhomy-clothes-dryer">Portable Dryers</a></li>
-                    <li><a href="/collections/washing-machines">Compact Washers</a></li>
-                    <li><a href="/collections/garment-care">Garment Care</a></li>
+                    <li>
+                      <a href="/products/euhomy-clothes-dryer">Portable Dryers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/washing-machines">Compact Washers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/garment-care">Garment Care</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -340,31 +445,61 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">COWSAR</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/cowsar-ice-makers">Ice Makers</a></li>
-                    <li><a href="/collections/cowsar-coffee">Coffee Machines</a></li>
-                    <li><a href="/collections/cowsar-refrigeration">Refrigeration</a></li>
-                    <li><a href="/collections/cowsar-cooling">Cooling & Air</a></li>
-                    <li><a href="/collections/cowsar-all" class="header__nav-view-all">All COWSAR Products</a></li>
+                    <li>
+                      <a href="/collections/cowsar-ice-makers">Ice Makers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/cowsar-coffee">Coffee Machines</a>
+                    </li>
+                    <li>
+                      <a href="/collections/cowsar-refrigeration">Refrigeration</a>
+                    </li>
+                    <li>
+                      <a href="/collections/cowsar-cooling">Cooling & Air</a>
+                    </li>
+                    <li>
+                      <a href="/collections/cowsar-all" class="header__nav-view-all">All COWSAR Products</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">EUHOMY</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/euhomy-ice-makers">Ice Makers</a></li>
-                    <li><a href="/collections/euhomy-refrigerators">Refrigerators</a></li>
-                    <li><a href="/collections/euhomy-appliances">Home Appliances</a></li>
-                    <li><a href="/collections/euhomy-portable">Portable Solutions</a></li>
-                    <li><a href="/collections/euhomy-all" class="header__nav-view-all">All EUHOMY Products</a></li>
+                    <li>
+                      <a href="/collections/euhomy-ice-makers">Ice Makers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/euhomy-refrigerators">Refrigerators</a>
+                    </li>
+                    <li>
+                      <a href="/collections/euhomy-appliances">Home Appliances</a>
+                    </li>
+                    <li>
+                      <a href="/collections/euhomy-portable">Portable Solutions</a>
+                    </li>
+                    <li>
+                      <a href="/collections/euhomy-all" class="header__nav-view-all">All EUHOMY Products</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Shop by Price</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/under-50">Under $50</a></li>
-                    <li><a href="/collections/50-to-100">$50 - $100</a></li>
-                    <li><a href="/collections/100-to-200">$100 - $200</a></li>
-                    <li><a href="/collections/over-200">Over $200</a></li>
-                    <li><a href="/collections/premium">Premium Collection</a></li>
+                    <li>
+                      <a href="/collections/under-50">Under $50</a>
+                    </li>
+                    <li>
+                      <a href="/collections/50-to-100">$50 - $100</a>
+                    </li>
+                    <li>
+                      <a href="/collections/100-to-200">$100 - $200</a>
+                    </li>
+                    <li>
+                      <a href="/collections/over-200">Over $200</a>
+                    </li>
+                    <li>
+                      <a href="/collections/premium">Premium Collection</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -391,28 +526,52 @@
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Summer Essentials</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/portable-cooling">Portable AC Units</a></li>
-                    <li><a href="/collections/tower-fans">Tower Fans</a></li>
-                    <li><a href="/collections/ice-makers">Ice Makers</a></li>
-                    <li><a href="/collections/outdoor-cooling">Outdoor Cooling</a></li>
+                    <li>
+                      <a href="/collections/portable-cooling">Portable AC Units</a>
+                    </li>
+                    <li>
+                      <a href="/collections/tower-fans">Tower Fans</a>
+                    </li>
+                    <li>
+                      <a href="/collections/ice-makers">Ice Makers</a>
+                    </li>
+                    <li>
+                      <a href="/collections/outdoor-cooling">Outdoor Cooling</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Travel & Outdoor</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/car-refrigerators">Car Refrigerators</a></li>
-                    <li><a href="/collections/portable-appliances">Portable Appliances</a></li>
-                    <li><a href="/collections/camping-gear">Camping Essentials</a></li>
-                    <li><a href="/collections/rv-accessories">RV Accessories</a></li>
+                    <li>
+                      <a href="/collections/car-refrigerators">Car Refrigerators</a>
+                    </li>
+                    <li>
+                      <a href="/collections/portable-appliances">Portable Appliances</a>
+                    </li>
+                    <li>
+                      <a href="/collections/camping-gear">Camping Essentials</a>
+                    </li>
+                    <li>
+                      <a href="/collections/rv-accessories">RV Accessories</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-column">
                   <h4 class="header__nav-mega-title">Home Office</h4>
                   <ul class="header__nav-mega-list">
-                    <li><a href="/collections/mini-fridges">Mini Fridges</a></li>
-                    <li><a href="/collections/personal-cooling">Personal Cooling</a></li>
-                    <li><a href="/collections/coffee-stations">Coffee Stations</a></li>
-                    <li><a href="/collections/compact-appliances">Compact Solutions</a></li>
+                    <li>
+                      <a href="/collections/mini-fridges">Mini Fridges</a>
+                    </li>
+                    <li>
+                      <a href="/collections/personal-cooling">Personal Cooling</a>
+                    </li>
+                    <li>
+                      <a href="/collections/coffee-stations">Coffee Stations</a>
+                    </li>
+                    <li>
+                      <a href="/collections/compact-appliances">Compact Solutions</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="header__nav-mega-featured">
@@ -468,14 +627,20 @@
 
     <!-- Search Form -->
     <div class="header__search" data-search-form>
-      <form action="/search" method="get" class="header__search-form">
-        <input 
-          type="search" 
-          name="q" 
+      <form
+        action="/search"
+        method="get"
+        class="header__search-form">
+        <input
+          type="search"
+          name="q"
           placeholder="Search products..."
           class="header__search-input"
           aria-label="Search">
-        <button type="submit" class="header__search-btn" aria-label="Search">
+        <button
+          type="submit"
+          class="header__search-btn"
+          aria-label="Search">
           <span class="header__action-icon">🔍</span>
         </button>
       </form>
@@ -512,704 +677,734 @@
 </header>
 
 {% schema %}
-{
-  "name": "Header",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "default": 180,
-      "unit": "px",
-      "label": "Logo width"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "header",
-      "content": "Brand Tagline"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_tagline",
-      "label": "Show tagline under navigation",
-      "default": true
-    },
-    {
-      "type": "textarea",
-      "id": "tagline_text",
-      "label": "Tagline text",
-      "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
-    },
-    {
-      "type": "text",
-      "id": "support_phone",
-      "label": "Support Phone Number",
-      "default": "+1-888-555-1212"
-    },
-    {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "Shipping from US Inventory — Delivery in 2–5 Days"
-    }
-  ]
-}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "default": 180,
+        "unit": "px",
+        "label": "Logo width"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "header",
+        "content": "Brand Tagline"
+      }, {
+        "type": "checkbox",
+        "id": "show_tagline",
+        "label": "Show tagline under navigation",
+        "default": true
+      }, {
+        "type": "textarea",
+        "id": "tagline_text",
+        "label": "Tagline text",
+        "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
+      }, {
+        "type": "text",
+        "id": "support_phone",
+        "label": "Support Phone Number",
+        "default": "+1-888-555-1212"
+      }, {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Text",
+        "default": "Shipping from US Inventory — Delivery in 2–5 Days"
+      }
+    ]
+  }
 {% endschema %}
 
 <style>
-/* Announcement Bar */
-.announcement-bar {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(74, 144, 226, 0.1);
-}
-
-.announcement-bar__content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #222;
-}
-
-.announcement-bar__icon {
-  font-size: 16px;
-}
-
-.announcement-bar__text {
-  text-align: center;
-}
-
-/* Main Header */
-.header {
-  background: white;
-  border-bottom: 1px solid #f4f4f4;
-  position: relative;
-  z-index: var(--z-sticky);
-}
-
-.header__content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 24px;
-  padding: 20px 0;
-}
-
-/* Support Box */
-.header__support {
-  justify-self: start;
-}
-
-.support-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
-  padding: 12px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(74, 144, 226, 0.2);
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
-}
-
-.support-box__icon {
-  font-size: 20px;
-}
-
-.support-box__content {
-  display: flex;
-  flex-direction: column;
-}
-
-.support-box__label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.support-box__phone {
-  font-size: 14px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* Logo */
-.header__logo {
-  justify-self: center;
-}
-
-.header__logo-text {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #F0F8FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-decoration: none;
-  letter-spacing: -1px;
-  text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
-  position: relative;
-  animation: snowflake-glow 4s ease-in-out infinite;
-}
-
-/* Snowflake animation for the logo */
-@keyframes snowflake-glow {
-  0%, 100% { text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2); }
-  50% { text-shadow: 0 4px 12px rgba(74, 144, 226, 0.4), 0 0 20px rgba(135, 206, 235, 0.3); }
-}
-
-/* Header Actions */
-.header__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-self: end;
-}
-
-.header__action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: none;
-  background: transparent;
-  color: #222;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 12px;
-  position: relative;
-}
-
-.header__action-btn:hover {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
-  color: #4A90E2;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
-}
-
-.header__action-icon {
-  font-size: 20px;
-}
-
-.header__cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
-}
-
-/* Navigation */
-.header__nav {
-  border-top: 1px solid #f4f4f4;
-  padding: 16px 0;
-}
-
-.header__tagline {
-  text-align: center;
-  color: #4A5568;
-  font-size: 13px;
-  font-weight: 500;
-  margin: 8px 0 0 0;
-  padding-bottom: 8px;
-}
-
-.header__nav-list {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-
-.header__nav-link {
-  color: #222;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  transition: color 0.2s ease;
-  padding: 8px 0;
-  position: relative;
-}
-
-.header__nav-link:hover {
-  color: #4A90E2;
-}
-
-/* Navigation Icons and Arrows */
-.header__nav-icon {
-  margin-right: 8px;
-  font-size: 16px;
-}
-
-.header__nav-arrow {
-  margin-left: 8px;
-  font-size: 12px;
-  transition: transform 0.3s ease;
-}
-
-.header__nav-item--has-dropdown:hover .header__nav-arrow {
-  transform: rotate(180deg);
-}
-
-/* Sale Badge */
-.header__nav-sale-badge {
-  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-left: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  animation: pulse-sale 2s ease-in-out infinite;
-}
-
-@keyframes pulse-sale {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* Mega Dropdown */
-.header__nav-mega-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  border: 1px solid rgba(74, 144, 226, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(74, 144, 226, 0.15);
-  padding: 40px;
-  width: 900px;
-  max-width: 90vw;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(-50%) translateY(20px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.98);
-}
-
-.header__nav-item--has-dropdown:hover .header__nav-mega-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.header__nav-mega-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 280px;
-  gap: 40px;
-}
-
-.header__nav-mega-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.header__nav-mega-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid rgba(74, 144, 226, 0.1);
-  position: relative;
-}
-
-.header__nav-mega-title::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 30px;
-  height: 2px;
-  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
-}
-
-.header__nav-mega-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.header__nav-mega-list a {
-  color: #666;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 0;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.header__nav-mega-list a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
-  transition: width 0.3s ease;
-}
-
-.header__nav-mega-list a:hover {
-  color: #4A90E2;
-  transform: translateX(5px);
-}
-
-.header__nav-mega-list a:hover::before {
-  width: 100%;
-}
-
-/* Featured Promo in Mega Menu */
-.header__nav-mega-featured {
-  background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid rgba(74, 144, 226, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.header__nav-mega-featured::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer-mega 3s infinite;
-}
-
-@keyframes shimmer-mega {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.header__nav-mega-promo {
-  position: relative;
-  z-index: 1;
-}
-
-.header__nav-mega-promo-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-}
-
-.header__nav-mega-promo h5 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #222;
-  margin: 0 0 8px 0;
-}
-
-.header__nav-mega-promo p {
-  font-size: 14px;
-  color: #666;
-  margin: 0 0 16px 0;
-  line-height: 1.4;
-}
-
-.header__nav-mega-promo .btn {
-  font-size: 12px;
-  padding: 8px 16px;
-  font-weight: 600;
-  border-radius: 8px;
-}
-
-.header__nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
-  transition: width 0.2s ease;
-}
-
-.header__nav-link:hover::after {
-  width: 100%;
-}
-
-/* Search Form */
-.header__search {
-  display: none;
-  padding: 16px 0;
-  border-top: 1px solid #f4f4f4;
-}
-
-.header__search.active {
-  display: block;
-}
-
-.header__search-form {
-  display: flex;
-  gap: 12px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.header__search-input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 2px solid #f4f4f4;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: border-color 0.2s ease;
-}
-
-.header__search-input:focus {
-  outline: none;
-  border-color: #4A90E2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
-
-.header__search-btn {
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
-}
-
-.header__search-btn:hover {
-  background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
-}
-
-/* Mobile Menu Toggle */
-.header__mobile-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.header__mobile-toggle span {
-  width: 24px;
-  height: 2px;
-  background: #222;
-  transition: all 0.2s ease;
-}
-
-/* Mobile Menu */
-.header__mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: white;
-  z-index: var(--z-modal);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  overflow-y: auto;
-}
-
-.header__mobile-menu.active {
-  transform: translateX(0);
-}
-
-.header__mobile-menu-content {
-  padding: 80px 24px 24px;
-}
-
-.header__mobile-nav-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.header__mobile-nav-link {
-  color: #222;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 500;
-  display: block;
-  padding: 16px 0;
-  border-bottom: 1px solid #f4f4f4;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .header__nav-list {
-    gap: 16px;
-    font-size: 14px;
+  /* Announcement Bar */
+  .announcement-bar {
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.1);
   }
-  
-  .header__nav-icon {
-    font-size: 14px;
-    margin-right: 6px;
-  }
-  
-  /* Mega Menu Responsive */
-  .header__nav-mega-dropdown {
-    width: 800px;
-    padding: 32px;
-  }
-  
-  .header__nav-mega-content {
-    grid-template-columns: 1fr 1fr 1fr 240px;
-    gap: 32px;
-  }
-}
 
-@media (max-width: 1024px) {
-  .header__nav-list {
+  .announcement-bar__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
-    font-size: 13px;
-    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .announcement-bar__icon {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
   }
-  
-  .header__nav-link {
-    padding: 6px 8px;
-  }
-  
-  .header__nav-sale-badge {
-    font-size: 9px;
-    padding: 1px 4px;
-  }
-  
-  /* Mega Menu Responsive */
-  .header__nav-mega-dropdown {
-    width: 700px;
-    padding: 24px;
-  }
-  
-  .header__nav-mega-content {
-    grid-template-columns: 1fr 1fr 200px;
-    gap: 24px;
-  }
-}
 
-@media (max-width: 768px) {
+  .announcement-bar__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .announcement-bar__text {
+    text-align: center;
+  }
+
+  /* Main Header */
+  .header {
+    background: white;
+    border-bottom: 1px solid #f4f4f4;
+    position: relative;
+    z-index: var(--z-sticky);
+  }
+
   .header__content {
-    grid-template-columns: auto 1fr auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+  }
+
+  /* Support Box */
+  .header__support {
+    justify-self: start;
+  }
+
+  .support-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+  }
+
+  .support-box__icon {
+    font-size: 20px;
+  }
+
+  .support-box__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .support-box__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .support-box__phone {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
+  }
+
+  /* Logo */
+  .header__logo {
+    justify-self: center;
+  }
+
+  .header__logo-text {
+    font-family: 'Inter'
+    , -apple-system
+    , BlinkMacSystemFont
+    , 'Segoe UI'
+    , Roboto
+    , sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #F0F8FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+    position: relative;
+    animation: snowflake-glow 4s ease-in-out infinite;
+  }
+
+  /* Snowflake animation for the logo */
+  @keyframes snowflake-glow {
+    0,
+    100% {
+      text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+    }
+    50% {
+      text-shadow: 0 4px 12px rgba(74, 144, 226, 0.4)
+      , 0 0 20px rgba(135, 206, 235, 0.3);
+    }
+  }
+
+  /* Header Actions */
+  .header__actions {
+    display: flex;
+    align-items: center;
     gap: 16px;
+    justify-self: end;
+  }
+
+  .header__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    color: #222;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .header__action-btn:hover {
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+    color: #4A90E2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+  }
+
+  .header__action-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__action-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+  }
+
+  /* Navigation */
+  .header__nav {
+    border-top: 1px solid #f4f4f4;
     padding: 16px 0;
   }
 
   .header__tagline {
-    font-size: 12px;
-    padding: 0 12px;
+    text-align: center;
+    color: #4A5568;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 8px 0 0;
+    padding-bottom: 8px;
   }
-  
-  .header__support {
-    display: none;
-  }
-  
-  .header__logo {
-    justify-self: start;
-  }
-  
-  .header__logo-text {
-    font-size: 28px;
-  }
-  
-  .header__actions {
-    gap: 12px;
-  }
-  
-  .header__action-btn {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .header__mobile-toggle {
+
+  .header__nav-list {
     display: flex;
+    list-style: none;
+    gap: 32px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
   }
-  
-  .header__nav {
-    display: none;
+
+  .header__nav-link {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.2s ease;
+    padding: 8px 0;
+    position: relative;
   }
-  
-  /* Hide mega menu on mobile */
+
+  .header__nav-link:hover {
+    color: #4A90E2;
+  }
+
+  /* Navigation Icons and Arrows */
+  .header__nav-icon {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  .header__nav-arrow {
+    margin-left: 8px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .header__nav-item--has-dropdown:hover .header__nav-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Sale Badge */
+  .header__nav-sale-badge {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse-sale 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-sale {
+    0,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Mega Dropdown */
   .header__nav-mega-dropdown {
-    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(74, 144, 226, 0.15);
+    padding: 40px;
+    width: 900px;
+    max-width: 90vw;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.98);
   }
-  
-  .announcement-bar__content {
+
+  .header__nav-item--has-dropdown:hover .header__nav-mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .header__nav-mega-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 280px;
+    gap: 40px;
+  }
+
+  .header__nav-mega-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__nav-mega-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.1);
+    position: relative;
+  }
+
+  .header__nav-mega-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
+  }
+
+  .header__nav-mega-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
     gap: 8px;
-    text-align: center;
   }
-  
-  .announcement-bar__text {
-    font-size: 13px;
-  }
-}
 
-@media (max-width: 480px) {
-  .header__logo-text {
-    font-size: 24px;
+  .header__nav-mega-list a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: all 0.3s ease;
+    position: relative;
   }
-  
-  .header__actions {
-    gap: 8px;
+
+  .header__nav-mega-list a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
+    transition: width 0.3s ease;
   }
-  
-  .header__action-btn {
-    width: 36px;
-    height: 36px;
+
+  .header__nav-mega-list a:hover {
+    color: #4A90E2;
+    transform: translateX(5px);
   }
-  
-  .header__action-icon {
-    font-size: 18px;
+
+  .header__nav-mega-list a:hover::before {
+    width: 100%;
   }
-}
+
+  /* Featured Promo in Mega Menu */
+  .header__nav-mega-featured {
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header__nav-mega-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer-mega 3s infinite;
+  }
+
+  @keyframes shimmer-mega {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .header__nav-mega-promo {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header__nav-mega-promo-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .header__nav-mega-promo h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 8px;
+  }
+
+  .header__nav-mega-promo p {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 16px;
+    line-height: 1.4;
+  }
+
+  .header__nav-mega-promo .btn {
+    font-size: 12px;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 8px;
+  }
+
+  .header__nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4A90E2 0%, #87CEEB 100%);
+    transition: width 0.2s ease;
+  }
+
+  .header__nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Search Form */
+  .header__search {
+    display: none;
+    padding: 16px 0;
+    border-top: 1px solid #f4f4f4;
+  }
+
+  .header__search.active {
+    display: block;
+  }
+
+  .header__search-form {
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .header__search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #f4f4f4;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+  }
+
+  .header__search-input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+
+  .header__search-btn {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+  }
+
+  .header__search-btn:hover {
+    background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+  }
+
+  /* Mobile Menu Toggle */
+  .header__mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .header__mobile-toggle span {
+    width: 24px;
+    height: 2px;
+    background: #222;
+    transition: all 0.2s ease;
+  }
+
+  /* Mobile Menu */
+  .header__mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: var(--z-modal);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .header__mobile-menu.active {
+    transform: translateX(0);
+  }
+
+  .header__mobile-menu-content {
+    padding: 80px 24px 24px;
+  }
+
+  .header__mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .header__mobile-nav-link {
+    color: #222;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid #f4f4f4;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .header__nav-list {
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .header__nav-icon {
+      font-size: 14px;
+      margin-right: 6px;
+    }
+
+    /* Mega Menu Responsive */
+    .header__nav-mega-dropdown {
+      width: 800px;
+      padding: 32px;
+    }
+
+    .header__nav-mega-content {
+      grid-template-columns: 1fr 1fr 1fr 240px;
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .header__nav-list {
+      gap: 12px;
+      font-size: 13px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .header__nav-link {
+      padding: 6px 8px;
+    }
+
+    .header__nav-sale-badge {
+      font-size: 9px;
+      padding: 1px 4px;
+    }
+
+    /* Mega Menu Responsive */
+    .header__nav-mega-dropdown {
+      width: 700px;
+      padding: 24px;
+    }
+
+    .header__nav-mega-content {
+      grid-template-columns: 1fr 1fr 200px;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header__content {
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .header__tagline {
+      font-size: 12px;
+      padding: 0 12px;
+    }
+
+    .header__support {
+      display: none;
+    }
+
+    .header__logo {
+      justify-self: start;
+    }
+
+    .header__logo-text {
+      font-size: 28px;
+    }
+
+    .header__actions {
+      gap: 12px;
+    }
+
+    .header__action-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .header__mobile-toggle {
+      display: flex;
+    }
+
+    .header__nav {
+      display: none;
+    }
+
+    /* Hide mega menu on mobile */
+    .header__nav-mega-dropdown {
+      display: none;
+    }
+
+    .announcement-bar__content {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .announcement-bar__text {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header__logo-text {
+      font-size: 24px;
+    }
+
+    .header__actions {
+      gap: 8px;
+    }
+
+    .header__action-btn {
+      width: 36px;
+      height: 36px;
+    }
+
+    .header__action-icon {
+      font-size: 18px;
+    }
+  }
 </style>
