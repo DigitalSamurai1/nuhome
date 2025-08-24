@@ -19,6 +19,8 @@
         "settings": {
           "logo_width": 180,
           "menu": "main-menu",
+          "show_tagline": true,
+          "tagline_text": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals.",
           "support_phone": "+1-888-555-1212",
           "announcement_text": "Shipping from US Inventory — Delivery in 2–5 Days"
         }
@@ -55,12 +57,94 @@
           "show_urgency": true,
           "urgency_count": "2,847"
         }
+      },
+      "why_nuhome_nQE36L": {
+        "type": "why-nuhome",
+        "name": "Why NüHome",
+        "settings": {
+          "heading": "Why Choose NüHome?",
+          "subheading": "Experience the difference that premium ice-cold technology makes in your daily life",
+          "feature_1_icon": "❄️",
+          "feature_1_badge": "Premium",
+          "feature_1_title": "Crystal Clear Ice Technology",
+          "feature_1_text": "Advanced ice-making technology that produces restaurant-quality crystal-clear ice cubes in just 12 minutes",
+          "feature_1_benefits": "12-minute ice production, Crystal clear quality, Restaurant-grade purity",
+          "feature_2_icon": "🧊",
+          "feature_2_badge": "Smart",
+          "feature_2_title": "Smart & Compact Design",
+          "feature_2_text": "Thoughtfully designed for modern kitchens with space-saving technology and intuitive controls",
+          "feature_2_benefits": "Compact countertop design, Easy touch controls, Modern aesthetic",
+          "feature_3_icon": "🚚",
+          "feature_3_badge": "Reliable",
+          "feature_3_title": "Fast & Reliable Service",
+          "feature_3_text": "Free 2-day shipping, 1-year warranty, and dedicated customer support for peace of mind",
+          "feature_3_benefits": "Free 2-day shipping, 1-year warranty, 24/7 customer support",
+          "show_cta": true,
+          "cta_text": "Start Your Journey ❄️",
+          "cta_link": "shopify://collections/all"
+        }
+      },
+      "testimonials_hc7dFj": {
+        "type": "testimonials",
+        "blocks": {
+          "testimonial_zHD4Ni": {
+            "type": "testimonial",
+            "settings": {
+              "rating": 5,
+              "text": "This ice maker has completely transformed my home bar setup! The ice is crystal clear and forms in just 12 minutes. The sleek design fits perfectly on my countertop, and the quality is absolutely outstanding. Worth every penny!",
+              "product_name": "EUHOMY Luna Arc Ice Maker",
+              "author": "Sarah M.",
+              "author_location": "New York, NY",
+              "purchase_date": "December 2023",
+              "show_helpful_votes": true,
+              "helpful_count": 47
+            }
+          },
+          "testimonial_AqtrUR": {
+            "type": "testimonial",
+            "settings": {
+              "rating": 5,
+              "text": "I've been using this for 3 months now and it's exceeded all my expectations. The ice quality is restaurant-grade and my guests always ask where I get such perfect ice cubes. Highly recommend!",
+              "product_name": "EUHOMY Luna Arc Ice Maker",
+              "author": "Michael R.",
+              "author_location": "Los Angeles, CA",
+              "purchase_date": "November 2023",
+              "show_helpful_votes": true,
+              "helpful_count": 33
+            }
+          },
+          "testimonial_8kLB6C": {
+            "type": "testimonial",
+            "settings": {
+              "rating": 5,
+              "text": "Love how quiet and efficient this machine is. Perfect for our small apartment - doesn't take up much space but produces enough ice for all our needs. Customer service was also excellent when I had questions.",
+              "product_name": "EUHOMY Luna Arc Ice Maker",
+              "author": "Emma L.",
+              "author_location": "Chicago, IL",
+              "purchase_date": "January 2024",
+              "show_helpful_votes": true,
+              "helpful_count": 28
+            }
+          }
+        },
+        "block_order": [
+          "testimonial_zHD4Ni",
+          "testimonial_AqtrUR",
+          "testimonial_8kLB6C"
+        ],
+        "name": "Testimonials",
+        "settings": {
+          "heading": "❄️ What Our Customers Say ❄️",
+          "subheading": "Real experiences from customers who've transformed their kitchens with NüHome"
+        }
       }
     },
     "content_for_index": [
       "header",
       "hero",
       "newsletter_UWajV3",
+      "why_nuhome_nQE36L",
+      "testimonials_hc7dFj",
       "footer"
     ]
   }
