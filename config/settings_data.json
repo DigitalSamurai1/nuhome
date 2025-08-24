@@ -42,23 +42,25 @@
           "show_payment_icons": true
         }
       },
-      "hero_TQANzC": {
-        "type": "hero",
-        "name": "Hero",
+      "newsletter_UWajV3": {
+        "type": "newsletter",
+        "name": "Newsletter",
         "settings": {
-          "heading": "Welcome to NüH❄️me — Elevate your everyday",
-          "subheading": "Premium ice-cold kitchen appliances designed for wellness and efficiency ❄️",
-          "button_label": "Shop Now",
-          "button_link": "shopify://collections/all",
-          "image_overlay_opacity": 0,
-          "color_scheme": "background-1"
+          "heading": "❄️ Join the NüHome Family ❄️",
+          "subheading": "Stay cool with exclusive deals, kitchen tips, and be the first to know about new arrivals",
+          "discount_text": "Get 10% OFF",
+          "discount_subtext": "Your First Order",
+          "button_label": "Get My 10% Off",
+          "subscriber_count": "15,000+",
+          "show_urgency": true,
+          "urgency_count": "2,847"
         }
       }
     },
     "content_for_index": [
       "header",
-      "hero_TQANzC",
       "hero",
+      "newsletter_UWajV3",
       "footer"
     ]
   }
