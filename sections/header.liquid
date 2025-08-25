@@ -117,28 +117,9 @@
 
     <!-- Navigation Menu -->
     <nav class="header__nav" role="navigation">
-      {% if section.settings.menu != blank %}
-        <ul class="header__nav-list">
-          {% for link in linklists[section.settings.menu].links %}
-            <li class="header__nav-item">
-              <a href="{{ link.url }}" class="header__nav-link">
-                {{ link.title }}
-              </a>
-              {% if link.links != blank %}
-                <ul class="header__nav-dropdown">
-                  {% for child_link in link.links %}
-                    <li>
-                      <a href="{{ child_link.url }}" class="header__nav-dropdown-link">
-                        {{ child_link.title }}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
+      {% comment %}
+      Use our custom mega menu navigation instead of basic menu settings
+      {% endcomment %}
         <!-- Default Navigation Based on Product Inventory -->
         <ul class="header__nav-list">
           <!-- Ice Makers Category -->
@@ -621,7 +602,6 @@
             </a>
           </li>
         </ul>
-      {% endif %}
     </nav>
 
     {% if section.settings.show_tagline %}
@@ -1409,6 +1389,8 @@
     .header__nav-mega-dropdown {
       display: none;
     }
+
+  @media (max-width: 480px) {
 
     .announcement-bar__content {
       flex-direction: column;
