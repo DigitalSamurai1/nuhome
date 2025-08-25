@@ -18,7 +18,7 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/Logo_Nu_Home_2.0.png",
-          "logo_width": 180,
+          "logo_width": 300,
           "menu": "main-menu",
           "show_tagline": true,
           "tagline_text": "We sell stylish, affordable home makers that simplify your life and elevate your daily rituals.",
