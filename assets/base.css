@@ -379,7 +379,7 @@ a:hover {
 
 /* Background Utilities */
 .bg-white {
-  background-color: var(--color-background);
+  background-color: #fffffd;
 }
 .bg-primary {
   background-color: var(--color-background);
