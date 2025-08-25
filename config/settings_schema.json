@@ -8,31 +8,47 @@
     "theme_support_url": ""
   },
   {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "emoji_snowflake",
+        "label": "Snowflake Emoji",
+        "default": "❄️"
+      }
+    ]
+  },
+  {
     "name": "Colors",
     "settings": [
       {
         "type": "color",
         "id": "color_background",
         "label": "Background Color",
-        "default": "#f4f8f9"
+        "default": "#FFF7E8"
       },
       {
         "type": "color",
         "id": "color_background_secondary",
         "label": "Secondary Background",
-        "default": "#dff5f1"
+        "default": "#FFF1D6"
       },
       {
         "type": "color",
         "id": "color_background_tertiary",
         "label": "Tertiary Background",
-        "default": "#eef6f9"
+        "default": "#F9FBFF"
       },
       {
         "type": "color",
         "id": "color_accent",
         "label": "Accent Color",
-        "default": "#6ec1b6"
+        "default": "#70B7E6"
       },
       {
         "type": "color",

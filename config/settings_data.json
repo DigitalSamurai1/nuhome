@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "color_background": "#f4f8f9",
-    "color_accent": "#6ec1b6",
+    "color_background": "#FFF7E8",
+    "color_accent": "#70B7E6",
     "color_text_primary": "#222222",
     "color_text_secondary": "#666666",
     "sections": {
