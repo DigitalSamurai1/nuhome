@@ -830,17 +830,26 @@
     , 'Segoe UI'
     , Roboto
     , sans-serif;
-    font-size: 36px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #F0F8FF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 28px;
+    font-weight: 700;
+    color: #4A90E2;
     text-decoration: none;
-    letter-spacing: -1px;
-    text-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
-    position: relative;
-    animation: snowflake-glow 4s ease-in-out infinite;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .header__logo-text:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+    border-color: rgba(74, 144, 226, 0.3);
   }
 
   /* Snowflake animation for the logo */
@@ -1346,7 +1355,8 @@
     }
 
     .header__logo-text {
-      font-size: 28px;
+      font-size: 24px;
+      padding: 10px 16px;
     }
 
     .header__actions {
@@ -1392,7 +1402,8 @@
 
   @media (max-width: 480px) {
     .header__logo-text {
-      font-size: 24px;
+      font-size: 20px;
+      padding: 8px 12px;
     }
 
     .header__actions {
