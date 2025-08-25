@@ -750,6 +750,9 @@
     font-size: 14px;
     font-weight: 600;
     color: #222;
+    min-height: 40px;
+    padding: 0 48px;
+    position: relative;
   }
 
   .announcement-bar__icon {
@@ -768,13 +771,27 @@
   }
 
   .announcement-bar__close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     font-size: 18px;
     line-height: 1;
-    margin-left: 8px;
     cursor: pointer;
     color: #2b6cb0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+
+  .announcement-bar__close:hover {
+    background-color: rgba(43, 108, 176, 0.1);
   }
 
   /* Main Header */
@@ -1397,10 +1414,18 @@
       flex-direction: column;
       gap: 8px;
       text-align: center;
+      padding: 0 24px;
     }
 
     .announcement-bar__text {
       font-size: 13px;
+    }
+
+    .announcement-bar__close {
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      font-size: 16px;
     }
   }
 
