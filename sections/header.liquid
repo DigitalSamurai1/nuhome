@@ -5,18 +5,23 @@
 {% endcomment %}
 
 <!-- Top Announcement Bar -->
-<div class="announcement-bar">
+<div class="announcement-bar" data-announcement-bar>
   <div class="container">
     <div class="announcement-bar__content">
       <i
         data-lucide="package"
         class="announcement-bar__icon"
         aria-hidden="true"></i>
-      <span class="announcement-bar__text">Shipping from US Inventory — Delivery in 2–5 Days</span>
+      <span class="announcement-bar__text">{{ section.settings.announcement_text }}</span>
       <i
         data-lucide="truck"
         class="announcement-bar__icon"
         aria-hidden="true"></i>
+      <button
+        class="announcement-bar__close"
+        type="button"
+        aria-label="Close"
+        data-announcement-close>×</button>
     </div>
   </div>
 </div>
@@ -732,7 +737,7 @@
 <style>
   /* Announcement Bar */
   .announcement-bar {
-    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+    background: linear-gradient(135deg, #FFF7E8 0%, #FFF1D6 100%);
     padding: 8px 0;
     border-bottom: 1px solid rgba(74, 144, 226, 0.1);
   }
@@ -760,6 +765,16 @@
 
   .announcement-bar__text {
     text-align: center;
+  }
+
+  .announcement-bar__close {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #2b6cb0;
   }
 
   /* Main Header */

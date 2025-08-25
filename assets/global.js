@@ -8,6 +8,7 @@ class NuhomeTheme {
   init() {
     this.setupEventListeners();
     this.initializeComponents();
+    this.initAnnouncementBar();
   }
 
   setupEventListeners() {
@@ -235,6 +236,33 @@ class NuhomeTheme {
         }
       });
     });
+  }
+
+  initAnnouncementBar() {
+    const bar = document.querySelector('[data-announcement-bar]');
+    if (!bar) return;
+
+    const closeBtn = bar.querySelector('[data-announcement-close]');
+    const key = 'nh_announcement_closed_v1';
+    const delayMs = 0; // show immediately
+    const durationMs = 0; // 0 = persist until closed
+
+    if (localStorage.getItem(key)) {
+      bar.style.display = 'none';
+      return;
+    }
+
+    // Optional auto-hide after duration
+    if (durationMs > 0) {
+      setTimeout(() => { bar.style.display = 'none'; }, delayMs + durationMs);
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        bar.style.display = 'none';
+        localStorage.setItem(key, '1');
+      });
+    }
   }
 
   validateEmail(email) {
