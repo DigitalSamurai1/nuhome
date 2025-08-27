@@ -1,0 +1,302 @@
+{% comment %}
+  Custom 404 Page for NüHome Theme
+  Features: Search functionality, navigation links, clean design
+{% endcomment %}
+
+<div class="error-page">
+  <!-- Error Header -->
+  <div class="error-header">
+    <div class="error-header-content">
+      <h1 class="error-title">Not Found</h1>
+      <span class="error-code">404</span>
+    </div>
+  </div>
+
+  <!-- Error Content -->
+  <div class="error-content">
+    <div class="error-message">
+      <h2>The page you were looking for does not exist.</h2>
+      <p>Maybe you want to try the search instead?</p>
+    </div>
+
+    <!-- Search Form -->
+    <form
+      class="error-search-form"
+      action="/search"
+      method="get">
+      <div class="search-input-group">
+        <input
+          type="search"
+          name="q"
+          class="search-input"
+          placeholder="login"
+          value="{{ search.terms | default: 'login' }}"
+          aria-label="Search">
+        <button type="submit" class="search-btn">
+          <i data-lucide="search" class="search-icon"></i>
+          Search
+        </button>
+      </div>
+    </form>
+
+    <!-- Navigation Links -->
+    <div class="error-navigation">
+      <a href="/" class="error-link error-link--primary">Back to My Store</a>
+      <span class="error-separator">|</span>
+      <a href="javascript:history.back()" class="error-link error-link--secondary">previous page</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Error Page Styles */
+  .error-page {
+    min-height: 100vh;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Error Header */
+  .error-header {
+    background: #000000;
+    color: white;
+    padding: 20px 0;
+  }
+
+  .error-header-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .error-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    font-family: var(--font-family-primary);
+  }
+
+  .error-code {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: var(--font-family-primary);
+  }
+
+  /* Error Content */
+  .error-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .error-message {
+    text-align: center;
+    margin-bottom: 40px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+
+  .error-message h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0 0 16px;
+    font-family: var(--font-family-primary);
+  }
+
+  .error-message p {
+    font-size: 16px;
+    color: #666666;
+    margin: 0;
+    font-family: var(--font-family-primary);
+  }
+
+  /* Search Form */
+  .error-search-form {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .search-input-group {
+    display: flex;
+    gap: 12px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+
+  .search-btn {
+    padding: 12px 20px;
+    background: #666666;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .search-btn:hover {
+    background: #555555;
+    transform: translateY(-1px);
+  }
+
+  .search-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Navigation Links */
+  .error-navigation {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .error-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-family: var(--font-family-primary);
+  }
+
+  .error-link--primary {
+    color: #8B5CF6;
+    text-decoration: underline;
+  }
+
+  .error-link--primary:hover {
+    color: #7C3AED;
+  }
+
+  .error-link--secondary {
+    color: #3B82F6;
+    text-decoration: underline;
+  }
+
+  .error-link--secondary:hover {
+    color: #2563EB;
+  }
+
+  .error-separator {
+    color: #999999;
+    font-weight: 400;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .error-header-content {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .error-title,
+    .error-code {
+      font-size: 20px;
+    }
+
+    .error-message {
+      padding: 24px;
+    }
+
+    .error-message h2 {
+      font-size: 18px;
+    }
+
+    .search-input-group {
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .search-btn {
+      justify-content: center;
+    }
+
+    .error-navigation {
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .error-separator {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('.error-search-form');
+    const searchInput = document.querySelector('.search-input');
+
+    // Focus on search input when page loads
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.select();
+    }
+
+    // Handle search form submission
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        const query = searchInput.value.trim();
+        if (!query) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      });
+    }
+
+    // Auto-submit search if user presses Enter
+    if (searchInput) {
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const query = this.value.trim();
+          if (query) {
+            window.location.href = `/search?q=${encodeURIComponent(query)}`;
+          }
+        }
+      });
+    }
+  });
+</script>
