@@ -1,29 +1,92 @@
 {% comment %}
   Hero section for NüHome theme
-  Features: Headline, subheading, CTA button, background image
+  Features: Dynamic carousel with product images, headline, subheading, CTA button
 {% endcomment %}
 
 <section
   class="hero"
   data-section-id="{{ section.id }}"
   data-section-type="hero">
-  <div class="hero__background">
-    {% if section.settings.image != blank %}
-      <img
-        src="{{ section.settings.image | image_url: width: 1920 }}"
-        alt="{{ section.settings.image.alt | escape }}"
-        class="hero__background-image"
-        loading="eager">
-      {% if section.settings.image_overlay_opacity > 0 %}
-        <div class="hero__overlay" style="opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};"></div>
+
+  <!-- Hero Carousel -->
+  <div class="hero__carousel" data-hero-carousel>
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <div class="hero__slide" data-slide="{{ forloop.index0 }}">
+          <div class="hero__slide-background">
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 1920 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                class="hero__slide-image"
+                width="1920"
+                height="1080"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+            {% endif %}
+            {% if block.settings.overlay_opacity > 0 %}
+              <div class="hero__slide-overlay" style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+            {% endif %}
+          </div>
+
+          <div class="hero__slide-content">
+            <div class="hero__slide-text">
+              {% if block.settings.heading != blank %}
+                <h2 class="hero__slide-heading">{{ block.settings.heading }}</h2>
+              {% endif %}
+              {% if block.settings.subheading != blank %}
+                <p class="hero__slide-subheading">{{ block.settings.subheading }}</p>
+              {% endif %}
+              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                <div class="hero__slide-cta">
+                  <a href="{{ block.settings.button_link }}" class="btn btn-primary btn-large">
+                    {{ block.settings.button_label }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
       {% endif %}
-    {% endif %}
+    {% endfor %}
   </div>
 
-  <div class="container">
-    <div class="hero__content">
-      <div class="hero__text">
-        {% if section.settings.heading != blank %}
+  <!-- Carousel Navigation -->
+  {% if section.settings.show_navigation %}
+    <div class="hero__carousel-nav">
+      <button
+        class="hero__nav-btn hero__nav-btn--prev"
+        data-carousel-prev
+        aria-label="Previous slide">
+        <i data-lucide="chevron-left" class="hero__nav-icon"></i>
+      </button>
+      <button
+        class="hero__nav-btn hero__nav-btn--next"
+        data-carousel-next
+        aria-label="Next slide">
+        <i data-lucide="chevron-right" class="hero__nav-icon"></i>
+      </button>
+    </div>
+  {% endif %}
+
+  <!-- Carousel Indicators -->
+  {% if section.settings.show_indicators %}
+    <div class="hero__carousel-indicators" data-carousel-indicators>
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          <button
+            class="hero__indicator{% if forloop.first %} hero__indicator--active{% endif %}"
+            data-carousel-indicator="{{ forloop.index0 }}"
+            aria-label="Go to slide {{ forloop.index }}"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Fallback Content (when no slides are added) -->
+  {% if section.blocks.size == 0 %}
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__text">
           <h1 class="hero__heading">
             <span class="hero__heading-text">{{ section.settings.heading }}</span>
             <span class="hero__snowflakes" aria-hidden="true">
@@ -32,105 +95,149 @@
               <i data-lucide="snowflake" style="width:18px;height:18px"></i>
             </span>
           </h1>
-        {% endif %}
-
-        {% if section.settings.subheading != blank %}
-          <p class="hero__subheading">
-            {{ section.settings.subheading }}
-          </p>
-        {% endif %}
-
-        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-          <div class="hero__cta">
-            <a href="{{ section.settings.button_link }}" class="btn btn-primary btn-large">
-              {{ section.settings.button_label }}
-            </a>
-          </div>
-        {% endif %}
-
-        {% if section.settings.show_tagline_overlay %}
-          <p class="hero__brand-tagline">{{ section.settings.tagline_overlay_text }}</p>
-        {% endif %}
+          <p class="hero__subheading">{{ section.settings.subheading }}</p>
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <div class="hero__cta">
+              <a href="{{ section.settings.button_link }}" class="btn btn-primary btn-large">
+                {{ section.settings.button_label }}
+              </a>
+            </div>
+          {% endif %}
+          {% if section.settings.show_tagline_overlay %}
+            <p class="hero__brand-tagline">{{ section.settings.tagline_overlay_text }}</p>
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
+  {% endif %}
 </section>
 
 {% schema %}
   {
-    "name": "Hero",
+    "name": "Hero Carousel",
     "settings": [
       {
         "type": "text",
         "id": "heading",
-        "label": "Heading",
+        "label": "Fallback Heading",
         "default": "Welcome to NüH❄️me — Elevate your everyday"
       },
       {
-        "type": "header",
-        "content": "Brand Overlay"
+        "type": "textarea",
+        "id": "subheading",
+        "label": "Fallback Subheading",
+        "default": "Premium ice-cold kitchen appliances designed for wellness and efficiency ❄️"
       },
       {
+        "type": "text",
+        "id": "button_label",
+        "label": "Fallback Button Label",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Fallback Button Link",
+        "default": "/collections/ice-makers"
+      }, {
+        "type": "header",
+        "content": "Brand Overlay"
+      }, {
         "type": "checkbox",
         "id": "show_tagline_overlay",
         "label": "Show brand tagline overlay",
         "default": true
-      },
-      {
+      }, {
         "type": "textarea",
         "id": "tagline_overlay_text",
         "label": "Tagline overlay text",
         "default": "We create stylish, affordable home makers that simplify your life and elevate your daily rituals."
       }, {
-        "type": "textarea",
-        "id": "subheading",
-        "label": "Subheading",
-        "default": "Premium ice-cold kitchen appliances designed for wellness and efficiency ❄️"
-      }, {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button label",
-        "default": "Shop Now"
-      }, {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link",
-        "default": "/collections/ice-makers"
-      }, {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Background image"
+        "type": "header",
+        "content": "Carousel Settings"
       }, {
         "type": "range",
-        "id": "image_overlay_opacity",
-        "min": 0,
-        "max": 100,
-        "step": 5,
-        "default": 0,
-        "unit": "%",
-        "label": "Image overlay opacity"
+        "id": "autoplay_speed",
+        "min": 3,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "unit": "s",
+        "label": "Autoplay speed"
       }, {
-        "type": "select",
-        "id": "color_scheme",
-        "options": [
+        "type": "checkbox",
+        "id": "show_autoplay",
+        "label": "Enable autoplay",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "show_navigation",
+        "label": "Show navigation arrows",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "show_indicators",
+        "label": "Show slide indicators",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
           {
-            "value": "background-1",
-            "label": "Background 1"
+            "type": "image_picker",
+            "id": "image",
+            "label": "Slide Image"
+          },
+          {
+            "type": "range",
+            "id": "overlay_opacity",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "default": 20,
+            "unit": "%",
+            "label": "Image overlay opacity"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Slide Heading",
+            "default": "Premium Kitchen Appliances"
+          },
+          {
+            "type": "textarea",
+            "id": "subheading",
+            "label": "Slide Subheading",
+            "default": "Discover our latest collection of innovative home solutions"
           }, {
-            "value": "background-2",
-            "label": "Background 2"
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Shop Now"
           }, {
-            "value": "background-3",
-            "label": "Background 3"
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link",
+            "default": "/collections/all"
           }
-        ],
-        "default": "background-1",
-        "label": "Color scheme"
+        ]
       }
     ],
     "presets": [
       {
-        "name": "Hero"
+        "name": "Hero Carousel",
+        "blocks": [
+          {
+            "type": "slide"
+          }, {
+            "type": "slide"
+          }, {
+            "type": "slide"
+          }
+        ]
       }
     ]
   }
@@ -148,7 +255,8 @@
     animation: frozen-gradient 8s ease-in-out infinite;
   }
 
-  .hero__background {
+  /* Hero Carousel */
+  .hero__carousel {
     position: absolute;
     top: 0;
     left: 0;
@@ -157,20 +265,180 @@
     z-index: 1;
   }
 
-  .hero__background-image {
+  .hero__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__slide.active {
+    opacity: 1;
+  }
+
+  .hero__slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__slide-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
   }
 
-  .hero__overlay {
+  .hero__slide-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--color-text-primary);
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .hero__slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+
+  .hero__slide-text {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(74, 144, 226, 0.3);
+    border: 2px solid rgba(135, 206, 235, 0.3);
+  }
+
+  .hero__slide-heading {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: #4A90E2;
+  }
+
+  .hero__slide-subheading {
+    font-size: 1.25rem;
+    color: #4A5568;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+  }
+
+  .hero__slide-cta .btn {
+    font-size: 1.125rem;
+    padding: 16px 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #4A90E2 0%, #2171B5 100%);
+    border: none;
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .hero__slide-cta .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
+    background: linear-gradient(135deg, #2171B5 0%, #4A90E2 100%);
+  }
+
+  /* Carousel Navigation */
+  .hero__carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .hero__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero__nav-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero__nav-btn--prev {
+    left: 24px;
+  }
+
+  .hero__nav-btn--next {
+    right: 24px;
+  }
+
+  .hero__nav-icon {
+    width: 24px;
+    height: 24px;
+    color: #4A90E2;
+  }
+
+  /* Carousel Indicators */
+  .hero__carousel-indicators {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+  }
+
+  .hero__indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hero__indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+  }
+
+  .hero__indicator--active {
+    background: #4A90E2;
+    transform: scale(1.2);
   }
 
   .hero__content {
@@ -402,4 +670,166 @@
       padding: 14px 32px;
     }
   }
+
+  /* Hide navigation and indicators on mobile if disabled */
+  @media (max-width: 768px) {
+    .hero__carousel-nav {
+      display: none;
+    }
+
+    .hero__carousel-indicators {
+      bottom: 20px;
+    }
+
+    .hero__slide-text {
+      padding: 32px;
+      margin: 0 16px;
+    }
+
+    .hero__slide-heading {
+      font-size: 2.5rem;
+    }
+
+    .hero__slide-subheading {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__slide-text {
+      padding: 24px;
+      margin: 0 8px;
+    }
+
+    .hero__slide-heading {
+      font-size: 2rem;
+    }
+
+    .hero__slide-cta .btn {
+      font-size: 1rem;
+      padding: 14px 32px;
+    }
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('[data-hero-carousel]');
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll('[data-slide]');
+    const prevBtn = document.querySelector('[data-carousel-prev]');
+    const nextBtn = document.querySelector('[data-carousel-next]');
+    const indicators = document.querySelectorAll('[data-carousel-indicator]');
+    
+    let currentSlide = 0;
+    let autoplayInterval;
+    
+    // Initialize first slide
+    if (slides.length > 0) {
+      slides[0].classList.add('active');
+      if (indicators.length > 0) {
+        indicators[0].classList.add('hero__indicator--active');
+      }
+    }
+    
+    // Function to show slide
+    function showSlide(index) {
+      // Remove active class from all slides and indicators
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(indicator => indicator.classList.remove('hero__indicator--active'));
+      
+      // Add active class to current slide and indicator
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      if (indicators[index]) {
+        indicators[index].classList.add('hero__indicator--active');
+      }
+      
+      currentSlide = index;
+    }
+    
+    // Function to go to next slide
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    }
+    
+    // Function to go to previous slide
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    }
+    
+    // Event listeners for navigation buttons
+    if (prevBtn && {{ section.settings.show_navigation | default: true }}) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+    
+    if (nextBtn && {{ section.settings.show_navigation | default: true }}) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
+    
+    // Event listeners for indicators
+    if ({{ section.settings.show_indicators | default: true }}) {
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => showSlide(index));
+      });
+    }
+    
+    // Autoplay functionality
+    const autoplaySpeed = {{ section.settings.autoplay_speed | default: 5 }} * 1000;
+    const showAutoplay = {{ section.settings.show_autoplay | default: true }};
+    
+    if (showAutoplay && slides.length > 1) {
+      autoplayInterval = setInterval(nextSlide, autoplaySpeed);
+      
+      // Pause autoplay on hover
+      carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+      });
+      
+      carousel.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(nextSlide, autoplaySpeed);
+      });
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+      }
+    });
+    
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    carousel.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next slide
+          nextSlide();
+        } else {
+          // Swipe right - previous slide
+          prevSlide();
+        }
+      }
+    }
+  });
+</script>
