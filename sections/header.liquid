@@ -101,7 +101,11 @@
             data-lucide="shopping-cart"
             class="header__action-icon"
             aria-hidden="true"></i>
-          <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+          <span class="header__cart-count" data-cart-count>
+            {% if cart.item_count > 0 %}
+              {{ cart.item_count }}
+            {% endif %}
+          </span>
         </a>
       </div>
 
@@ -111,9 +115,9 @@
         data-mobile-menu-toggle
         aria-label="Toggle mobile menu"
         aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="header__mobile-toggle-line"></span>
+        <span class="header__mobile-toggle-line"></span>
+        <span class="header__mobile-toggle-line"></span>
       </button>
     </div>
 
@@ -354,28 +358,134 @@
   <!-- Mobile Menu -->
   <div class="header__mobile-menu" data-mobile-menu>
     <div class="header__mobile-menu-content">
+      <div class="header__mobile-header">
+        <div class="header__mobile-logo">
+          <a href="/" class="header__mobile-logo-link">
+            {% if section.settings.logo != blank %}
+              <img
+                src="{{ section.settings.logo | image_url: width: 120 }}"
+                alt="{{ shop.name }}"
+                width="120"
+                height="40">
+            {% else %}
+              <span class="header__mobile-logo-text">NüH❄️me</span>
+            {% endif %}
+          </a>
+        </div>
+        <button
+          class="header__mobile-close"
+          data-mobile-menu-close
+          aria-label="Close mobile menu">
+          <i data-lucide="x" class="header__mobile-close-icon"></i>
+        </button>
+      </div>
+
       <nav class="header__mobile-nav">
         <ul class="header__mobile-nav-list">
           <li class="header__mobile-nav-item">
             <a href="/" class="header__mobile-nav-link">Home</a>
           </li>
+
+          <li class="header__mobile-nav-item header__mobile-nav-item--has-dropdown">
+            <button class="header__mobile-nav-link header__mobile-nav-toggle" data-mobile-dropdown-toggle>
+              ICE MAKERS
+              <i data-lucide="chevron-down" class="header__mobile-nav-arrow"></i>
+            </button>
+            <ul class="header__mobile-dropdown" data-mobile-dropdown>
+              <li>
+                <a href="/collections/ice-makers">All Ice Makers</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-nugget-ice-maker-countertop">COWSAR Nugget Ice Maker</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-nugget-ice-maker-dispenser">COWSAR Nugget Dispenser</a>
+              </li>
+              <li>
+                <a href="/products/euhomy-nugget-ice-makers">Euhomy Nugget Ice Makers</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-portable-ice-makers">COWSAR Portable Ice</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-bullet-ice-maker">COWSAR Bullet Ice Maker</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="header__mobile-nav-item header__mobile-nav-item--has-dropdown">
+            <button class="header__mobile-nav-link header__mobile-nav-toggle" data-mobile-dropdown-toggle>
+              COFFEE MAKERS
+              <i data-lucide="chevron-down" class="header__mobile-nav-arrow"></i>
+            </button>
+            <ul class="header__mobile-dropdown" data-mobile-dropdown>
+              <li>
+                <a href="/collections/coffee-makers">All Coffee Makers</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-drip-coffee-maker">COWSAR Drip Coffee</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-10-cup-coffee-maker">COWSAR 10-Cup Coffee</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-espresso-machine">COWSAR Espresso</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-espresso-cappuccino">COWSAR Cappuccino</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="header__mobile-nav-item header__mobile-nav-item--has-dropdown">
+            <button class="header__mobile-nav-link header__mobile-nav-toggle" data-mobile-dropdown-toggle>
+              COOLERS
+              <i data-lucide="chevron-down" class="header__mobile-nav-arrow"></i>
+            </button>
+            <ul class="header__mobile-dropdown" data-mobile-dropdown>
+              <li>
+                <a href="/collections/coolers">All Coolers</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-portable-cooler-12v">COWSAR 12V Cooler</a>
+              </li>
+              <li>
+                <a href="/products/euhomy-12v-refrigerator">EUHOMY 12V Refrigerator</a>
+              </li>
+              <li>
+                <a href="/products/euhomy-car-refrigerator">EUHOMY Car Fridge</a>
+              </li>
+              <li>
+                <a href="/products/cowsar-mini-fridge">Cowsar Mini Fridge</a>
+              </li>
+            </ul>
+          </li>
+
           <li class="header__mobile-nav-item">
             <a href="/collections/bestsellers" class="header__mobile-nav-link">Best Sellers</a>
           </li>
+
           <li class="header__mobile-nav-item">
-            <a href="/collections/ice-makers" class="header__mobile-nav-link">Ice Makers</a>
+            <a href="/pages/about-us" class="header__mobile-nav-link">About Us</a>
           </li>
+
           <li class="header__mobile-nav-item">
-            <a href="/collections/coffee-machines" class="header__mobile-nav-link">Coffee Machines</a>
-          </li>
-          <li class="header__mobile-nav-item">
-            <a href="/collections/wellness-tech" class="header__mobile-nav-link">Wellness Tech</a>
-          </li>
-          <li class="header__mobile-nav-item">
-            <a href="/pages/contact" class="header__mobile-nav-link">Contact</a>
+            <a href="/pages/customer-care" class="header__mobile-nav-link">Support</a>
           </li>
         </ul>
       </nav>
+
+      <div class="header__mobile-actions">
+        <div class="header__mobile-support">
+          <i data-lucide="headphones" class="header__mobile-support-icon"></i>
+          <div class="header__mobile-support-content">
+            <div class="header__mobile-support-label">Customer Support</div>
+            <button class="header__mobile-support-btn" data-claim-modal-toggle>
+              Submit Claim
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -507,6 +617,121 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Sticky Header Functionality
+      const header = document.querySelector('.header');
+      let lastScrollTop = 0;
+      
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+          header.classList.add('header--scrolled');
+        } else {
+          header.classList.remove('header--scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+      });
+
+      // Mobile Menu Functionality
+      const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
+      const mobileMenu = document.querySelector('[data-mobile-menu]');
+      const mobileMenuClose = document.querySelector('[data-mobile-menu-close]');
+      const mobileDropdownToggles = document.querySelectorAll('[data-mobile-dropdown-toggle]');
+      
+      // Toggle mobile menu
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+          mobileMenu.classList.toggle('active');
+          mobileMenuToggle.classList.toggle('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 
+            mobileMenu.classList.contains('active').toString());
+          
+          // Prevent body scroll when menu is open
+          if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+          }
+        });
+      }
+      
+      // Close mobile menu
+      if (mobileMenuClose && mobileMenu) {
+        mobileMenuClose.addEventListener('click', function() {
+          mobileMenu.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      }
+      
+      // Mobile dropdown toggles
+      mobileDropdownToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+          const navItem = this.closest('.header__mobile-nav-item--has-dropdown');
+          navItem.classList.toggle('active');
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (mobileMenu && mobileMenu.classList.contains('active')) {
+          if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+      
+      // Close mobile menu when clicking on navigation links
+      const mobileNavLinks = mobileMenu.querySelectorAll('a[href]');
+      mobileNavLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Cart Count Update Functionality
+      function updateCartCount() {
+        const cartCountElements = document.querySelectorAll('[data-cart-count]');
+        
+        // Fetch current cart count from Shopify
+        fetch('/cart.js')
+          .then(response => response.json())
+          .then(cart => {
+            cartCountElements.forEach(function(element) {
+              if (cart.item_count > 0) {
+                element.textContent = cart.item_count;
+                element.style.display = 'flex';
+              } else {
+                element.style.display = 'none';
+              }
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching cart count:', error);
+          });
+      }
+      
+      // Update cart count on page load
+      updateCartCount();
+      
+      // Listen for cart changes (Shopify's cart API)
+      document.addEventListener('cart:updated', updateCartCount);
+      
+      // Also update on any form submission that might affect cart
+      document.addEventListener('submit', function(e) {
+        if (e.target.matches('form[action*="/cart/add"]')) {
+          setTimeout(updateCartCount, 1000);
+        }
+      });
+
       // Claim Modal Functionality
       const claimModal = document.querySelector('[data-claim-modal]');
       const claimModalToggle = document.querySelector('[data-claim-modal-toggle]');
@@ -729,8 +954,17 @@
   .header {
     background: #FFFFFD;
     border-bottom: 1px solid #f4f4f4;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: var(--z-sticky);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 253, 0.98);
+  }
+
+  .header.header--scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 253, 0.95);
   }
 
   .header__content {
@@ -891,19 +1125,40 @@
 
   .header__cart-count {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
-    border-radius: 50%;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+    padding: 0 6px;
+    animation: cartCountPulse 0.6s ease-out;
+  }
+
+  @keyframes cartCountPulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .cart-count-updated {
+    animation: cartCountPulse 0.6s ease-out;
   }
 
   /* Navigation */
@@ -1221,13 +1476,32 @@
     border: none;
     cursor: pointer;
     padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
-  .header__mobile-toggle span {
+  .header__mobile-toggle:hover {
+    background: rgba(74, 144, 226, 0.1);
+  }
+
+  .header__mobile-toggle-line {
     width: 24px;
     height: 2px;
     background: #222;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
 
   /* Mobile Menu */
@@ -1249,24 +1523,179 @@
   }
 
   .header__mobile-menu-content {
-    padding: 80px 24px 24px;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f4f4f4;
+    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
+  }
+
+  .header__mobile-logo-text {
+    font-family: 'Inter'
+    , sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4A90E2;
+  }
+
+  .header__mobile-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    color: #666;
+  }
+
+  .header__mobile-close:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+    color: #4A90E2;
+  }
+
+  .header__mobile-close-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header__mobile-nav {
+    flex: 1;
+    padding: 24px;
   }
 
   .header__mobile-nav-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0;
+  }
+
+  .header__mobile-nav-item {
+    border-bottom: 1px solid #f4f4f4;
   }
 
   .header__mobile-nav-link {
     color: #222;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 16px 0;
-    border-bottom: 1px solid #f4f4f4;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .header__mobile-nav-link:hover {
+    color: #4A90E2;
+  }
+
+  .header__mobile-nav-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .header__mobile-nav-item--has-dropdown.active .header__mobile-nav-arrow {
+    transform: rotate(180deg);
+  }
+
+  .header__mobile-dropdown {
+    list-style: none;
+    padding-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .header__mobile-nav-item--has-dropdown.active .header__mobile-dropdown {
+    max-height: 300px;
+  }
+
+  .header__mobile-dropdown li {
+    border-bottom: 1px solid #f8f8f8;
+  }
+
+  .header__mobile-dropdown a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 12px 0;
+    display: block;
+    transition: color 0.2s ease;
+  }
+
+  .header__mobile-dropdown a:hover {
+    color: #4A90E2;
+  }
+
+  .header__mobile-actions {
+    padding: 24px;
+    border-top: 1px solid #f4f4f4;
+    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
+  }
+
+  .header__mobile-support {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+  }
+
+  .header__mobile-support-icon {
+    width: 20px;
+    height: 20px;
+    color: #4A90E2;
+  }
+
+  .header__mobile-support-content {
+    flex: 1;
+  }
+
+  .header__mobile-support-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .header__mobile-support-btn {
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+  }
+
+  .header__mobile-support-btn:hover {
+    background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
   }
 
   /* Responsive Design */
@@ -1382,6 +1811,22 @@
       height: 28px;
       font-size: 16px;
     }
+
+    /* Mobile menu improvements */
+    .header__mobile-menu {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .header__mobile-nav-link {
+      font-size: 18px;
+      padding: 18px 0;
+    }
+
+    .header__mobile-dropdown a {
+      font-size: 15px;
+      padding: 14px 0;
+    }
   }
 
   @media (max-width: 480px) {
@@ -1401,6 +1846,26 @@
 
     .header__action-icon {
       font-size: 18px;
+    }
+
+    .header__cart-count {
+      font-size: 10px;
+      min-width: 18px;
+      height: 18px;
+      top: -6px;
+      right: -6px;
+    }
+
+    .header__mobile-header {
+      padding: 16px 20px;
+    }
+
+    .header__mobile-nav {
+      padding: 20px;
+    }
+
+    .header__mobile-actions {
+      padding: 20px;
     }
   }
 

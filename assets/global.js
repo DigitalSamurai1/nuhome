@@ -288,10 +288,23 @@ class NuhomeTheme {
     fetch('/cart.js')
       .then(response => response.json())
       .then(cart => {
-        const cartCount = document.querySelector('[data-cart-count]');
-        if (cartCount) {
-          cartCount.textContent = cart.item_count;
-        }
+        const cartCountElements = document.querySelectorAll('[data-cart-count]');
+        cartCountElements.forEach(function(element) {
+          if (cart.item_count > 0) {
+            element.textContent = cart.item_count;
+            element.style.display = 'flex';
+            // Add animation class for visual feedback
+            element.classList.add('cart-count-updated');
+            setTimeout(() => {
+              element.classList.remove('cart-count-updated');
+            }, 600);
+          } else {
+            element.style.display = 'none';
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error updating cart count:', error);
       });
   }
 }
