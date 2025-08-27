@@ -30,8 +30,7 @@
 <header
   class="header"
   data-section-id="{{ section.id }}"
-  data-section-type="header"
-  style="position: sticky; top: 0; z-index: 9999;">
+  data-section-type="header">
   <div class="container">
     <div class="header__content">
       <!-- Left: Support Box -->
@@ -83,20 +82,20 @@
         </button>
 
         <!-- Account -->
-        <button
+        <a
+          href="/account"
           class="header__action-btn"
-          data-auth-modal-toggle
-          aria-label="Login or Register">
+          aria-label="Account">
           <i
             data-lucide="user"
             class="header__action-icon"
             aria-hidden="true"></i>
-        </button>
+        </a>
 
         <!-- Cart -->
-        <a
-          href="/cart"
+        <button
           class="header__action-btn header__cart-btn"
+          data-cart-modal-toggle
           aria-label="Cart">
           <i
             data-lucide="shopping-cart"
@@ -107,7 +106,7 @@
               {{ cart.item_count }}
             {% endif %}
           </span>
-        </a>
+        </button>
       </div>
 
       <!-- Mobile Menu Toggle -->
@@ -490,201 +489,103 @@
     </div>
   </div>
 
-  <!-- Auth Modal -->
-  <div class="auth-modal" data-auth-modal>
-    <div class="auth-modal__overlay" data-auth-modal-close></div>
-    <div class="auth-modal__content">
-      <div class="auth-modal__header">
+  <!-- Cart Modal -->
+  <div class="cart-modal" data-cart-modal>
+    <div class="cart-modal__overlay" data-cart-modal-close></div>
+    <div class="cart-modal__content">
+      <div class="cart-modal__header">
+        <h3 class="cart-modal__title">Shopping Cart</h3>
         <button
-          class="auth-modal__close"
-          data-auth-modal-close
+          class="cart-modal__close"
+          data-cart-modal-close
           aria-label="Close">
-          <i data-lucide="x" class="auth-modal__close-icon"></i>
+          <i data-lucide="x" class="cart-modal__close-icon"></i>
         </button>
       </div>
 
-      <div class="auth-modal__body">
-        <!-- Auth Tabs -->
-        <div class="auth-tabs">
-          <button class="auth-tab auth-tab--login active" data-auth-tab="login">
-            Login
-          </button>
-          <button class="auth-tab auth-tab--register" data-auth-tab="register">
-            Register
-          </button>
-        </div>
+      <div class="cart-modal__body">
+        {% if cart.item_count > 0 %}
+          <!-- Cart Items -->
+          <div class="cart-items" data-cart-items>
+            {% for item in cart.items %}
+              <div class="cart-item" data-cart-item="{{ item.key }}">
+                <div class="cart-item__image">
+                  <img
+                    src="{{ item.image | image_url: width: 80, height: 80, crop: 'center' }}"
+                    alt="{{ item.title }}"
+                    loading="lazy"
+                    width="80"
+                    height="80">
+                </div>
 
-        <!-- Login Form -->
-        <div class="auth-form auth-form--login active" data-auth-form="login">
-          <form
-            class="login-form"
-            action="/account/login"
-            method="post"
-            data-login-form>
-            <input
-              type="hidden"
-              name="form_type"
-              value="customer_login">
-            <input
-              type="hidden"
-              name="utf8"
-              value="✓">
+                <div class="cart-item__details">
+                  <div class="cart-item__title">{{ item.product.title }}</div>
+                  {% if item.variant.title != 'Default Title' %}
+                    <div class="cart-item__variant">{{ item.variant.title }}</div>
+                  {% endif %}
+                  <div class="cart-item__price">{{ item.final_price | money }}</div>
 
-            <div class="form-field">
-              <label for="modal_email" class="form-label">Email</label>
-              <input
-                type="email"
-                id="modal_email"
-                name="customer[email]"
-                class="form-input"
-                required
-                placeholder="Enter your email address">
-            </div>
+                  <div class="cart-item__quantity">
+                    <button
+                      class="quantity-btn quantity-btn--minus"
+                      data-quantity-minus
+                      data-item-key="{{ item.key }}">
+                      <i data-lucide="minus" class="quantity-icon"></i>
+                    </button>
+                    <span class="quantity-value">{{ item.quantity }}</span>
+                    <button
+                      class="quantity-btn quantity-btn--plus"
+                      data-quantity-plus
+                      data-item-key="{{ item.key }}">
+                      <i data-lucide="plus" class="quantity-icon"></i>
+                    </button>
+                  </div>
+                </div>
 
-            <div class="form-field">
-              <label for="modal_password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="modal_password"
-                name="customer[password]"
-                class="form-input"
-                required
-                placeholder="Enter your password">
-            </div>
-
-            <button type="submit" class="auth-btn auth-btn--login">
-              <span class="auth-btn-text">SIGN IN</span>
-              <span class="auth-btn-loading" style="display: none;">
-                <i data-lucide="loader-2" class="auth-loading-icon"></i>
-                Signing in...
-              </span>
-            </button>
-          </form>
-
-          <div class="auth-links">
-            <a href="/account/recover" class="auth-link">Forgot your password?</a>
+                <button
+                  class="cart-item__remove"
+                  data-remove-item
+                  data-item-key="{{ item.key }}">
+                  <i data-lucide="trash-2" class="remove-icon"></i>
+                </button>
+              </div>
+            {% endfor %}
           </div>
 
-          <!-- Social Login -->
-          <div class="social-login">
-            <div class="social-login-title">Or sign in with</div>
-            <div class="social-login-buttons">
-              <button class="social-btn social-btn--facebook" data-social-login="facebook">
-                <span class="social-btn-text">f</span>
-              </button>
-              <button class="social-btn social-btn--google" data-social-login="google">
-                <span class="social-btn-text">G</span>
-              </button>
-              <button class="social-btn social-btn--twitter" data-social-login="twitter">
-                <span class="social-btn-text">X</span>
-              </button>
-              <button class="social-btn social-btn--linkedin" data-social-login="linkedin">
-                <span class="social-btn-text">in</span>
-              </button>
-              <button class="social-btn social-btn--apple" data-social-login="apple">
-                <i data-lucide="apple" class="social-btn-icon"></i>
-              </button>
-              <button class="social-btn social-btn--amazon" data-social-login="amazon">
-                <span class="social-btn-text">a</span>
-              </button>
+          <!-- Cart Summary -->
+          <div class="cart-summary">
+            <div class="cart-summary__row">
+              <span>Subtotal</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            {% if cart.total_discounts > 0 %}
+              <div class="cart-summary__row cart-summary__row--discount">
+                <span>Discounts</span>
+                <span>-{{ cart.total_discounts | money }}</span>
+              </div>
+            {% endif %}
+            <div class="cart-summary__row cart-summary__row--total">
+              <span>Total</span>
+              <span>{{ cart.total_price | money }}</span>
             </div>
           </div>
-        </div>
 
-        <!-- Register Form -->
-        <div class="auth-form auth-form--register" data-auth-form="register">
-          <form
-            class="register-form"
-            action="/account"
-            method="post"
-            data-register-form>
-            <input
-              type="hidden"
-              name="form_type"
-              value="create_customer">
-            <input
-              type="hidden"
-              name="utf8"
-              value="✓">
-
-            <div class="form-field">
-              <label for="modal_register_email" class="form-label">Email</label>
-              <input
-                type="email"
-                id="modal_register_email"
-                name="customer[email]"
-                class="form-input"
-                required
-                placeholder="Enter your email address">
-            </div>
-
-            <div class="form-field">
-              <label for="modal_register_password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="modal_register_password"
-                name="customer[password]"
-                class="form-input"
-                required
-                placeholder="Create a password">
-            </div>
-
-            <div class="form-field">
-              <label for="modal_register_first_name" class="form-label">First Name</label>
-              <input
-                type="text"
-                id="modal_register_first_name"
-                name="customer[first_name]"
-                class="form-input"
-                required
-                placeholder="Enter your first name">
-            </div>
-
-            <div class="form-field">
-              <label for="modal_register_last_name" class="form-label">Last Name</label>
-              <input
-                type="text"
-                id="modal_register_last_name"
-                name="customer[last_name]"
-                class="form-input"
-                required
-                placeholder="Enter your last name">
-            </div>
-
-            <button type="submit" class="auth-btn auth-btn--register">
-              <span class="auth-btn-text">CREATE ACCOUNT</span>
-              <span class="auth-btn-loading" style="display: none;">
-                <i data-lucide="loader-2" class="auth-loading-icon"></i>
-                Creating account...
-              </span>
-            </button>
-          </form>
-
-          <!-- Social Register -->
-          <div class="social-login">
-            <div class="social-login-title">Or sign up with</div>
-            <div class="social-login-buttons">
-              <button class="social-btn social-btn--facebook" data-social-login="facebook">
-                <span class="social-btn-text">f</span>
-              </button>
-              <button class="social-btn social-btn--google" data-social-login="google">
-                <span class="social-btn-text">G</span>
-              </button>
-              <button class="social-btn social-btn--twitter" data-social-login="twitter">
-                <span class="social-btn-text">X</span>
-              </button>
-              <button class="social-btn social-btn--linkedin" data-social-login="linkedin">
-                <span class="social-btn-text">in</span>
-              </button>
-              <button class="social-btn social-btn--apple" data-social-login="apple">
-                <i data-lucide="apple" class="social-btn-icon"></i>
-              </button>
-              <button class="social-btn social-btn--amazon" data-social-login="amazon">
-                <span class="social-btn-text">a</span>
-              </button>
-            </div>
+          <!-- Cart Actions -->
+          <div class="cart-actions">
+            <a href="/cart" class="cart-btn cart-btn--secondary">View Cart</a>
+            <a href="/checkout" class="cart-btn cart-btn--primary">Checkout</a>
           </div>
-        </div>
+        {% else %}
+          <!-- Empty Cart -->
+          <div class="cart-empty">
+            <div class="cart-empty__icon">
+              <i data-lucide="shopping-cart" class="empty-cart-icon"></i>
+            </div>
+            <h4 class="cart-empty__title">Your cart is empty</h4>
+            <p class="cart-empty__message">Looks like you haven't added any items to your cart yet.</p>
+            <a href="/collections/bestsellers" class="cart-btn cart-btn--primary">Start Shopping</a>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -817,314 +718,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Sticky Header Functionality
-      const header = document.querySelector('.header');
-      let lastScrollTop = 0;
-      
-      // Check if sticky positioning is supported
-      function isStickySupported() {
-        const testEl = document.createElement('div');
-        testEl.style.position = 'sticky';
-        return testEl.style.position === 'sticky';
-      }
-      
-      // Fallback for browsers that don't support sticky
-      if (!isStickySupported()) {
-        header.style.position = 'fixed';
-        header.style.top = '0';
-        header.style.left = '0';
-        header.style.right = '0';
-        document.body.style.paddingTop = '200px';
-      }
-      
-      window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
-          header.classList.add('header--scrolled');
-        } else {
-          header.classList.remove('header--scrolled');
-        }
-        
-        lastScrollTop = scrollTop;
-      });
-
-      // Mobile Menu Functionality
-      const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
-      const mobileMenu = document.querySelector('[data-mobile-menu]');
-      const mobileMenuClose = document.querySelector('[data-mobile-menu-close]');
-      const mobileDropdownToggles = document.querySelectorAll('[data-mobile-dropdown-toggle]');
-      
-      // Toggle mobile menu
-      if (mobileMenuToggle && mobileMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-          mobileMenu.classList.toggle('active');
-          mobileMenuToggle.classList.toggle('active');
-          mobileMenuToggle.setAttribute('aria-expanded', 
-            mobileMenu.classList.contains('active').toString());
-          
-          // Prevent body scroll when menu is open
-          if (mobileMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-          } else {
-            document.body.style.overflow = '';
-          }
-        });
-      }
-      
-      // Close mobile menu
-      if (mobileMenuClose && mobileMenu) {
-        mobileMenuClose.addEventListener('click', function() {
-          mobileMenu.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-          mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
-      }
-      
-      // Mobile dropdown toggles
-      mobileDropdownToggles.forEach(function(toggle) {
-        toggle.addEventListener('click', function() {
-          const navItem = this.closest('.header__mobile-nav-item--has-dropdown');
-          navItem.classList.toggle('active');
-        });
-      });
-      
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (mobileMenu && mobileMenu.classList.contains('active')) {
-          if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-          }
-        }
-      });
-      
-      // Close mobile menu when clicking on navigation links
-      const mobileNavLinks = mobileMenu.querySelectorAll('a[href]');
-      mobileNavLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.remove('active');
-          mobileMenuToggle.classList.remove('active');
-          mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Cart Count Update Functionality
-      function updateCartCount() {
-        const cartCountElements = document.querySelectorAll('[data-cart-count]');
-        
-        // Fetch current cart count from Shopify
-        fetch('/cart.js')
-          .then(response => response.json())
-          .then(cart => {
-            cartCountElements.forEach(function(element) {
-              if (cart.item_count > 0) {
-                element.textContent = cart.item_count;
-                element.style.display = 'flex';
-              } else {
-                element.style.display = 'none';
-              }
-            });
-          })
-          .catch(error => {
-            console.error('Error fetching cart count:', error);
-          });
-      }
-      
-      // Update cart count on page load
-      updateCartCount();
-      
-      // Listen for cart changes (Shopify's cart API)
-      document.addEventListener('cart:updated', updateCartCount);
-      
-      // Also update on any form submission that might affect cart
-      document.addEventListener('submit', function(e) {
-        if (e.target.matches('form[action*="/cart/add"]')) {
-          setTimeout(updateCartCount, 1000);
-        }
-      });
-
-      // Auth Modal Functionality
-      const authModal = document.querySelector('[data-auth-modal]');
-      const authModalToggle = document.querySelector('[data-auth-modal-toggle]');
-      const authModalClose = document.querySelectorAll('[data-auth-modal-close]');
-      const authTabs = document.querySelectorAll('[data-auth-tab]');
-      const authForms = document.querySelectorAll('[data-auth-form]');
-      const loginForm = document.querySelector('[data-login-form]');
-      const registerForm = document.querySelector('[data-register-form]');
-      const socialButtons = document.querySelectorAll('[data-social-login]');
-
-      // Open auth modal
-      if (authModalToggle) {
-        authModalToggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          authModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      }
-
-      // Close auth modal
-      authModalClose.forEach(function(closeBtn) {
-        closeBtn.addEventListener('click', function() {
-          authModal.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Close modal on escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && authModal.classList.contains('active')) {
-          authModal.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-
-      // Tab switching
-      authTabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          const targetForm = this.getAttribute('data-auth-tab');
-          
-          // Update active tab
-          authTabs.forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Update active form
-          authForms.forEach(form => form.classList.remove('active'));
-          document.querySelector(`[data-auth-form="${targetForm}"]`).classList.add('active');
-        });
-      });
-
-      // Handle login form submission
-      if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const submitBtn = loginForm.querySelector('.auth-btn');
-          const btnText = submitBtn.querySelector('.auth-btn-text');
-          const btnLoading = submitBtn.querySelector('.auth-btn-loading');
-          
-          // Show loading state
-          submitBtn.disabled = true;
-          btnText.style.display = 'none';
-          btnLoading.style.display = 'flex';
-          
-          // Get form data
-          const formData = new FormData(loginForm);
-          
-          // Submit form
-          fetch('/account/login', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json',
-            }
-          })
-          .then(response => {
-            if (response.ok) {
-              // Redirect to account page or dashboard
-              window.location.href = '/account';
-            } else {
-              throw new Error('Login failed');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            showMessage('Invalid email or password. Please try again.', 'error');
-          })
-          .finally(() => {
-            // Reset button state
-            submitBtn.disabled = false;
-            btnText.style.display = 'inline';
-            btnLoading.style.display = 'none';
-          });
-        });
-      }
-
-      // Handle register form submission
-      if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const submitBtn = registerForm.querySelector('.auth-btn');
-          const btnText = submitBtn.querySelector('.auth-btn-text');
-          const btnLoading = submitBtn.querySelector('.auth-btn-loading');
-          
-          // Show loading state
-          submitBtn.disabled = true;
-          btnText.style.display = 'none';
-          btnLoading.style.display = 'flex';
-          
-          // Get form data
-          const formData = new FormData(registerForm);
-          
-          // Submit form
-          fetch('/account', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json',
-            }
-          })
-          .then(response => {
-            if (response.ok) {
-              // Redirect to account page or dashboard
-              window.location.href = '/account';
-            } else {
-              throw new Error('Registration failed');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            showMessage('Registration failed. Please try again.', 'error');
-          })
-          .finally(() => {
-            // Reset button state
-            submitBtn.disabled = false;
-            btnText.style.display = 'inline';
-            btnLoading.style.display = 'none';
-          });
-        });
-      }
-
-      // Handle social login buttons
-      socialButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          const provider = this.getAttribute('data-social-login');
-          showMessage(`Social login with ${provider} is not implemented yet.`, 'info');
-        });
-      });
-
-      // Function to show messages
-      function showMessage(message, type) {
-        // Remove existing messages
-        const existingMessage = document.querySelector('.auth-message');
-        if (existingMessage) {
-          existingMessage.remove();
-        }
-        
-        // Create new message
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `auth-message auth-message--${type}`;
-        messageDiv.textContent = message;
-        
-        // Insert at the top of the active form
-        const activeForm = document.querySelector('.auth-form.active');
-        if (activeForm) {
-          activeForm.insertBefore(messageDiv, activeForm.firstChild);
-        }
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-          if (messageDiv.parentNode) {
-            messageDiv.remove();
-          }
-        }, 5000);
-      }
-
       // Claim Modal Functionality
       const claimModal = document.querySelector('[data-claim-modal]');
       const claimModalToggle = document.querySelector('[data-claim-modal-toggle]');
@@ -1226,6 +819,144 @@
           }
         }, 5000);
       }
+
+      // Cart Modal Functionality
+      const cartModal = document.querySelector('[data-cart-modal]');
+      const cartModalToggle = document.querySelector('[data-cart-modal-toggle]');
+      const cartModalClose = document.querySelectorAll('[data-cart-modal-close]');
+
+      // Open cart modal
+      if (cartModalToggle) {
+        cartModalToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          cartModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      // Close cart modal
+      cartModalClose.forEach(function(closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          cartModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Close modal on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cartModal.classList.contains('active')) {
+          cartModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Handle quantity changes
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('[data-quantity-plus]')) {
+          const itemKey = e.target.getAttribute('data-item-key');
+          updateCartItemQuantity(itemKey, 1);
+        }
+        if (e.target.matches('[data-quantity-minus]')) {
+          const itemKey = e.target.getAttribute('data-item-key');
+          updateCartItemQuantity(itemKey, -1);
+        }
+        if (e.target.matches('[data-remove-item]')) {
+          const itemKey = e.target.getAttribute('data-item-key');
+          removeCartItem(itemKey);
+        }
+      });
+
+      // Function to update cart item quantity
+      function updateCartItemQuantity(itemKey, change) {
+        const quantityElement = document.querySelector(`[data-cart-item="${itemKey}"] .quantity-value`);
+        const currentQuantity = parseInt(quantityElement.textContent);
+        const newQuantity = currentQuantity + change;
+        
+        if (newQuantity < 1) return;
+        
+        // Show loading state
+        quantityElement.textContent = '...';
+        
+        // Update cart via Shopify API
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: itemKey,
+            quantity: newQuantity
+          })
+        })
+        .then(response => response.json())
+        .then(cart => {
+          // Update quantity display
+          quantityElement.textContent = newQuantity;
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Update cart modal content
+          updateCartModal(cart);
+        })
+        .catch(error => {
+          console.error('Error updating quantity:', error);
+          quantityElement.textContent = currentQuantity;
+        });
+      }
+
+      // Function to remove cart item
+      function removeCartItem(itemKey) {
+        const cartItem = document.querySelector(`[data-cart-item="${itemKey}"]`);
+        
+        // Show loading state
+        cartItem.style.opacity = '0.5';
+        
+        // Remove item via Shopify API
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: itemKey,
+            quantity: 0
+          })
+        })
+        .then(response => response.json())
+        .then(cart => {
+          // Remove item from DOM
+          cartItem.remove();
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Update cart modal content
+          updateCartModal(cart);
+        })
+        .catch(error => {
+          console.error('Error removing item:', error);
+          cartItem.style.opacity = '1';
+        });
+      }
+
+      // Function to update cart modal content
+      function updateCartModal(cart) {
+        if (cart.item_count === 0) {
+          // Show empty cart state
+          const cartBody = document.querySelector('.cart-modal__body');
+          cartBody.innerHTML = `
+            <div class="cart-empty">
+              <div class="cart-empty__icon">
+                <i data-lucide="shopping-cart" class="empty-cart-icon"></i>
+              </div>
+              <h4 class="cart-empty__title">Your cart is empty</h4>
+              <p class="cart-empty__message">Looks like you haven't added any items to your cart yet.</p>
+              <a href="/collections/bestsellers" class="cart-btn cart-btn--primary">Start Shopping</a>
+            </div>
+          `;
+        }
+      }
     });
   </script>
 </header>
@@ -1289,8 +1020,6 @@
     background: #FFFFFD;
     padding: 8px 0;
     border-bottom: 1px solid rgba(74, 144, 226, 0.1);
-    position: relative;
-    z-index: 9998;
   }
 
   .announcement-bar__content {
@@ -1351,54 +1080,10 @@
     border-bottom: 1px solid #f4f4f4;
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: var(--z-sticky);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 253, 0.98);
-    width: 100%;
-    left: 0;
-    right: 0;
-  }
-
-  /* Ensure sticky positioning works */
-  body {
-    position: relative;
-  }
-
-  /* Force sticky behavior with multiple approaches */
-  .header {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-  }
-
-  /* Ensure the header stays on top */
-  .header {
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  /* Alternative approach if sticky doesn't work */
-  @supports not(position: sticky) {
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-
-    body {
-      padding-top: 200px;
-      /* Adjust based on header height */
-    }
-  }
-
-  /* Ensure proper stacking context */
-  .header {
-    transform: translateZ(0);
-    will-change: transform;
   }
 
   .header.header--scrolled {
@@ -1564,40 +1249,19 @@
 
   .header__cart-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+    top: -6px;
+    right: -6px;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
     color: white;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    min-width: 20px;
+    width: 20px;
     height: 20px;
-    border-radius: 10px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
-    padding: 0 6px;
-    animation: cartCountPulse 0.6s ease-out;
-  }
-
-  @keyframes cartCountPulse {
-    0% {
-      transform: scale(0.8);
-      opacity: 0.8;
-    }
-    50% {
-      transform: scale(1.2);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  .cart-count-updated {
-    animation: cartCountPulse 0.6s ease-out;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
   }
 
   /* Navigation */
@@ -1915,32 +1579,13 @@
     border: none;
     cursor: pointer;
     padding: 8px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
   }
 
-  .header__mobile-toggle:hover {
-    background: rgba(74, 144, 226, 0.1);
-  }
-
-  .header__mobile-toggle-line {
+  .header__mobile-toggle span {
     width: 24px;
     height: 2px;
     background: #222;
-    transition: all 0.3s ease;
-    transform-origin: center;
-  }
-
-  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .header__mobile-toggle.active .header__mobile-toggle-line:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transition: all 0.2s ease;
   }
 
   /* Mobile Menu */
@@ -1962,179 +1607,24 @@
   }
 
   .header__mobile-menu-content {
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .header__mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 24px;
-    border-bottom: 1px solid #f4f4f4;
-    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
-  }
-
-  .header__mobile-logo-text {
-    font-family: 'Inter'
-    , sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #4A90E2;
-  }
-
-  .header__mobile-close {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease;
-    color: #666;
-  }
-
-  .header__mobile-close:hover {
-    background-color: rgba(74, 144, 226, 0.1);
-    color: #4A90E2;
-  }
-
-  .header__mobile-close-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .header__mobile-nav {
-    flex: 1;
-    padding: 24px;
+    padding: 80px 24px 24px;
   }
 
   .header__mobile-nav-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0;
-  }
-
-  .header__mobile-nav-item {
-    border-bottom: 1px solid #f4f4f4;
+    gap: 24px;
   }
 
   .header__mobile-nav-link {
     color: #222;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-    width: 100%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
-
-  .header__mobile-nav-link:hover {
-    color: #4A90E2;
-  }
-
-  .header__mobile-nav-arrow {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.3s ease;
-  }
-
-  .header__mobile-nav-item--has-dropdown.active .header__mobile-nav-arrow {
-    transform: rotate(180deg);
-  }
-
-  .header__mobile-dropdown {
-    list-style: none;
-    padding-left: 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .header__mobile-nav-item--has-dropdown.active .header__mobile-dropdown {
-    max-height: 300px;
-  }
-
-  .header__mobile-dropdown li {
-    border-bottom: 1px solid #f8f8f8;
-  }
-
-  .header__mobile-dropdown a {
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 12px 0;
     display: block;
-    transition: color 0.2s ease;
-  }
-
-  .header__mobile-dropdown a:hover {
-    color: #4A90E2;
-  }
-
-  .header__mobile-actions {
-    padding: 24px;
-    border-top: 1px solid #f4f4f4;
-    background: linear-gradient(135deg, #F8FBFF 0%, #EBF4FF 100%);
-  }
-
-  .header__mobile-support {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: white;
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
-  }
-
-  .header__mobile-support-icon {
-    width: 20px;
-    height: 20px;
-    color: #4A90E2;
-  }
-
-  .header__mobile-support-content {
-    flex: 1;
-  }
-
-  .header__mobile-support-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .header__mobile-support-btn {
-    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
-  }
-
-  .header__mobile-support-btn:hover {
-    background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+    padding: 16px 0;
+    border-bottom: 1px solid #f4f4f4;
   }
 
   /* Responsive Design */
@@ -2250,22 +1740,6 @@
       height: 28px;
       font-size: 16px;
     }
-
-    /* Mobile menu improvements */
-    .header__mobile-menu {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .header__mobile-nav-link {
-      font-size: 18px;
-      padding: 18px 0;
-    }
-
-    .header__mobile-dropdown a {
-      font-size: 15px;
-      padding: 14px 0;
-    }
   }
 
   @media (max-width: 480px) {
@@ -2286,30 +1760,10 @@
     .header__action-icon {
       font-size: 18px;
     }
-
-    .header__cart-count {
-      font-size: 10px;
-      min-width: 18px;
-      height: 18px;
-      top: -6px;
-      right: -6px;
-    }
-
-    .header__mobile-header {
-      padding: 16px 20px;
-    }
-
-    .header__mobile-nav {
-      padding: 20px;
-    }
-
-    .header__mobile-actions {
-      padding: 20px;
-    }
   }
 
-  /* Auth Modal Styles */
-  .auth-modal {
+  /* Cart Modal Styles */
+  .cart-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -2325,12 +1779,12 @@
     transition: all 0.3s ease;
   }
 
-  .auth-modal.active {
+  .cart-modal.active {
     opacity: 1;
     visibility: visible;
   }
 
-  .auth-modal__overlay {
+  .cart-modal__overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -2339,11 +1793,11 @@
     cursor: pointer;
   }
 
-  .auth-modal__content {
+  .cart-modal__content {
     background: #FFFFFD;
     border-radius: 16px;
     padding: 0;
-    max-width: 450px;
+    max-width: 500px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
@@ -2353,17 +1807,26 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
 
-  .auth-modal.active .auth-modal__content {
+  .cart-modal.active .cart-modal__content {
     transform: translateY(0);
   }
 
-  .auth-modal__header {
+  .cart-modal__header {
     display: flex;
-    justify-content: flex-end;
-    padding: 20px 24px 0;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid #f0f0f0;
   }
 
-  .auth-modal__close {
+  .cart-modal__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+
+  .cart-modal__close {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -2373,273 +1836,290 @@
     color: #666;
   }
 
-  .auth-modal__close:hover {
+  .cart-modal__close:hover {
     background-color: rgba(74, 144, 226, 0.1);
     color: #4A90E2;
   }
 
-  .auth-modal__close-icon {
+  .cart-modal__close-icon {
     width: 20px;
     height: 20px;
   }
 
-  .auth-modal__body {
+  .cart-modal__body {
     padding: 0 24px 24px;
   }
 
-  /* Auth Tabs */
-  .auth-tabs {
-    display: flex;
-    margin-bottom: 32px;
-    border-bottom: 1px solid #f0f0f0;
+  /* Cart Items */
+  .cart-items {
+    margin-bottom: 24px;
   }
 
-  .auth-tab {
-    flex: 1;
-    padding: 16px 24px;
-    background: transparent;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f8f8f8;
     position: relative;
   }
 
-  .auth-tab.active {
-    color: #4A90E2;
+  .cart-item:last-child {
+    border-bottom: none;
   }
 
-  .auth-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+  .cart-item__image {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8f8f8;
   }
 
-  .auth-tab:hover {
-    color: #4A90E2;
+  .cart-item__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  /* Auth Forms */
-  .auth-form {
-    display: none;
+  .cart-item__details {
+    flex: 1;
+    min-width: 0;
   }
 
-  .auth-form.active {
-    display: block;
-  }
-
-  .form-field {
-    margin-bottom: 20px;
-  }
-
-  .form-label {
-    display: block;
-    font-size: 14px;
+  .cart-item__title {
+    font-size: 16px;
     font-weight: 600;
     color: #333;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .cart-item__variant {
+    font-size: 14px;
+    color: #666;
     margin-bottom: 8px;
   }
 
-  .form-input {
-    width: 100%;
-    padding: 12px 16px;
+  .cart-item__price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #4A90E2;
+    margin-bottom: 12px;
+  }
+
+  .cart-item__quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quantity-btn {
+    width: 32px;
+    height: 32px;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background: #ffffff;
-    box-sizing: border-box;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: #4A90E2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-  }
-
-  .form-input::placeholder {
-    color: #999;
-  }
-
-  /* Auth Buttons */
-  .auth-btn {
-    width: 100%;
-    padding: 14px 24px;
-    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    background: white;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    transition: all 0.2s ease;
   }
 
-  .auth-btn:hover {
+  .quantity-btn:hover {
+    border-color: #4A90E2;
+    background: #f8fbff;
+  }
+
+  .quantity-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .quantity-icon {
+    width: 16px;
+    height: 16px;
+    color: #666;
+  }
+
+  .quantity-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    min-width: 24px;
+    text-align: center;
+  }
+
+  .cart-item__remove {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    color: #999;
+    flex-shrink: 0;
+  }
+
+  .cart-item__remove:hover {
+    background: #fff5f5;
+    color: #dc2626;
+  }
+
+  .remove-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Cart Summary */
+  .cart-summary {
+    background: #f8fbff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+  }
+
+  .cart-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .cart-summary__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .cart-summary__row--discount {
+    color: #059669;
+  }
+
+  .cart-summary__row--total {
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+    padding-top: 12px;
+    border-top: 1px solid rgba(74, 144, 226, 0.1);
+  }
+
+  /* Cart Actions */
+  .cart-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cart-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-btn--secondary {
+    background: transparent;
+    color: #4A90E2;
+    border: 2px solid #4A90E2;
+  }
+
+  .cart-btn--secondary:hover {
+    background: #4A90E2;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .cart-btn--primary {
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    border: none;
+  }
+
+  .cart-btn--primary:hover {
     background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
   }
 
-  .auth-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .auth-loading-icon {
-    width: 16px;
-    height: 16px;
-    animation: spin 1s linear infinite;
-  }
-
-  /* Auth Links */
-  .auth-links {
+  /* Empty Cart */
+  .cart-empty {
     text-align: center;
-    margin-bottom: 24px;
+    padding: 40px 20px;
   }
 
-  .auth-link {
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
+  .cart-empty__icon {
+    margin-bottom: 20px;
   }
 
-  .auth-link:hover {
-    color: #4A90E2;
+  .empty-cart-icon {
+    width: 64px;
+    height: 64px;
+    color: #ccc;
   }
 
-  /* Social Login */
-  .social-login {
-    text-align: center;
-  }
-
-  .social-login-title {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 16px;
-    font-weight: 500;
-  }
-
-  .social-login-buttons {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .social-btn {
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
+  .cart-empty__title {
+    font-size: 20px;
     font-weight: 600;
-    color: white;
-    transition: all 0.3s ease;
+    color: #333;
+    margin: 0 0 12px;
   }
 
-  .social-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  .cart-empty__message {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 24px;
+    line-height: 1.5;
   }
 
-  .social-btn--facebook {
-    background: #1877F2;
-  }
-
-  .social-btn--google {
-    background: #DB4437;
-  }
-
-  .social-btn--twitter {
-    background: #1DA1F2;
-  }
-
-  .social-btn--linkedin {
-    background: #0077B5;
-  }
-
-  .social-btn--apple {
-    background: #000000;
-  }
-
-  .social-btn--amazon {
-    background: #FF9900;
-  }
-
-  .social-btn-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Auth Messages */
-  .auth-message {
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    font-weight: 500;
-    font-size: 14px;
-  }
-
-  .auth-message--error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-  }
-
-  .auth-message--success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-  }
-
-  .auth-message--info {
-    background: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
-  }
-
-  /* Responsive Auth Modal */
+  /* Responsive Cart Modal */
   @media (max-width: 480px) {
-    .auth-modal__content {
+    .cart-modal__content {
       width: 95%;
       margin: 20px;
     }
 
-    .auth-modal__body {
+    .cart-modal__body {
       padding: 0 20px 20px;
     }
 
-    .auth-tab {
-      padding: 14px 16px;
-      font-size: 16px;
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: center;
     }
 
-    .social-login-buttons {
-      gap: 6px;
+    .cart-item__image {
+      align-self: center;
     }
 
-    .social-btn {
-      width: 36px;
-      height: 36px;
-      font-size: 14px;
+    .cart-item__details {
+      text-align: center;
+      width: 100%;
+    }
+
+    .cart-item__quantity {
+      justify-content: center;
+    }
+
+    .cart-item__remove {
+      position: absolute;
+      top: 16px;
+      right: 0;
+    }
+
+    .cart-actions {
+      flex-direction: column;
     }
   }
 
