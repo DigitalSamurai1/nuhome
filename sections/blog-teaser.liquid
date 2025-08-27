@@ -1,0 +1,76 @@
+<section class="blog-teaser container">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="grid">
+    {% assign blog_obj = blogs[section.settings.blog_handle] %}
+    {% for article in blog_obj.articles limit: 3 %}
+      <article class="card">
+        <a href="{{ article.url }}">
+          {% if article.image %}<img src="{{ article.image | img_url: '720x' }}" alt="{{ article.title }}">{% endif %}
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.excerpt_or_content | strip_html | truncate: 120 }}</p>
+          <span class="link">Read more →</span>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .blog-teaser .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem
+  }
+  .blog-teaser .card {
+    border: 1px solid #e6edf3;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff
+  }
+  .blog-teaser img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover
+  }
+  .blog-teaser h3 {
+    margin: 0.6rem 1rem
+  }
+  .blog-teaser p {
+    margin: 0 1rem 1rem;
+    color: #5a6b7b
+  }
+  .link {
+    display: inline-block;
+    margin: 0 1rem 1rem;
+    color: #0aa1dd
+  }
+  @media(max-width: 900px) {
+    .blog-teaser .grid {
+      grid-template-columns: 1fr
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Blog teaser",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Discover more"
+      }, {
+        "type": "blog",
+        "id": "blog_handle",
+        "label": "Blog",
+        "default": "news"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog teaser"
+      }
+    ]
+  }
+{% endschema %}
