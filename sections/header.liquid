@@ -83,15 +83,15 @@
         </button>
 
         <!-- Account -->
-        <a
-          href="/account/login"
+        <button
           class="header__action-btn"
-          aria-label="Login">
+          data-auth-modal-toggle
+          aria-label="Login or Register">
           <i
             data-lucide="user"
             class="header__action-icon"
             aria-hidden="true"></i>
-        </a>
+        </button>
 
         <!-- Cart -->
         <a
@@ -490,6 +490,205 @@
     </div>
   </div>
 
+  <!-- Auth Modal -->
+  <div class="auth-modal" data-auth-modal>
+    <div class="auth-modal__overlay" data-auth-modal-close></div>
+    <div class="auth-modal__content">
+      <div class="auth-modal__header">
+        <button
+          class="auth-modal__close"
+          data-auth-modal-close
+          aria-label="Close">
+          <i data-lucide="x" class="auth-modal__close-icon"></i>
+        </button>
+      </div>
+
+      <div class="auth-modal__body">
+        <!-- Auth Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab auth-tab--login active" data-auth-tab="login">
+            Login
+          </button>
+          <button class="auth-tab auth-tab--register" data-auth-tab="register">
+            Register
+          </button>
+        </div>
+
+        <!-- Login Form -->
+        <div class="auth-form auth-form--login active" data-auth-form="login">
+          <form
+            class="login-form"
+            action="/account/login"
+            method="post"
+            data-login-form>
+            <input
+              type="hidden"
+              name="form_type"
+              value="customer_login">
+            <input
+              type="hidden"
+              name="utf8"
+              value="✓">
+
+            <div class="form-field">
+              <label for="modal_email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="modal_email"
+                name="customer[email]"
+                class="form-input"
+                required
+                placeholder="Enter your email address">
+            </div>
+
+            <div class="form-field">
+              <label for="modal_password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="modal_password"
+                name="customer[password]"
+                class="form-input"
+                required
+                placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="auth-btn auth-btn--login">
+              <span class="auth-btn-text">SIGN IN</span>
+              <span class="auth-btn-loading" style="display: none;">
+                <i data-lucide="loader-2" class="auth-loading-icon"></i>
+                Signing in...
+              </span>
+            </button>
+          </form>
+
+          <div class="auth-links">
+            <a href="/account/recover" class="auth-link">Forgot your password?</a>
+          </div>
+
+          <!-- Social Login -->
+          <div class="social-login">
+            <div class="social-login-title">Or sign in with</div>
+            <div class="social-login-buttons">
+              <button class="social-btn social-btn--facebook" data-social-login="facebook">
+                <span class="social-btn-text">f</span>
+              </button>
+              <button class="social-btn social-btn--google" data-social-login="google">
+                <span class="social-btn-text">G</span>
+              </button>
+              <button class="social-btn social-btn--twitter" data-social-login="twitter">
+                <span class="social-btn-text">X</span>
+              </button>
+              <button class="social-btn social-btn--linkedin" data-social-login="linkedin">
+                <span class="social-btn-text">in</span>
+              </button>
+              <button class="social-btn social-btn--apple" data-social-login="apple">
+                <i data-lucide="apple" class="social-btn-icon"></i>
+              </button>
+              <button class="social-btn social-btn--amazon" data-social-login="amazon">
+                <span class="social-btn-text">a</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form auth-form--register" data-auth-form="register">
+          <form
+            class="register-form"
+            action="/account"
+            method="post"
+            data-register-form>
+            <input
+              type="hidden"
+              name="form_type"
+              value="create_customer">
+            <input
+              type="hidden"
+              name="utf8"
+              value="✓">
+
+            <div class="form-field">
+              <label for="modal_register_email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="modal_register_email"
+                name="customer[email]"
+                class="form-input"
+                required
+                placeholder="Enter your email address">
+            </div>
+
+            <div class="form-field">
+              <label for="modal_register_password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="modal_register_password"
+                name="customer[password]"
+                class="form-input"
+                required
+                placeholder="Create a password">
+            </div>
+
+            <div class="form-field">
+              <label for="modal_register_first_name" class="form-label">First Name</label>
+              <input
+                type="text"
+                id="modal_register_first_name"
+                name="customer[first_name]"
+                class="form-input"
+                required
+                placeholder="Enter your first name">
+            </div>
+
+            <div class="form-field">
+              <label for="modal_register_last_name" class="form-label">Last Name</label>
+              <input
+                type="text"
+                id="modal_register_last_name"
+                name="customer[last_name]"
+                class="form-input"
+                required
+                placeholder="Enter your last name">
+            </div>
+
+            <button type="submit" class="auth-btn auth-btn--register">
+              <span class="auth-btn-text">CREATE ACCOUNT</span>
+              <span class="auth-btn-loading" style="display: none;">
+                <i data-lucide="loader-2" class="auth-loading-icon"></i>
+                Creating account...
+              </span>
+            </button>
+          </form>
+
+          <!-- Social Register -->
+          <div class="social-login">
+            <div class="social-login-title">Or sign up with</div>
+            <div class="social-login-buttons">
+              <button class="social-btn social-btn--facebook" data-social-login="facebook">
+                <span class="social-btn-text">f</span>
+              </button>
+              <button class="social-btn social-btn--google" data-social-login="google">
+                <span class="social-btn-text">G</span>
+              </button>
+              <button class="social-btn social-btn--twitter" data-social-login="twitter">
+                <span class="social-btn-text">X</span>
+              </button>
+              <button class="social-btn social-btn--linkedin" data-social-login="linkedin">
+                <span class="social-btn-text">in</span>
+              </button>
+              <button class="social-btn social-btn--apple" data-social-login="apple">
+                <i data-lucide="apple" class="social-btn-icon"></i>
+              </button>
+              <button class="social-btn social-btn--amazon" data-social-login="amazon">
+                <span class="social-btn-text">a</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Claim Modal -->
   <div class="claim-modal" data-claim-modal>
     <div class="claim-modal__overlay" data-claim-modal-close></div>
@@ -748,6 +947,183 @@
           setTimeout(updateCartCount, 1000);
         }
       });
+
+      // Auth Modal Functionality
+      const authModal = document.querySelector('[data-auth-modal]');
+      const authModalToggle = document.querySelector('[data-auth-modal-toggle]');
+      const authModalClose = document.querySelectorAll('[data-auth-modal-close]');
+      const authTabs = document.querySelectorAll('[data-auth-tab]');
+      const authForms = document.querySelectorAll('[data-auth-form]');
+      const loginForm = document.querySelector('[data-login-form]');
+      const registerForm = document.querySelector('[data-register-form]');
+      const socialButtons = document.querySelectorAll('[data-social-login]');
+
+      // Open auth modal
+      if (authModalToggle) {
+        authModalToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          authModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      // Close auth modal
+      authModalClose.forEach(function(closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          authModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Close modal on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && authModal.classList.contains('active')) {
+          authModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Tab switching
+      authTabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          const targetForm = this.getAttribute('data-auth-tab');
+          
+          // Update active tab
+          authTabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update active form
+          authForms.forEach(form => form.classList.remove('active'));
+          document.querySelector(`[data-auth-form="${targetForm}"]`).classList.add('active');
+        });
+      });
+
+      // Handle login form submission
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const submitBtn = loginForm.querySelector('.auth-btn');
+          const btnText = submitBtn.querySelector('.auth-btn-text');
+          const btnLoading = submitBtn.querySelector('.auth-btn-loading');
+          
+          // Show loading state
+          submitBtn.disabled = true;
+          btnText.style.display = 'none';
+          btnLoading.style.display = 'flex';
+          
+          // Get form data
+          const formData = new FormData(loginForm);
+          
+          // Submit form
+          fetch('/account/login', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json',
+            }
+          })
+          .then(response => {
+            if (response.ok) {
+              // Redirect to account page or dashboard
+              window.location.href = '/account';
+            } else {
+              throw new Error('Login failed');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showMessage('Invalid email or password. Please try again.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+          });
+        });
+      }
+
+      // Handle register form submission
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const submitBtn = registerForm.querySelector('.auth-btn');
+          const btnText = submitBtn.querySelector('.auth-btn-text');
+          const btnLoading = submitBtn.querySelector('.auth-btn-loading');
+          
+          // Show loading state
+          submitBtn.disabled = true;
+          btnText.style.display = 'none';
+          btnLoading.style.display = 'flex';
+          
+          // Get form data
+          const formData = new FormData(registerForm);
+          
+          // Submit form
+          fetch('/account', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json',
+            }
+          })
+          .then(response => {
+            if (response.ok) {
+              // Redirect to account page or dashboard
+              window.location.href = '/account';
+            } else {
+              throw new Error('Registration failed');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            showMessage('Registration failed. Please try again.', 'error');
+          })
+          .finally(() => {
+            // Reset button state
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+          });
+        });
+      }
+
+      // Handle social login buttons
+      socialButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const provider = this.getAttribute('data-social-login');
+          showMessage(`Social login with ${provider} is not implemented yet.`, 'info');
+        });
+      });
+
+      // Function to show messages
+      function showMessage(message, type) {
+        // Remove existing messages
+        const existingMessage = document.querySelector('.auth-message');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+        
+        // Create new message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `auth-message auth-message--${type}`;
+        messageDiv.textContent = message;
+        
+        // Insert at the top of the active form
+        const activeForm = document.querySelector('.auth-form.active');
+        if (activeForm) {
+          activeForm.insertBefore(messageDiv, activeForm.firstChild);
+        }
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (messageDiv.parentNode) {
+            messageDiv.remove();
+          }
+        }, 5000);
+      }
 
       // Claim Modal Functionality
       const claimModal = document.querySelector('[data-claim-modal]');
@@ -1929,6 +2305,341 @@
 
     .header__mobile-actions {
       padding: 20px;
+    }
+  }
+
+  /* Auth Modal Styles */
+  .auth-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .auth-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .auth-modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .auth-modal__content {
+    background: #FFFFFD;
+    border-radius: 16px;
+    padding: 0;
+    max-width: 450px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .auth-modal.active .auth-modal__content {
+    transform: translateY(0);
+  }
+
+  .auth-modal__header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 24px 0;
+  }
+
+  .auth-modal__close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    color: #666;
+  }
+
+  .auth-modal__close:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+    color: #4A90E2;
+  }
+
+  .auth-modal__close-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .auth-modal__body {
+    padding: 0 24px 24px;
+  }
+
+  /* Auth Tabs */
+  .auth-tabs {
+    display: flex;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .auth-tab {
+    flex: 1;
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .auth-tab.active {
+    color: #4A90E2;
+  }
+
+  .auth-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+  }
+
+  .auth-tab:hover {
+    color: #4A90E2;
+  }
+
+  /* Auth Forms */
+  .auth-form {
+    display: none;
+  }
+
+  .auth-form.active {
+    display: block;
+  }
+
+  .form-field {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-sizing: border-box;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: #999;
+  }
+
+  /* Auth Buttons */
+  .auth-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .auth-btn:hover {
+    background: linear-gradient(135deg, #3A7BD5 0%, #6BB6D6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+  }
+
+  .auth-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .auth-loading-icon {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+  }
+
+  /* Auth Links */
+  .auth-links {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .auth-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .auth-link:hover {
+    color: #4A90E2;
+  }
+
+  /* Social Login */
+  .social-login {
+    text-align: center;
+  }
+
+  .social-login-title {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .social-login-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .social-btn--facebook {
+    background: #1877F2;
+  }
+
+  .social-btn--google {
+    background: #DB4437;
+  }
+
+  .social-btn--twitter {
+    background: #1DA1F2;
+  }
+
+  .social-btn--linkedin {
+    background: #0077B5;
+  }
+
+  .social-btn--apple {
+    background: #000000;
+  }
+
+  .social-btn--amazon {
+    background: #FF9900;
+  }
+
+  .social-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Auth Messages */
+  .auth-message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .auth-message--error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+
+  .auth-message--success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .auth-message--info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+  }
+
+  /* Responsive Auth Modal */
+  @media (max-width: 480px) {
+    .auth-modal__content {
+      width: 95%;
+      margin: 20px;
+    }
+
+    .auth-modal__body {
+      padding: 0 20px 20px;
+    }
+
+    .auth-tab {
+      padding: 14px 16px;
+      font-size: 16px;
+    }
+
+    .social-login-buttons {
+      gap: 6px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
     }
   }
 
