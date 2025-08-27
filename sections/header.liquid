@@ -30,7 +30,8 @@
 <header
   class="header"
   data-section-id="{{ section.id }}"
-  data-section-type="header">
+  data-section-type="header"
+  style="position: sticky; top: 0; z-index: 9999;">
   <div class="container">
     <div class="header__content">
       <!-- Left: Support Box -->
@@ -621,6 +622,22 @@
       const header = document.querySelector('.header');
       let lastScrollTop = 0;
       
+      // Check if sticky positioning is supported
+      function isStickySupported() {
+        const testEl = document.createElement('div');
+        testEl.style.position = 'sticky';
+        return testEl.style.position === 'sticky';
+      }
+      
+      // Fallback for browsers that don't support sticky
+      if (!isStickySupported()) {
+        header.style.position = 'fixed';
+        header.style.top = '0';
+        header.style.left = '0';
+        header.style.right = '0';
+        document.body.style.paddingTop = '200px';
+      }
+      
       window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
@@ -896,6 +913,8 @@
     background: #FFFFFD;
     padding: 8px 0;
     border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+    position: relative;
+    z-index: 9998;
   }
 
   .announcement-bar__content {
@@ -956,10 +975,54 @@
     border-bottom: 1px solid #f4f4f4;
     position: sticky;
     top: 0;
-    z-index: var(--z-sticky);
+    z-index: 9999;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 253, 0.98);
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  /* Ensure sticky positioning works */
+  body {
+    position: relative;
+  }
+
+  /* Force sticky behavior with multiple approaches */
+  .header {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+  }
+
+  /* Ensure the header stays on top */
+  .header {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Alternative approach if sticky doesn't work */
+  @supports not(position: sticky) {
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    body {
+      padding-top: 200px;
+      /* Adjust based on header height */
+    }
+  }
+
+  /* Ensure proper stacking context */
+  .header {
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .header.header--scrolled {
